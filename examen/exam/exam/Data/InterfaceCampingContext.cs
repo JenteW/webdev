@@ -39,6 +39,7 @@ namespace exam.Data
 
 
 
+
         /******/
         /*SPOTTAG*/
         /******/
@@ -58,5 +59,9 @@ namespace exam.Data
         /******/
         void AddUser(User user);
         IEnumerable<User> GetUsers();
+        void GetUserByUsername(string username);
+        void UpdateUser(int id, User user);
+
+        
     }
 }

@@ -1,6 +1,8 @@
 ﻿using LiteDB;
 using exam.Models;
 using exam.Data;
+
+
 namespace exam.Data
 {
     public class CampingDatabase : InterfaceCampingContext
@@ -61,7 +63,10 @@ namespace exam.Data
         {
            return db.GetCollection<Owner>("owners").FindAll();
         }
-
+        public void GetOwnerByUsername(string username)
+        {
+            db.GetCollection<Owner>("owners").FindOne(x => x.Username == username);
+        }
 
 
         /******/
@@ -102,5 +107,18 @@ namespace exam.Data
         {
             return db.GetCollection<User>("users").FindAll();
         }
+
+        public void GetUserByUsername(string username)
+        {
+            db.GetCollection<User>("users").FindOne(x => x.Username == username);
+        }
+
+        public void UpdateUser(int id, User user)
+        {
+            db.GetCollection<User>("users").Update(id, user);   
+        }
+
+
+
     }
 }

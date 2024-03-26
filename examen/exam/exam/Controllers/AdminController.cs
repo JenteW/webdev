@@ -17,19 +17,24 @@ namespace exam.Controllers
         }
 
 
-        /******/
-        /*ADMIN*/
-        /******/
         [HttpGet]
         public ActionResult<IEnumerable<Admin>> GetAdmin()
         {
             return Ok(_data.GetAdmins());
         }
 
+
         [HttpPost]
         public void AddAdmin([FromBody] Admin admin)
         {
             _data.AddAdmin(admin);
         }
+
+
+
+
+
+
+
     }
 }

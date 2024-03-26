@@ -3,11 +3,11 @@
     public class User
     {
         public int Id { get; set; }
-        public string fn { get; set; }
-        public string ln { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public string email { get; set; }
+        public string Fn { get; set; }
+        public string Ln { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
 
 
     }
