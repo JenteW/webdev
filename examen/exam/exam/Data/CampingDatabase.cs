@@ -95,6 +95,19 @@ namespace exam.Data
             return db.GetCollection<Country>("countries").FindAll();
         }
 
+        /********/
+        /*LOCATION*/
+        /********/
+
+        public void AddLocation(Location location)
+        {
+            db.GetCollection<Location>("locations").Insert(location);
+        }
+        public IEnumerable<Location> GetLocations()
+        {
+            return db.GetCollection<Location>("locations").FindAll();
+        }
+
 
         /******/
         /*OWNER*/
@@ -113,6 +126,10 @@ namespace exam.Data
             db.GetCollection<Owner>("owners").FindOne(x => x.Username == username);
         }
 
+
+        /********/
+        /*SPOTACCOMODATION*/
+        /********/
 
         /******/
         /*SPOTTAG*/

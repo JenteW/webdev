@@ -17,7 +17,7 @@ namespace exam.Controllers
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<Admin>> GetCity()
+        public ActionResult<IEnumerable<City>> GetCity()
         {
             return Ok(_data.GetCities());
         }

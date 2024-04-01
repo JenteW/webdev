@@ -52,6 +52,12 @@ namespace exam.Data
         void AddCountry(Country country);
         IEnumerable<Country> GetCountries();
 
+        /*******/
+        /*LOCATION*/
+        /*******/
+
+        void AddLocation(Location location);
+        IEnumerable<Location> GetLocations();
         /******/
         /*OWNER*/
         /******/

@@ -7,24 +7,26 @@ namespace exam.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class LocationController : ControllerBase
+    public class CommentController : ControllerBase
     {
         private InterfaceCampingContext _data;
-        public LocationController(InterfaceCampingContext data)
+        public CommentController(InterfaceCampingContext data)
         {
             _data = data;
         }
 
+
         [HttpGet]
-        public ActionResult<IEnumerable<Location>> GetLocation()
+        public ActionResult<IEnumerable<Admin>> GetCity()
         {
-            return Ok(_data.GetLocations());
+            return Ok(_data.GetCities());
         }
 
+
         [HttpPost]
-        public void AddLocation([FromBody] Location location)
+        public void AddCity([FromBody] City city)
         {
-            _data.AddLocation(location);
+            _data.AddCity(city);
         }
     }
 }
