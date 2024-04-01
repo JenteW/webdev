@@ -82,7 +82,18 @@ namespace exam.Data
             return db.GetCollection<City>("cities").FindAll();
         }
 
-        
+        /******/
+        /*COUNTRY*/
+        /*******/
+        public void AddCountry(Country country)
+        {
+            db.GetCollection<Country>("countries").Insert(country);
+        }
+
+        public IEnumerable<Country> GetCountries()
+        {
+            return db.GetCollection<Country>("countries").FindAll();
+        }
 
 
         /******/

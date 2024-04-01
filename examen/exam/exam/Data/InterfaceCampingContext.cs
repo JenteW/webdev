@@ -44,6 +44,14 @@ namespace exam.Data
         void AddCity(City city);
         IEnumerable<City> GetCities();
 
+
+        /*******/
+        /*COUNTRY*/
+        /*******/
+
+        void AddCountry(Country country);
+        IEnumerable<Country> GetCountries();
+
         /******/
         /*OWNER*/
         /******/
