@@ -8,6 +8,13 @@ namespace exam.Data
     {
 
         /******/
+        /*ACCOMODATION*/
+        /*******/
+
+        void AddAccomodation(Accomodation accomodation);
+        IEnumerable<Accomodation> GetAccomodations();
+
+        /******/
         /*ADMIN*/
         /******/
 
@@ -29,6 +36,13 @@ namespace exam.Data
 
         void AddCampingSpot(CampingSpot campingspot);
         IEnumerable<CampingSpot> GetCampingSpots();
+
+        /*******/
+        /*City*/
+        /*******/
+
+        void AddCity(City city);
+        IEnumerable<City> GetCities();
 
         /******/
         /*OWNER*/

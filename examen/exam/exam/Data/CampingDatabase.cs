@@ -11,6 +11,23 @@ namespace exam.Data
 
 
         /******/
+        /*ACCOMODATION*/
+        /******/
+        public void AddAccomodation(Accomodation accomodation)
+        {
+            db.GetCollection<Accomodation>("accomodations").Insert(accomodation);
+        }
+
+        public IEnumerable<Accomodation> GetAccomodations()
+        {
+            return db.GetCollection<Accomodation>("accomodations").FindAll();
+        }
+
+
+
+
+
+        /******/
         /*ADMIN*/
         /******/
 
@@ -50,6 +67,23 @@ namespace exam.Data
         {
             return db.GetCollection<CampingSpot>("campingspots").FindAll();
         }
+
+
+        /*******/
+        /*CITY*/
+        /*******/
+
+        public void AddCity(City city)
+        {
+            db.GetCollection<City>("cities").Insert(city);
+        }
+        public IEnumerable<City> GetCities()
+        {
+            return db.GetCollection<City>("cities").FindAll();
+        }
+
+        
+
 
         /******/
         /*OWNER*/
