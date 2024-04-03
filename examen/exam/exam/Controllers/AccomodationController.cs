@@ -28,5 +28,6 @@ namespace exam.Controllers
         {
             _data.AddAccomodation(accomodation);
         }
+        
     }
 }

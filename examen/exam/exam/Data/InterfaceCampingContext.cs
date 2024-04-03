@@ -66,7 +66,13 @@ namespace exam.Data
         IEnumerable<Owner> GetOwners();
 
 
+        /*******/
+       /*SPOTACCOMODATION*/
+       /*******/
 
+        void AddSpotAccomodation(SpotAccomodation spotaccomodation);
+        IEnumerable<SpotAccomodation> GetSpotAccomodations();
+        IEnumerable<SpotAccomodation> GetSpotsByAccomodation(int spotId);
 
         /******/
         /*SPOTTAG*/

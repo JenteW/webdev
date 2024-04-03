@@ -10,7 +10,7 @@ namespace exam.Controllers
     public class SpotAccomodationController : ControllerBase
     {
         private InterfaceCampingContext _data;
-        public SpotAccomodation(InterfaceCampingContext data)
+        public SpotAccomodationController(InterfaceCampingContext data)
         {
             _data = data;
         }
@@ -25,6 +25,13 @@ namespace exam.Controllers
         public void AddSpotAccomodation([FromBody] SpotAccomodation spotAccomodation)
         {
             _data.AddSpotAccomodation(spotAccomodation);
+        }
+
+        //get all spots for a specific accomodation
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<SpotAccomodation>> GetSpotByAccomodation(int id)
+        {
+            return Ok(_data.GetSpotsByAccomodation(id));
         }
     }
 }

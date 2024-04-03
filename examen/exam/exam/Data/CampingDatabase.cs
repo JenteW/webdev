@@ -130,7 +130,19 @@ namespace exam.Data
         /********/
         /*SPOTACCOMODATION*/
         /********/
+        public void AddSpotAccomodation(SpotAccomodation spotAccomodation)
+        {
+            db.GetCollection<SpotAccomodation>("spotaccomodations").Insert(spotAccomodation);
+        }
 
+        public IEnumerable<SpotAccomodation> GetSpotAccomodations()
+        {
+            return db.GetCollection<SpotAccomodation>("spotaccomodations").FindAll();
+        }
+        public IEnumerable<SpotAccomodation> GetSpotsByAccomodation(int accomodation)
+        {
+            return db.GetCollection<SpotAccomodation>("spotaccomodations").Find(x => x.AccomodationId == accomodation);
+        }
         /******/
         /*SPOTTAG*/
         /******/
