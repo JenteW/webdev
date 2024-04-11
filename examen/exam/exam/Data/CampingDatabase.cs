@@ -125,6 +125,10 @@ namespace exam.Data
         {
             db.GetCollection<Owner>("owners").FindOne(x => x.Username == username);
         }
+        public void UpdateOwner(int id, Owner owner)
+        {
+            db.GetCollection<Owner>("owners").Update(id, owner);
+        }
 
 
         /********/

@@ -64,6 +64,8 @@ namespace exam.Data
         
         void AddOwner(Owner owner);
         IEnumerable<Owner> GetOwners();
+        void GetOwnerByUsername(string username);
+        void UpdateOwner(int id, Owner owner);
 
 
         /*******/

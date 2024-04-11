@@ -29,5 +29,19 @@ namespace exam.Controllers
         {
             _data.AddOwner(owner);
         }
+
+        //get owner by username
+        [HttpGet("{username}")]
+        public void GetOwnerByUsername(string username)
+        {
+            _data.GetOwnerByUsername(username);
+        }
+
+        // update owner
+        [HttpPut("{id}")]
+        public void UpdateOwner(int id, [FromBody] Owner owner)
+        {
+            _data.UpdateOwner(id, owner);
+        }
     }
 }
