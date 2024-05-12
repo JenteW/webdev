@@ -1,17 +1,44 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <nav>
+      <ul>
+        <li v-for="(page,index) in pages" :key="index"
+        @click ="changeActivePage(page)">
+          {{page}}
+        </li>
+      </ul>
+    </nav> -->
+    <AdminPage v-if="activePage === 'admin'" @changeActivePage="changeActivePage"/>
+    <AddUserPage v-if="activePage === 'adduser'" @changeActivePage="changeActivePage"/>
+    <LoginPage v-if="activePage === 'login'" @changeActivePage="changeActivePage"/>
+    <UserMainPage v-if="activePage === 'usermain'" @changeActivePage="changeActivePage"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import AdminPage from "./pages/AdminPage.vue"
+import AddUserPage from "./pages/AddUserPage.vue"
+import LoginPage from "./pages/LoginPage.vue"
+import UserMainPage from "./pages/UserMainPage.vue"
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    AdminPage,
+    AddUserPage,
+    LoginPage,
+    UserMainPage
+
+  },
+  data(){
+    return {
+      activePage: "login",
+      // pages: ["admin", "login"]
+    }
+  },
+  methods: {
+    changeActivePage(page){
+      this.activePage = page;
+    }
   }
 }
 </script>

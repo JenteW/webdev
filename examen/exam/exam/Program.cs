@@ -9,7 +9,10 @@ namespace exam
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            // adjust ConfigureServices - method
+            builder.Services.AddCors(s => s.AddPolicy("MyPolicy", builder => builder.AllowAnyOrigin()
+                                    .AllowAnyMethod()
+                                    .AllowAnyHeader()));
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -17,7 +20,7 @@ namespace exam
             builder.Services.AddSingleton<InterfaceCampingContext, CampingDatabase>();
             builder.Services.AddControllers();
             var app = builder.Build();
-
+            app.UseCors("MyPolicy");
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

@@ -29,6 +29,22 @@ namespace exam.Controllers
         {
             _data.AddOwner(owner);
         }
+        // get owner by username if password is correct
+        [HttpGet("login/{username}")]
+
+        public IActionResult GetOwnerByUsernameAndPassword(string username, string password)
+        {
+            var user = _data.GetOwnerByUsernameAndPassword(username);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            if (user.Password == password)
+            {
+                return Ok(user);
+            }
+            return NotFound();
+        }
 
         //get owner by username
         [HttpGet("{username}")]
@@ -42,6 +58,12 @@ namespace exam.Controllers
         public void UpdateOwner(int id, [FromBody] Owner owner)
         {
             _data.UpdateOwner(id, owner);
+        }
+        // delete owner
+        [HttpDelete("{id}")]
+        public void DeleteOwner(int id)
+        {
+            _data.DeleteOwner(id);
         }
     }
 }

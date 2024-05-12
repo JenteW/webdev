@@ -66,6 +66,8 @@ namespace exam.Data
         IEnumerable<Owner> GetOwners();
         void GetOwnerByUsername(string username);
         void UpdateOwner(int id, Owner owner);
+        void DeleteOwner(int id);
+
 
 
         /*******/
@@ -93,11 +95,13 @@ namespace exam.Data
         /******/
         /*USER*/
         /******/
+       
         void AddUser(User user);
         IEnumerable<User> GetUsers();
         void GetUserByUsername(string username);
         void UpdateUser(int id, User user);
-
-        
+        void DeleteUser(int id);
+        User GetUserByUsernameAndPassword(string username);
+        Owner GetOwnerByUsernameAndPassword(string username);
     }
 }

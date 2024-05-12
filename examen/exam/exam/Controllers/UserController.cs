@@ -26,9 +26,26 @@ namespace exam.Controllers
         [HttpPost]
         public void AddUser([FromBody] User user)
         {
+
             _data.AddUser(user);
         }
 
+        // get user by username if password is correct
+        [HttpGet("login/{username}")]
+        
+        public IActionResult GetUserByUsernameAndPassword(string username, string password)
+        {
+            var user = _data.GetUserByUsernameAndPassword(username);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            if (user.Password == password)
+            {
+                return Ok(user);
+            }
+            return NotFound();
+        }
 
 
         //get user by username
@@ -49,7 +66,12 @@ namespace exam.Controllers
         {
             _data.UpdateUser(id, user);
         }
-
+        // delete user
+        [HttpDelete("{id}")]
+        public void DeleteUser(int id)
+        {
+            _data.DeleteUser(id);
+        }
 
     }
 }

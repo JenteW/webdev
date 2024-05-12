@@ -129,6 +129,14 @@ namespace exam.Data
         {
             db.GetCollection<Owner>("owners").Update(id, owner);
         }
+        public void DeleteOwner(int id)
+        {
+            db.GetCollection<Owner>("owners").Delete(id);
+        }
+        public Owner GetOwnerByUsernameAndPassword(string username)
+        {
+            return db.GetCollection<Owner>("owners").FindOne(x => x.Username == username);
+        }
 
 
         /********/
@@ -191,12 +199,20 @@ namespace exam.Data
             db.GetCollection<User>("users").FindOne(x => x.Username == username);
         }
 
+
         public void UpdateUser(int id, User user)
         {
             db.GetCollection<User>("users").Update(id, user);   
         }
 
+        public void DeleteUser(int id)
+        {
+            db.GetCollection<User>("users").Delete(id);
+        }
 
-
+        public User GetUserByUsernameAndPassword(string username)
+        {
+           return db.GetCollection<User>("users").FindOne(x => x.Username == username);
+        }
     }
 }
