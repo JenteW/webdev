@@ -39,7 +39,7 @@ namespace exam.Controllers
             {
                 return NotFound();
             }
-            if (user.Password == password)
+            else if (PasswordHasher.VerifyPassword(password, user.Password))
             {
                 return Ok(user);
             }
@@ -48,9 +48,9 @@ namespace exam.Controllers
 
         //get owner by username
         [HttpGet("{username}")]
-        public void GetOwnerByUsername(string username)
+        public Owner GetOwnerByUsername(string username)
         {
-            _data.GetOwnerByUsername(username);
+           return _data.GetOwnerByUsername(username);
         }
 
         // update owner

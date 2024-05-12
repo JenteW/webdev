@@ -12,6 +12,7 @@
     <AddUserPage v-if="activePage === 'adduser'" @changeActivePage="changeActivePage"/>
     <LoginPage v-if="activePage === 'login'" @changeActivePage="changeActivePage"/>
     <UserMainPage v-if="activePage === 'usermain'" @changeActivePage="changeActivePage"/>
+    <AdminLoginPage v-if="activePage === 'adminlogin'" @changeActivePage="changeActivePage"/>
   </div>
 </template>
 
@@ -20,13 +21,16 @@ import AdminPage from "./pages/AdminPage.vue"
 import AddUserPage from "./pages/AddUserPage.vue"
 import LoginPage from "./pages/LoginPage.vue"
 import UserMainPage from "./pages/UserMainPage.vue"
+import AdminLoginPage from "./pages/AdminLoginPage.vue"
+
 export default {
   name: 'App',
   components: {
     AdminPage,
     AddUserPage,
     LoginPage,
-    UserMainPage
+    UserMainPage,
+    AdminLoginPage,
 
   },
   data(){

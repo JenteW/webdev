@@ -24,10 +24,10 @@ namespace exam.Controllers
 
         // add user
         [HttpPost]
-        public void AddUser([FromBody] User user)
+        public IActionResult AddUser([FromBody] User user)
         {
-
-            _data.AddUser(user);
+            user.Password = PasswordHasher.Hash(user.Password);
+            return _data.AddUser(user);
         }
 
         // get user by username if password is correct
@@ -40,7 +40,7 @@ namespace exam.Controllers
             {
                 return NotFound();
             }
-            if (user.Password == password)
+            else if (PasswordHasher.VerifyPassword(password, user.Password))
             {
                 return Ok(user);
             }
@@ -52,9 +52,9 @@ namespace exam.Controllers
 
         [HttpGet("{username}")]
 
-        public void GetUserByUsername(string username)
+        public User GetUserByUsername(string username)
         {
-            _data.GetUserByUsername(username);
+            return _data.GetUserByUsername(username);
         }
 
 
@@ -64,6 +64,7 @@ namespace exam.Controllers
 
         public void UpdateUser(int id, [FromBody] User user)
         {
+            user.Password = PasswordHasher.Hash(user.Password);
             _data.UpdateUser(id, user);
         }
         // delete user

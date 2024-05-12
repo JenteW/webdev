@@ -12,7 +12,7 @@
         <button @click="ChangePage('adduser')">
             Make New Account
         </button>
-        <button @click="ChangePage('admin')">
+        <button @click="ChangePage('adminlogin')">
             admin
         </button>
 

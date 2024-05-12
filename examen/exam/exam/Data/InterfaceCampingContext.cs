@@ -18,8 +18,9 @@ namespace exam.Data
         /*ADMIN*/
         /******/
 
-        void AddAdmin(Admin admin);
+        IActionResult AddAdmin(Admin admin);
         IEnumerable<Admin> GetAdmins();
+        Admin GetAdminByUsernameAndPassword(string username);
 
 
         /*******/
@@ -64,15 +65,16 @@ namespace exam.Data
         
         void AddOwner(Owner owner);
         IEnumerable<Owner> GetOwners();
-        void GetOwnerByUsername(string username);
+        Owner GetOwnerByUsername(string username);
         void UpdateOwner(int id, Owner owner);
         void DeleteOwner(int id);
+        Owner GetOwnerByUsernameAndPassword(string username);
 
 
 
         /*******/
-       /*SPOTACCOMODATION*/
-       /*******/
+        /*SPOTACCOMODATION*/
+        /*******/
 
         void AddSpotAccomodation(SpotAccomodation spotaccomodation);
         IEnumerable<SpotAccomodation> GetSpotAccomodations();
@@ -96,12 +98,12 @@ namespace exam.Data
         /*USER*/
         /******/
        
-        void AddUser(User user);
+        IActionResult AddUser(User user);
         IEnumerable<User> GetUsers();
-        void GetUserByUsername(string username);
+        User GetUserByUsername(string username);
         void UpdateUser(int id, User user);
         void DeleteUser(int id);
         User GetUserByUsernameAndPassword(string username);
-        Owner GetOwnerByUsernameAndPassword(string username);
+
     }
 }

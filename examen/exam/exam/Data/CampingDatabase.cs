@@ -1,7 +1,7 @@
 ﻿using LiteDB;
 using exam.Models;
 using exam.Data;
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace exam.Data
 {
@@ -31,15 +31,29 @@ namespace exam.Data
         /*ADMIN*/
         /******/
 
-        public void AddAdmin(Admin admin)
+        public IActionResult AddAdmin(Admin admin)
         {
-            db.GetCollection<Admin>("admins").Insert(admin);
+            try
+            {
+                db.GetCollection<Admin>("admins").Insert(admin);
+                Console.WriteLine("Admin added");
+                return new OkResult();
+            }
+            catch
+            {
+                Console.WriteLine("could not add admin");
+                return new BadRequestResult();
+            }
         }
         public IEnumerable<Admin> GetAdmins()
         {
             return db.GetCollection<Admin>("admins").FindAll();
         }
 
+        public Admin GetAdminByUsernameAndPassword(string username)
+        {
+            return db.GetCollection<Admin>("admins").FindOne(x => x.Username == username);
+        }
 
         /*******/
         /*BOOKING*/
@@ -121,9 +135,9 @@ namespace exam.Data
         {
            return db.GetCollection<Owner>("owners").FindAll();
         }
-        public void GetOwnerByUsername(string username)
+        public Owner GetOwnerByUsername(string username)
         {
-            db.GetCollection<Owner>("owners").FindOne(x => x.Username == username);
+         return db.GetCollection<Owner>("owners").FindOne(x => x.Username == username);
         }
         public void UpdateOwner(int id, Owner owner)
         {
@@ -185,18 +199,28 @@ namespace exam.Data
         /*USER*/
         /******/
 
-        public void AddUser(User user)
+        public IActionResult AddUser(User user)
         {
-            db.GetCollection<User>("users").Insert(user);
+            try
+            {
+                db.GetCollection<User>("users").Insert(user);
+                Console.WriteLine("User added");
+                return new OkResult();
+            }
+            catch
+            {
+                Console.WriteLine("could not add user");
+                return new BadRequestResult();
+            }
         }
         public IEnumerable<User> GetUsers()
         {
             return db.GetCollection<User>("users").FindAll();
         }
 
-        public void GetUserByUsername(string username)
+        public User GetUserByUsername(string username)
         {
-            db.GetCollection<User>("users").FindOne(x => x.Username == username);
+           return db.GetCollection<User>("users").FindOne(x => x.Username == username);
         }
 
 
