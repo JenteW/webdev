@@ -32,7 +32,7 @@ namespace exam.Controllers
 
         // get user by username if password is correct
         [HttpGet("login/{username}")]
-        
+
         public IActionResult GetUserByUsernameAndPassword(string username, string password)
         {
             var user = _data.GetUserByUsernameAndPassword(username);
@@ -47,7 +47,7 @@ namespace exam.Controllers
             return NotFound();
         }
 
-
+/*
         //get user by username
 
         [HttpGet("{username}")]
@@ -55,8 +55,14 @@ namespace exam.Controllers
         public User GetUserByUsername(string username)
         {
             return _data.GetUserByUsername(username);
-        }
+        }*/
 
+        // get user by id
+        [HttpGet("{id}")]
+        public User GetUserById(int id)
+        {
+            return _data.GetUserById(id);
+        }
 
         // update user
 

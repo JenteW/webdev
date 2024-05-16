@@ -49,6 +49,13 @@ namespace exam.Controllers
             return NotFound();
         }
 
+        [HttpGet("{id}")]
+        public Admin GetAdminById(int id)
+        {
+            //only return the id and username
+            return _data.GetAdminById(id);
+        }
+
 
 
 

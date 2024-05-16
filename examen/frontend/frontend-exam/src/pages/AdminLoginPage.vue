@@ -58,6 +58,8 @@
                 .then(data => {
                     console.log(data);
                     console.log(data.id);
+                    // route to admin page, while giving the id of the admin
+                    this.$router.push({name: 'AdminPage', params: {id: data.id}});
                     if(data.id > 0)
                         this.ChangePage("admin");
                     

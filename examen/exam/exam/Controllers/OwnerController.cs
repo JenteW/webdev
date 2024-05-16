@@ -47,10 +47,17 @@ namespace exam.Controllers
         }
 
         //get owner by username
-        [HttpGet("{username}")]
+       /* [HttpGet("{username}")]
         public Owner GetOwnerByUsername(string username)
         {
            return _data.GetOwnerByUsername(username);
+        }*/
+
+        // get owner by id
+        [HttpGet("{id}")]
+        public Owner GetOwnerById(int id)
+        {
+            return _data.GetOwnerById(id);
         }
 
         // update owner

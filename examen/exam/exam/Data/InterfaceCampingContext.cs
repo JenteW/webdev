@@ -21,6 +21,7 @@ namespace exam.Data
         IActionResult AddAdmin(Admin admin);
         IEnumerable<Admin> GetAdmins();
         Admin GetAdminByUsernameAndPassword(string username);
+        Admin GetAdminById(int id);
 
 
         /*******/
@@ -65,10 +66,11 @@ namespace exam.Data
         
         void AddOwner(Owner owner);
         IEnumerable<Owner> GetOwners();
-        Owner GetOwnerByUsername(string username);
+        //Owner GetOwnerByUsername(string username);
         void UpdateOwner(int id, Owner owner);
         void DeleteOwner(int id);
         Owner GetOwnerByUsernameAndPassword(string username);
+        Owner GetOwnerById(int id);
 
 
 
@@ -100,10 +102,10 @@ namespace exam.Data
        
         IActionResult AddUser(User user);
         IEnumerable<User> GetUsers();
-        User GetUserByUsername(string username);
+        //User GetUserByUsername(string username);
         void UpdateUser(int id, User user);
         void DeleteUser(int id);
         User GetUserByUsernameAndPassword(string username);
-
+        User GetUserById(int id);
     }
 }

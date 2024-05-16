@@ -4,6 +4,7 @@
             back to login
         </button>
         <h1>Admin Page</h1>
+        <p>Welcome {{ admin.username }}</p> 
         <p>
             This is the admin page. Only authenticated users can see this page.
         </p>
@@ -39,12 +40,17 @@
 <script>
     export default {
         name: 'AdminPage',
+       
         mounted(){
+            this.adminId = this.$route.params.id;
             this.getUsers(),
-            this.getOwners()
+            this.getOwners(),
+            this.GetAdmin(this.adminId);
         },
         data(){
             return{
+                admin: [],
+                adminId: "",
                 users: [],
                 fn: "",
                 ln: "",
@@ -57,6 +63,27 @@
         methods:{
             ChangePage(page) {
                 this.$emit("changeActivePage", page);
+            },
+            GetAdmin(id){
+                fetch("http://localhost:5162/Admin/" + id, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Network response was not ok at GETADMIN");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    this.admin = data;
+                })
+                .catch(error => {
+                    console.error("There has been a problem with your fetch operation: GETADMIN", error);
+                })
             },
             DeleteUser(id){
                 fetch("http://localhost:5162/User/" + id, {

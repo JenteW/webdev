@@ -54,6 +54,10 @@ namespace exam.Data
         {
             return db.GetCollection<Admin>("admins").FindOne(x => x.Username == username);
         }
+        public Admin GetAdminById(int id)
+        {
+            return db.GetCollection<Admin>("admins").FindById(id);
+        }
 
         /*******/
         /*BOOKING*/
@@ -135,10 +139,10 @@ namespace exam.Data
         {
            return db.GetCollection<Owner>("owners").FindAll();
         }
-        public Owner GetOwnerByUsername(string username)
+      /*  public Owner GetOwnerByUsername(string username)
         {
          return db.GetCollection<Owner>("owners").FindOne(x => x.Username == username);
-        }
+        }*/
         public void UpdateOwner(int id, Owner owner)
         {
             db.GetCollection<Owner>("owners").Update(id, owner);
@@ -150,6 +154,10 @@ namespace exam.Data
         public Owner GetOwnerByUsernameAndPassword(string username)
         {
             return db.GetCollection<Owner>("owners").FindOne(x => x.Username == username);
+        }
+        public Owner GetOwnerById(int id)
+        {
+            return db.GetCollection<Owner>("owners").FindById(id);
         }
 
 
@@ -218,10 +226,10 @@ namespace exam.Data
             return db.GetCollection<User>("users").FindAll();
         }
 
-        public User GetUserByUsername(string username)
+       /* public User GetUserByUsername(string username)
         {
            return db.GetCollection<User>("users").FindOne(x => x.Username == username);
-        }
+        }*/
 
 
         public void UpdateUser(int id, User user)
@@ -237,6 +245,10 @@ namespace exam.Data
         public User GetUserByUsernameAndPassword(string username)
         {
            return db.GetCollection<User>("users").FindOne(x => x.Username == username);
+        }
+        public User GetUserById(int id)
+        {
+            return db.GetCollection<User>("users").FindById(id);
         }
     }
 }
