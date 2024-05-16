@@ -6,7 +6,7 @@ import AdminPage from './pages/AdminPage.vue';
 import LoginPage from './pages/LoginPage.vue';
 import UserMainPage from './pages/UserMainPage.vue';
 import OwnerMainPage from './pages/OwnerMainPage.vue';
-
+import UpdateOwnerPage from './pages/UpdateOwnerPage.vue';
 Vue.use(VueRouter);
 Vue.config.productionTip = false
 
@@ -16,7 +16,8 @@ const router = new VueRouter({
     { path: '/AdminPage', name: 'AdminPage', component: AdminPage, props: true },
     { path: '/LoginPage', component: LoginPage},
     { path: '/UserMainPage', name: 'UserMainPage', component: UserMainPage, props: true},
-    { path: '/OwnerMainPage', name: 'OwnerMainPage', component: OwnerMainPage, props: true}
+    { path: '/OwnerMainPage', name: 'OwnerMainPage', component: OwnerMainPage, props: true},
+    { path: '/UpdateOwnerPage', name: 'UpdateOwnerPage', component: UpdateOwnerPage, props: true},
   ]
 });
 

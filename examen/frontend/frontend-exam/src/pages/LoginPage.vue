@@ -71,7 +71,6 @@
                 })
                 .then(data => {
                     console.log(data);
-                    console.log(data.username);
                     if(data.id > 0){
                         this.$router.push({name: 'UserMainPage', params: {id: data.id}});
                         console.log(data.id + " is id");
@@ -112,9 +111,9 @@
                 })
                 .then(data => {
                     console.log(data);
-                    console.log(data.id);
                     if(data.id > 0){
                         this.$router.push({name: 'OwnerMainPage', params: {id: data.id}});
+                        console.log(data.id + " is id");
                         this.ChangePage("ownermain");
                     }
                     else{

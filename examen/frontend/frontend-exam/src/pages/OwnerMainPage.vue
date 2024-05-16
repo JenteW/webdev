@@ -5,6 +5,9 @@
             back to login
         </button>
         <H2>Welcome {{ owner.username }}</H2>
+        <button @click="GoToUpdate()">
+            Update Account
+        </button>
         
     </div>
 </template>
@@ -15,6 +18,7 @@
         name: 'OwnerMainPage',
         mounted(){
             this.id = this.$route.params.id;
+            console.log(this.$route.params.id + " is the id @ OwnerMainPage");
             console.log(this.id + " is the id @ OwnerMainPage");
             this.GetOwner(this.id);
         },
@@ -28,6 +32,10 @@
         methods:{
             ChangePage(page) {
                 this.$emit("changeActivePage", page);
+            },
+            GoToUpdate(){
+                this.$router.push({name: "UpdateOwnerPage", params: {id: this.id}});
+                this.$emit("changeActivePage", "updateowner");
             },
             GetOwner(id){
                 fetch("http://localhost:5162/Owner/" + id, {
