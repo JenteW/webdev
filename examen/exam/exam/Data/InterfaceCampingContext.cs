@@ -64,10 +64,10 @@ namespace exam.Data
         /*OWNER*/
         /******/
         
-        void AddOwner(Owner owner);
+        IActionResult AddOwner(Owner owner);
         IEnumerable<Owner> GetOwners();
         //Owner GetOwnerByUsername(string username);
-        void UpdateOwner(int id, Owner owner);
+        IActionResult UpdateOwner(int id, Owner owner);
         void DeleteOwner(int id);
         Owner GetOwnerByUsernameAndPassword(string username);
         Owner GetOwnerById(int id);

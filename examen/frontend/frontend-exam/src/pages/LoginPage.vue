@@ -35,6 +35,7 @@
             ButtonClick(){
                 if(this.checked == true){
                     console.log("Owner");
+                    this.OwnerLogin(this.username, this.password);
                 }
                 else{
                     this.UserLogin(this.username, this.password);
@@ -112,9 +113,10 @@
                 .then(data => {
                     console.log(data);
                     console.log(data.id);
-                    if(data.id > 0)
-                        this.ChangePage("usermain");
-                    
+                    if(data.id > 0){
+                        this.$router.push({name: 'OwnerMainPage', params: {id: data.id}});
+                        this.ChangePage("ownermain");
+                    }
                     else{
                         alert("Go and suck dick");
                     }

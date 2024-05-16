@@ -131,9 +131,18 @@ namespace exam.Data
         /*OWNER*/
         /******/
 
-        public void AddOwner(Owner owner)
+        public IActionResult AddOwner(Owner owner)
         {
-            db.GetCollection<Owner>("owners").Insert(owner);
+            try
+            {
+                db.GetCollection<Owner>("owners").Insert(owner);
+                return new OkResult();
+            }
+            catch
+            {
+                Console.WriteLine("could not add owner");
+                return new BadRequestResult();
+            }
         }
         public IEnumerable<Owner> GetOwners()
         {
@@ -143,9 +152,18 @@ namespace exam.Data
         {
          return db.GetCollection<Owner>("owners").FindOne(x => x.Username == username);
         }*/
-        public void UpdateOwner(int id, Owner owner)
+        public IActionResult UpdateOwner(int id, Owner owner)
         {
-            db.GetCollection<Owner>("owners").Update(id, owner);
+            try
+            {
+                db.GetCollection<Owner>("owners").Update(id, owner);
+                return new OkResult();
+
+            }
+            catch
+            {
+                return new BadRequestResult();
+            }
         }
         public void DeleteOwner(int id)
         {

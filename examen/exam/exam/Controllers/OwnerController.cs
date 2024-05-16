@@ -25,25 +25,26 @@ namespace exam.Controllers
         }
 
         [HttpPost]
-        public void AddOwner([FromBody] Owner owner)
+        public IActionResult AddOwner([FromBody] Owner owner)
         {
-            _data.AddOwner(owner);
+            owner.Password = PasswordHasher.Hash(owner.Password);
+            return _data.AddOwner(owner);
         }
         // get owner by username if password is correct
         [HttpGet("login/{username}")]
 
         public IActionResult GetOwnerByUsernameAndPassword(string username, string password)
         {
-            var user = _data.GetOwnerByUsernameAndPassword(username);
-            if (user == null)
+            var owner = _data.GetOwnerByUsernameAndPassword(username);
+            if (owner == null)
             {
-                return NotFound();
+                return NotFound("No user exists");
             }
-            else if (PasswordHasher.VerifyPassword(password, user.Password))
+            else if (PasswordHasher.VerifyPassword(password, owner.Password))
             {
-                return Ok(user);
+                return Ok(owner);
             }
-            return NotFound();
+            return NotFound("No user found");
         }
 
         //get owner by username
@@ -62,9 +63,10 @@ namespace exam.Controllers
 
         // update owner
         [HttpPut("{id}")]
-        public void UpdateOwner(int id, [FromBody] Owner owner)
+        public IActionResult UpdateOwner(int id, [FromBody] Owner owner)
         {
-            _data.UpdateOwner(id, owner);
+            owner.Password = PasswordHasher.Hash(owner.Password);
+            return _data.UpdateOwner(id, owner);
         }
         // delete owner
         [HttpDelete("{id}")]
