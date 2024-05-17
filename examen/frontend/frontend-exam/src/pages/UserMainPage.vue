@@ -5,6 +5,9 @@
             back to login
         </button>
         <H2>Welcome {{ user.username }}</H2>
+        <button @click="GoToUpdate()">
+            Update Account
+        </button>
         
     </div>
 </template>
@@ -27,6 +30,10 @@
         methods:{
             ChangePage(page) {
                 this.$emit("changeActivePage", page);
+            },
+            GoToUpdate(){
+                this.$router.push({name: "UpdateUserPage", params: {id: this.id}});
+                this.$emit("changeActivePage", "updateuser");
             },
             GetUser(id){
                 fetch("http://localhost:5162/User/" + id, {

@@ -8,6 +8,9 @@
         <p>
             This is the admin page. Only authenticated users can see this page.
         </p>
+        <button @click="ChangePage('countries')">
+            countries page
+        </button>
         <h2>Add User</h2>
         <input type="text" v-model="fn" placeholder="First Name">
         <input type="text" v-model="ln" placeholder="Last Name">
@@ -17,8 +20,12 @@
         <button @click="AddUser()">
             ADD USER
         </button>
+
         <ul>
             <h2>USER LIST</h2>
+            <button @click="getUsers()">
+                Get User List
+            </button>
             <li v-for="user in users" :key=" 'user-' + user.id">
                 <strong>name :</strong> {{user.fn}} {{ user.ln }} <br>
                 mail: {{user.email}} <br>
@@ -28,12 +35,35 @@
                 </button>
             </li>
             <h2>OWNER LIST</h2>
+            <button @click="getOwners()">
+                Get Owner List
+            </button>
             <li v-for="owner in owners" :key=" 'owner-' +owner.id">
                 <strong>name :</strong> {{owner.fn}} {{ owner.ln }} <br>
                 mail: {{owner.email}} <br>
                 username: {{owner.username}}
+                <button @click="DeleteOwner(owner.id)">
+                    Delete
+                </button>
             </li>
         </ul>
+        <h2>Add Tag</h2>
+        <input type="text" v-model="tagName" placeholder="Tag Name">
+        <input type="text" v-model="tagDescription" placeholder="Tag Description">
+        <button @click="AddTag()">
+            ADD TAG
+        </button>
+        <ul>
+            <h2>TAG LIST</h2>
+            <button @click="getTags()">
+                Get Tag List
+            </button>
+            <li v-for="tag in tags" :key=" 'tag-' + tag.id">
+                <strong>name :</strong> {{tag.name}} <br>
+                description: {{tag.description}} <br>
+            </li>
+        </ul>
+
     </div>
 </template>
 
@@ -43,8 +73,6 @@
        
         mounted(){
             this.adminId = this.$route.params.id;
-            this.getUsers(),
-            this.getOwners(),
             this.GetAdmin(this.adminId);
         },
         data(){
@@ -57,7 +85,12 @@
                 email: "",
                 username: "",
                 password: "",
-                owners: []
+                owners: [],
+                tags: [],
+                tagId: "",
+                tagName: "",
+                tagDescription: "",
+
             }
         },
         methods:{
@@ -168,7 +201,67 @@
                     console.log(data);
                     this.owners = data;
                 })
-            }
+            },
+            DeleteOwner(id){
+                fetch("http://localhost:5162/Owner/" + id, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Network response was not ok at DELETEUSER");
+                    }
+                    return response;
+                })
+                .then(data => {
+                    console.log("succes in deleting the user", data, id);
+                    this.getOwners();
+                })
+                .catch(error => {
+                    console.error("There has been a problem with your fetch operation: DELETEUSER", error);
+                })
+            },
+            AddTag(){
+                fetch("http://localhost:5162/Tag", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        name: this.tagName,
+                        description: this.tagDescription
+                    })
+
+                })  
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Network response was not ok at ADDTAG");
+                    }
+                    return response;
+                })
+                .then(data => {
+                    console.log(data);
+                    this.getTags();
+                })
+                .catch(error => {
+                    console.error("There has been a problem with your fetch operation: ADDTAG", error);
+                })
+            },
+            getTags(){
+                fetch("http://localhost:5162/Tag", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    this.tags = data;
+                })
+            },
         },
     }
 

@@ -8,34 +8,59 @@
         </li>
       </ul>
     </nav> -->
-    <AdminPage v-if="activePage === 'admin'" @changeActivePage="changeActivePage"/>
-    <AddUserPage v-if="activePage === 'adduser'" @changeActivePage="changeActivePage"/>
     <LoginPage v-if="activePage === 'login'" @changeActivePage="changeActivePage"/>
-    <UserMainPage v-if="activePage === 'usermain'" @changeActivePage="changeActivePage"/>
+    
+    <AdminPage v-if="activePage === 'admin'" @changeActivePage="changeActivePage"/>
     <AdminLoginPage v-if="activePage === 'adminlogin'" @changeActivePage="changeActivePage"/>
+    
+    <AddUserPage v-if="activePage === 'adduser'" @changeActivePage="changeActivePage"/>
+    <UserMainPage v-if="activePage === 'usermain'" @changeActivePage="changeActivePage"/>
+    <UpdateUserPage v-if="activePage === 'updateuser'" @changeActivePage="changeActivePage"/>
+
     <OwnerMainPage v-if="activePage === 'ownermain'" @changeActivePage="changeActivePage"/>
     <UpdateOwnerPage v-if="activePage === 'updateowner'" @changeActivePage="changeActivePage"/>
+    
+    <CountriesPage v-if="activePage === 'countries'" @changeActivePage="changeActivePage"/>
  </div>
 </template>
 
 <script>
-import AdminPage from "./pages/AdminPage.vue"
-import AddUserPage from "./pages/AddUserPage.vue"
+//STARTPAGE
 import LoginPage from "./pages/LoginPage.vue"
-import UserMainPage from "./pages/UserMainPage.vue"
+
+// ADMIN PAGES
+import AdminPage from "./pages/AdminPage.vue"
 import AdminLoginPage from "./pages/AdminLoginPage.vue"
+
+
+//USER PAGES
+import AddUserPage from "./pages/AddUserPage.vue"
+import UserMainPage from "./pages/UserMainPage.vue"
+import UpdateUserPage from "./pages/UpdateUserPage.vue"
+
+//OWNER PAGES
 import OwnerMainPage from "./pages/OwnerMainPage.vue"
 import UpdateOwnerPage from "./pages/UpdateOwnerPage.vue"
+
+//COUNTRIES
+import CountriesPage from "./pages/CountriesPage.vue"
+
 export default {
   name: 'App',
   components: {
-    AdminPage,
-    AddUserPage,
     LoginPage,
-    UserMainPage,
+
+    AdminPage,
     AdminLoginPage,
+
+    AddUserPage,
+    UserMainPage,
+    UpdateUserPage,
+
     OwnerMainPage,
-    UpdateOwnerPage
+    UpdateOwnerPage,
+
+    CountriesPage
 
   },
   data(){
