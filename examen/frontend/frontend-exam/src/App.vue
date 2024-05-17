@@ -21,6 +21,9 @@
     <UpdateOwnerPage v-if="activePage === 'updateowner'" @changeActivePage="changeActivePage"/>
     
     <CountriesPage v-if="activePage === 'countries'" @changeActivePage="changeActivePage"/>
+    <MyCampingSpotPage v-if="activePage === 'addcampingspot'" @changeActivePage="changeActivePage"/>
+    <AddAccomodationPage v-if="activePage === 'addaccomodation'" @changeActivePage="changeActivePage"/>
+ 
  </div>
 </template>
 
@@ -44,6 +47,12 @@ import UpdateOwnerPage from "./pages/UpdateOwnerPage.vue"
 
 //COUNTRIES
 import CountriesPage from "./pages/CountriesPage.vue"
+//CAMPINGSPOT
+import MyCampingSpotPage from "./pages/MyCampingspotPage.vue"
+
+//ACCOMODATION PAGES
+import AddAccomodationPage from "./pages/AddAccomodationPage.vue"
+
 
 export default {
   name: 'App',
@@ -60,7 +69,9 @@ export default {
     OwnerMainPage,
     UpdateOwnerPage,
 
-    CountriesPage
+    CountriesPage,
+    AddAccomodationPage,
+    MyCampingSpotPage
 
   },
   data(){

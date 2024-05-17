@@ -1,5 +1,8 @@
 <template>
     <div>
+        <button @click="ChangePage('admin')">
+            return to admin page
+        </button>
         <h1>Add Campingspot</h1>
         <form @submit.prevent="AddCampingspot">
             <label for="name">Name:</label>
@@ -41,6 +44,9 @@
             }
         },
         methods:{
+            ChangePage(page) {
+                this.$emit("changeActivePage", page);
+            },
             AddCampingspot(){
                 fetch("http://localhost:5162/Campingspot", {
                     method: "POST",

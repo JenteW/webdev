@@ -11,6 +11,12 @@
         <button @click="ChangePage('countries')">
             countries page
         </button>
+        <button @click="ChangePage('addcampingspot')">
+            camping spots page
+        </button>
+        <button @click="ChangePage('addaccomodation')">
+            add accomodation page
+        </button>
         <h2>Add User</h2>
         <input type="text" v-model="fn" placeholder="First Name">
         <input type="text" v-model="ln" placeholder="Last Name">
