@@ -45,6 +45,7 @@ namespace exam.Data
 
         void AddCity(City city);
         IEnumerable<City> GetCities();
+        IEnumerable<City> GetCitiesByCountry(int countryId);
         void UpdateCity(int id, City city);
 
 

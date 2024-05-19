@@ -22,9 +22,10 @@ namespace exam.Controllers
         }
 
         [HttpPost]
-        public void AddLocation([FromBody] Location location)
+        public Location AddLocation([FromBody] Location location)
         {
             _data.AddLocation(location);
+            return location;
         }
     }
 }

@@ -8,7 +8,14 @@
         <button @click="GoToUpdate()">
             Update Account
         </button>
-        
+        <br>
+        <button @click="GoToCampingSpots()">
+            Go to your camping spots
+        </button>
+        <br>
+        <img src="..\src\assets\campingspots\test_01.png" alt="campingspot image"/>
+        <img src="@/assets/campingspots/test_02.jpg" alt="campingspot image"/>
+        <img :src="ImagePath" alt="cry">
     </div>
 </template>
 
@@ -26,9 +33,11 @@
             return{
                 owner: {},
                 id: "",
+                test: "test_02.jpg"
 
             }
         },
+
         methods:{
             ChangePage(page) {
                 this.$emit("changeActivePage", page);
@@ -36,6 +45,10 @@
             GoToUpdate(){
                 this.$router.push({name: "UpdateOwnerPage", params: {id: this.id}});
                 this.$emit("changeActivePage", "updateowner");
+            },
+            GoToCampingSpots(){
+                this.$router.push({name: "MyCampingspotPage", params: {id: this.id}});
+                this.$emit("changeActivePage", "addcampingspot");
             },
             GetOwner(id){
                 fetch("http://localhost:5162/Owner/" + id, {

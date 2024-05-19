@@ -103,6 +103,10 @@ namespace exam.Data
         {
             db.GetCollection<City>("cities").Update(id, city);
         }
+        public IEnumerable<City> GetCitiesByCountry(int countryId)
+        {
+            return db.GetCollection<City>("cities").Find(x => x.CountryId == countryId);
+        }
 
         /******/
         /*COUNTRY*/

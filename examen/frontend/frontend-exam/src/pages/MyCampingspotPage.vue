@@ -1,10 +1,9 @@
 <template>
     <div>
-        <button @click="ChangePage('admin')">
-            return to admin page
+        <button @click="ChangePage('ownermain')">
+            return to main page
         </button>
         <h1>Add Campingspot</h1>
-        <form @submit.prevent="AddCampingspot">
             <label for="name">Name:</label>
             <input type="text" id="name" v-model="name" required>
             <br>
@@ -14,44 +13,91 @@
             <label for="description">Description:</label>
             <input type="text" id="description" v-model="description" required>
             <br>
-            
-            <label for="location">Location:</label>
-            <input type="text" id="location" v-model="location" required>
-            <br>
             <label for="image">Image:</label>
             <input type="text" id="image" v-model="image" required>
             <br>
-            <button type="submit">Add Campingspot</button>
-        </form>
+            <img :src="ImagePath" alt="campingspot image" v-if="image"/>
+            <br>
+            <label for="country">Country:</label>
+            <select v-model="country">
+                <option v-for="country in countries" :key=" 'country-' + country.id" :value="country.id">
+                    {{country.name}}
+                </option>
+            </select>
+            <br>
+            <label for="city">City:</label>
+            <select v-model="city">
+                <option v-for="city in cities" :key=" 'city-' + city.id" :value="city.id">
+                    {{city.name}}
+                </option>
+            </select>
+            <br>
+            <label for="street">Street:</label>
+            <input type="text" id="street" v-model="street" required>
+            <br>
+            <label for="number">Number:</label>
+            <input type="text" id="number" v-model="number" required>
+            <br>
+            <button type="submit" @click="handleAddCampingspot()">Add Campingspot</button>
     </div>
 </template>
 
 <script>
     export default {
         name: 'MyCampingspotPage',
+        mounted(){
+            this.ownerId = this.$route.params.id;
+            console.log(this.ownerId + " is the id @ MyCampingspotPage")
+            this.GetCountry();
+        },
+        watch: {
+            country: function(){
+                this.GetCities(this.country);
+            }
+            
+        },
+        computed: {
+            ImagePath(){
+                return require("@/assets/campingspots/"+this.image);
+            }
+        },
         data(){
             return{
-                
+                countries: [],
+                cities: [],
                 name: "",
-                locationId: "",
+                locationId: 0,
                 description: "",
-                ownerId: "",
-                price: "",
+                ownerId: 0,
+                price: 0,
                 image: "",
-                country: "",
+                country: 0,
                 city: "",
                 street: "",
                 number: "",
-                
-
                 availability: true,
             }
         },
         methods:{
+        handleAddCampingspot() {
+            try {
+            if (!this.name || !this.price || !this.description || !this.image || !this.country || !this.city || !this.street || !this.number) {
+            alert("Please fill in all fields!");
+            return;
+            }
+            const locationData =  this.AddLocation();
+            this.locationId = locationData.id;
+            this.AddCampingSpot();
+            } catch (error) {
+            console.error("Error:", error);
+            }
+        },
             ChangePage(page) {
                 this.$emit("changeActivePage", page);
             },
             AddCampingspot(){
+                console.log(this.name, this.locationId, this.description, this.ownerId, this.price, this.image, this.availability);
+                console.log(this.locationId + " is the location id");
                 fetch("http://localhost:5162/Campingspot", {
                     method: "POST",
                     headers: {
@@ -59,21 +105,84 @@
                     },
                     body: JSON.stringify({
                         name: this.name,
-                        price: this.price,
-                        description: this.description,
+                        locationId: this.locationId,
+                        description: this.description,                        
                         ownerId: this.ownerId,
-                        location: this.location,
-                        rating: this.rating,
-                        image: this.image
+                        price: this.price,
+                        image: this.image,
+                        availability: true
+                    })
+                })
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Network response was not ok at ADDUSER");
+                    }
+                    return response;
+                })
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error("There has been a problem with your fetch operation: ADDUSER", error);
+                })
+            },
+            AddLocation(){
+                console.log(this.country, this.city, this.street, this.number)
+                fetch("http://localhost:5162/Location", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        countryId: this.country,
+                        cityId: this.city,
+                        street: this.street,
+                        number: this.number,
+                        latitude: "7",
+                        longitude: "7"
                     })
                 })
                 .then(response => {
                     if(response.status === 400){
+                        console.log(response.status + " is the status");
+                        console.log(response + " is the response");
+                        console.log(response.json() + " is the response.json");
                         alert("Please fill in all fields!");
-                        throw new Error("fields empty at ADDCAMPINGSPOT");
+                        throw new Error("fields empty at ADDLOCATION");
                     }
                     else if(!response.ok){
-                         throw new Error("Network response was not ok at ADDCAMPINGSPOT");
+                         throw new Error("Network response was not ok at ADDLOCATION");
+                    }
+                    else{
+                        console.log("first hurdle cleared");
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    console.log("is fecking data");
+                    this.locationId = data.id;
+                    console.log(this.locationId + " is the location id" + data.id);
+                    this.AddCampingspot();
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+            },
+            GetCities(id){
+                fetch("http://localhost:5162/City/country/" + id, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => {
+                    if(response.status === 404){
+                        alert("City not found!");
+                        throw new Error("city not found at GETCITIES");
+                    }
+                    else if(!response.ok){
+                         throw new Error("Network response was not ok at GETCITIES");
                     }
                     else{
                         return response.json();
@@ -82,12 +191,40 @@
                 .then(data => {
                     console.log(data);
                     console.log("is fecking data");
-                    this.$router.push({name: "AdminPage", params: {id: 1}});
+                    this.cities = data;
                 })
                 .catch(error => {
                     console.error("Error:", error);
                 });
-            }
+            },
+            GetCountry(){
+                fetch("http://localhost:5162/Country", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => {
+                    if(response.status === 404){
+                        alert("Country not found!");
+                        throw new Error("country not found at GETCOUNTRY");
+                    }
+                    else if(!response.ok){
+                         throw new Error("Network response was not ok at GETCOUNTRY");
+                    }
+                    else{
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    console.log("is fecking data");
+                    this.countries = data;
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+            },
         }
     }
 </script>

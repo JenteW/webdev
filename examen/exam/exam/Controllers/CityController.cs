@@ -21,6 +21,13 @@ namespace exam.Controllers
         {
             return Ok(_data.GetCities());
         }
+        // get city by country id
+        [HttpGet("country/{id}")]
+        public IEnumerable<City> GetCityByCountryId(int id)
+        {
+            return _data.GetCities().Where(c => c.CountryId == id);
+        }
+
 
 
         [HttpPost]
