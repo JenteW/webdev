@@ -28,5 +28,11 @@ namespace exam.Controllers
         {
             _data.AddCity(city);
         }
+
+        [HttpPut("{id}")]
+        public void UpdateCity(int id, [FromBody] City city)
+        {
+            _data.UpdateCity(id, city);
+        }
     }
 }

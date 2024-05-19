@@ -4,20 +4,48 @@
             return to main page
         </button>
         <h1>Countries</h1>
-        
-        <input type="text" v-model="name" placeholder="Country Name">
+        <h2>Add Country</h2>
+        <input type="text" v-model="countryName" placeholder="Country Name">
         <button @click="AddCountry()">
             ADD COUNTRY
         </button>
+        <br>
+        <h2>Add City</h2>
+        <select v-model="countryId">
+            <option v-for="country in countries" :key=" 'country-' + country.id" :value="country.id">
+                {{country.name}}
+            </option>
+        </select>
+        <input type="text" v-model="cityName" placeholder="City Name">
+        <input type="text" v-model="PostalCode" placeholder="Postal Code">
+        <button @click="AddCity()">
+            ADD CITY
+        </button>
+
+
         <h2>COUNTRY LIST</h2>
+
+
         <button @click="GetCountries()">
             Get Country List
         </button>
+        <br>
         <ul>
             <li v-for="country in countries" :key=" 'country-' + country.id">
                 <strong>name :</strong> {{country.name}} <br>
             </li>
         </ul>
+        <button @click="GetCities()">
+            Get City List
+        </button>
+        <ul>
+            <li v-for="city in cities" :key=" 'city-' + city.id">
+                <strong>name :</strong> {{city.name}} <br>
+                <strong>country :</strong> {{city.country.name}} <br>
+            </li>
+        </ul>
+
+
 
     </div>
 </template>
@@ -28,7 +56,11 @@
         data(){
             return{
                 countries: [],
-                name: "",
+                cities: [],
+                countryName: "",
+                cityName: "",
+                countryId: "",
+                PostalCode: "",
             }
         },
         mounted(){
@@ -62,32 +94,71 @@
                 });
             },
             AddCountry(){
-            fetch("http://localhost:5162/Country", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: this.name
+                fetch("http://localhost:5162/Country", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        name: this.countryname
+                    })
                 })
-            })
-            .then(response => {
-                if(!response.ok){
-                     throw new Error("Network response was not ok at ADDCOUNTRY");
-                }
-                else{
-                    return response;
-                }
-            })
-            .then(data => {
-                console.log(data);
-                this.GetCountries();
-            })
-            .catch(error => {
-                console.error("There was an error!", error);
-            });
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Network response was not ok at ADDCOUNTRY");
+                    }
+                    else{
+                        return response;
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    this.GetCountries();
+                })
+                .catch(error => {
+                    console.error("There was an error!", error);
+                });
             
-        }
+            },
+            AddCity(){
+                fetch("http://localhost:5162/City", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        name: this.cityName,
+                        countryId: this.countryId
+                    })
+                })
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Network response was not ok at ADDCITY");
+                    }
+                    else{
+                        return response;
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error("There was an error!", error);
+                });
+            },
+            GetCities(){
+                fetch("http://localhost:5162/City", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    this.cities = data;
+                })
+            },
         },
         
     }

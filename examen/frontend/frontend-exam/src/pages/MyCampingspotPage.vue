@@ -14,11 +14,9 @@
             <label for="description">Description:</label>
             <input type="text" id="description" v-model="description" required>
             <br>
+            
             <label for="location">Location:</label>
             <input type="text" id="location" v-model="location" required>
-            <br>
-            <label for="rating">Rating:</label>
-            <input type="number" id="rating" v-model="rating" required>
             <br>
             <label for="image">Image:</label>
             <input type="text" id="image" v-model="image" required>
@@ -40,6 +38,12 @@
                 ownerId: "",
                 price: "",
                 image: "",
+                country: "",
+                city: "",
+                street: "",
+                number: "",
+                
+
                 availability: true,
             }
         },

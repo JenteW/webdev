@@ -99,6 +99,10 @@ namespace exam.Data
         {
             return db.GetCollection<City>("cities").FindAll();
         }
+        public void UpdateCity(int id,  City city)
+        {
+            db.GetCollection<City>("cities").Update(id, city);
+        }
 
         /******/
         /*COUNTRY*/
