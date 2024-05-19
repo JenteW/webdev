@@ -11,12 +11,15 @@
             <input type="number" id="price" v-model="price" required>
             <br>
             <label for="description">Description:</label>
-            <input type="text" id="description" v-model="description" required>
+            <textarea type="text" id="description" v-model="description" required></textarea>
             <br>
             <label for="image">Image:</label>
             <input type="text" id="image" v-model="image" required>
             <br>
-            <img :src="ImagePath" alt="campingspot image" v-if="image"/>
+            <img :src="ImagePath" alt="campingspot image" v-if="image"
+            contain
+            height="100px"
+            width = "150px"/>
             <br>
             <label for="country">Country:</label>
             <select v-model="country">
@@ -38,6 +41,11 @@
             <label for="number">Number:</label>
             <input type="text" id="number" v-model="number" required>
             <br>
+            <select name="tagsId" multiple>
+                <option v-for="tag in tags" :key=" 'tag-' + tag.id" :value="tag.id">
+                    {{tag.name}}
+                </option>
+            </select>
             <button type="submit" @click="handleAddCampingspot()">Add Campingspot</button>
     </div>
 </template>
@@ -49,6 +57,7 @@
             this.ownerId = this.$route.params.id;
             console.log(this.ownerId + " is the id @ MyCampingspotPage")
             this.GetCountry();
+            this.GetTags();
         },
         watch: {
             country: function(){
@@ -65,6 +74,8 @@
             return{
                 countries: [],
                 cities: [],
+                tags: [],
+                tagsId: [],
                 name: "",
                 locationId: 0,
                 description: "",
@@ -76,22 +87,81 @@
                 street: "",
                 number: "",
                 availability: true,
+                spotId: "",
             }
         },
         methods:{
-        handleAddCampingspot() {
-            try {
-            if (!this.name || !this.price || !this.description || !this.image || !this.country || !this.city || !this.street || !this.number) {
-            alert("Please fill in all fields!");
-            return;
-            }
-            const locationData =  this.AddLocation();
-            this.locationId = locationData.id;
-            this.AddCampingSpot();
-            } catch (error) {
-            console.error("Error:", error);
-            }
-        },
+            GetTags(){
+                fetch("http://localhost:5162/Tag", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => {
+                    if(response.status === 404){
+                        alert("Tag not found!");
+                        throw new Error("tag not found at GETTAGS");
+                    }
+                    else if(!response.ok){
+                         throw new Error("Network response was not ok at GETTAGS");
+                    }
+                    else{
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    console.log("is fecking data");
+                    this.tags = data;
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+            
+            },
+            handleAddCampingspot() {
+                try {
+                if (!this.name || !this.price || !this.description || !this.image || !this.country || !this.city || !this.street || !this.number) {
+                alert("Please fill in all fields!");
+                return;
+                }
+                const locationData =  this.AddLocation();
+                this.locationId = locationData.id;
+                this.AddCampingSpot();
+                //for each id in tagsId, add a tag to the campingspot
+                this.tagsId.forEach(id => {
+                    this.AddSpotTag(id);
+                });
+                    
+                } catch (error) {
+                console.error("Error:", error);
+                }
+            },
+            AddSpotTag(id){
+                fetch("http://localhost:5162/SpotTag", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        spotId: this.spotId,
+                        tagId: id
+                    })
+                })
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Network response was not ok at ADDSPOTTAG");
+                    }
+                    return response;
+                })
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error("There has been a problem with your fetch operation: ADDSPOTTAG", error);
+                })
+            },
             ChangePage(page) {
                 this.$emit("changeActivePage", page);
             },

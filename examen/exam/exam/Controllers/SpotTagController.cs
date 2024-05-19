@@ -27,5 +27,18 @@ namespace exam.Controllers
         {
             _data.AddSpotTag(spotTag);
         }
+
+        [HttpGet("Spot/{spotId}")]
+        public ActionResult<IEnumerable<SpotTag>> GetTagsBySpotId(int spotId)
+        {
+            return Ok(_data.GetTagsBySpotId(spotId));
+        }
+
+        [HttpGet("Tag/{tagId}")]
+
+        public ActionResult<IEnumerable<SpotTag>> GetSpotsByTagId(int tagId)
+        {
+            return Ok(_data.GetSpotsByTagId(tagId));
+        }
     }
 }

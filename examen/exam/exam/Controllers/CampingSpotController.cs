@@ -27,5 +27,20 @@ namespace exam.Controllers
         {
             _data.AddCampingSpot(campingspot);
         }
+
+        //get camping spot by id
+        [HttpGet("{id}")]
+        public ActionResult<CampingSpot> GetCampingSpotById(int id)
+        {
+            return Ok(_data.GetCampingSpotById(id));
+        }
+
+
+        //get camingspot by owner id
+        [HttpGet("Owner/{id}")]
+        public ActionResult<IEnumerable<CampingSpot>> GetCampingSpotByOwnerId(int id)
+        {
+            return Ok(_data.GetCampingSpotsByOwnerId(id));
+        }
     }
 }

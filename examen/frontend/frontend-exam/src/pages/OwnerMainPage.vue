@@ -13,9 +13,24 @@
             Go to your camping spots
         </button>
         <br>
-        <img src="..\src\assets\campingspots\test_01.png" alt="campingspot image"/>
-        <img src="@/assets/campingspots/test_02.jpg" alt="campingspot image"/>
-        <img :src="ImagePath" alt="cry">
+        <h2>Your campingspots</h2>
+        <div v-for="campingspot in campingSpots" :key="campingspot.id">
+            <h3>{{campingspot.name}}</h3>
+            <p>{{campingspot.description}}</p>
+            <p>€{{campingspot.price}}</p>
+            <p>{{campingspot.availability}}</p>
+            <img :src="require('@/assets/campingspots/' + campingspot.image)" alt="campingspot image"
+            contain
+            height="200px"
+            width="300px"/>
+            <br>
+            <button @click="GoToAccomodations(campingspot.id)">
+                see more
+            </button>
+            <br>
+        </div>
+
+
     </div>
 </template>
 
@@ -28,12 +43,13 @@
             console.log(this.$route.params.id + " is the id @ OwnerMainPage");
             console.log(this.id + " is the id @ OwnerMainPage");
             this.GetOwner(this.id);
+            this.GetCampingSpots(this.id);
         },
         data(){
             return{
                 owner: {},
                 id: "",
-                test: "test_02.jpg"
+                campingSpots: []
 
             }
         },
@@ -49,6 +65,38 @@
             GoToCampingSpots(){
                 this.$router.push({name: "MyCampingspotPage", params: {id: this.id}});
                 this.$emit("changeActivePage", "addcampingspot");
+            },
+            GoToAccomodations(id){
+                this.$router.push({name: "AddAccomodationPage", params: {id: id}});
+                this.$emit("changeActivePage", "addaccomodation");
+            },
+            GetCampingSpots(id){
+                fetch("http://localhost:5162/CampingSpot/owner/" + id, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => {
+                    if(response.status === 404){
+                        alert("No campingspots found!");
+                        throw new Error("user not found at GETUSER");
+                    }
+                    else if(!response.ok){
+                         throw new Error("Network response was not ok at GETUSER");
+                    }
+                    else{
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    console.log("is fecking data");
+                    this.campingSpots = data;
+                })
+                .catch(error => {
+                    console.error("There was an error!", error);
+                });
             },
             GetOwner(id){
                 fetch("http://localhost:5162/Owner/" + id, {

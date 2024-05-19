@@ -38,6 +38,8 @@ namespace exam.Data
 
         void AddCampingSpot(CampingSpot campingspot);
         IEnumerable<CampingSpot> GetCampingSpots();
+        CampingSpot GetCampingSpotById(int id);
+        IEnumerable<CampingSpot> GetCampingSpotsByOwnerId(int ownerId);
 
         /*******/
         /*City*/
@@ -90,6 +92,10 @@ namespace exam.Data
 
         void AddSpotTag(SpotTag spottag);
         IEnumerable<SpotTag> GetSpotTags();
+        IEnumerable<SpotTag> GetTagsBySpotId(int spotId);
+        IEnumerable<SpotTag> GetSpotsByTagId(int tagId);
+
+
 
         /******/
         /*TAG*/

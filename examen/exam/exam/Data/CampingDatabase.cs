@@ -85,7 +85,15 @@ namespace exam.Data
         {
             return db.GetCollection<CampingSpot>("campingspots").FindAll();
         }
-
+        public CampingSpot GetCampingSpotById(int id)
+        {
+            return db.GetCollection<CampingSpot>("campingspots").FindById(id);
+        }
+        public IEnumerable<CampingSpot> GetCampingSpotsByOwnerId(int id)
+        {
+            return db.GetCollection<CampingSpot>("campingspots").Find(x => x.OwnerId == id);
+        }
+        
 
         /*******/
         /*CITY*/
@@ -214,6 +222,14 @@ namespace exam.Data
         public IEnumerable<SpotTag> GetSpotTags()
         {
             return db.GetCollection<SpotTag>("spottags").FindAll();
+        }
+        public IEnumerable<SpotTag> GetTagsBySpotId(int spotId)
+        {
+            return db.GetCollection<SpotTag>("spottags").Find(x => x.SpotId == spotId);
+        }
+        public IEnumerable<SpotTag> GetSpotsByTagId(int tagId)
+        {
+            return db.GetCollection<SpotTag>("spottags").Find(x => x.TagId == tagId);
         }
 
         /******/
