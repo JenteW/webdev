@@ -22,6 +22,10 @@ namespace exam.Data
         {
             return db.GetCollection<Accomodation>("accomodations").FindAll();
         }
+        public IEnumerable<Accomodation> GetAccomodationsByCampingSpotId(int id)
+        {
+            return db.GetCollection<Accomodation>("accomodations").Find(x => x.CampingSpotId == id);
+        }
 
 
 

@@ -28,6 +28,11 @@ namespace exam.Controllers
         {
             _data.AddAccomodation(accomodation);
         }
+        [HttpGet("campingSpotId/{id}")]
+        public ActionResult<IEnumerable<Accomodation>> GetAccomodationByCampingSpotId(int id)
+        {
+            return Ok(_data.GetAccomodationsByCampingSpotId(id));
+        }
         
     }
 }
