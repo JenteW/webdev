@@ -103,6 +103,7 @@ namespace exam.Data
 
         void AddTag(Tag tag);
         IEnumerable<Tag> GetTags();
+        Tag GetTagById(int id);
 
         /******/
         /*USER*/

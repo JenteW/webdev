@@ -244,6 +244,10 @@ namespace exam.Data
         {
             return db.GetCollection<Tag>("tags").FindAll();
         }
+        public Tag GetTagById(int id)
+        {
+            return db.GetCollection<Tag>("tags").FindById(id);
+        }
 
         /******/
         /*USER*/

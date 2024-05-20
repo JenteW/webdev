@@ -27,6 +27,11 @@ namespace exam.Controllers
         {
             _data.AddTag(tag);
         }
+        [HttpGet("{id}")]
+        public ActionResult<Tag> GetTagById(int id)
+        {
+            return Ok(_data.GetTagById(id));
+        }
 
     }
 }
