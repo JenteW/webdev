@@ -10,6 +10,7 @@ import AdminPage from './pages/AdminPage.vue';
 //USER
 import UserMainPage from './pages/UserMainPage.vue';
 import UpdateUserPage from './pages/UpdateUserPage.vue';
+import AccomodationsPage from './pages/AccomodationsPage.vue';
 
 //OWNER
 import OwnerMainPage from './pages/OwnerMainPage.vue';
@@ -31,6 +32,7 @@ const router = new VueRouter({
     { path: '/UpdateUserPage', name: 'UpdateUserPage', component: UpdateUserPage, props: true},
     { path: '/MyCampingspotPage', name: 'MyCampingspotPage', component: MyCampingspotPage, props: true},
     { path: '/AddAccomodationPage', name: 'AddAccomodationPage', component: AddAccomodationPage, props: true},
+    { path: '/AccomodationsPage', name: 'AccomodationsPage', component: AccomodationsPage, props: true},
     { path: '*', redirect: '/LoginPage' },
   ]
 });

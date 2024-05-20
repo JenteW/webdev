@@ -97,6 +97,10 @@ namespace exam.Data
         {
             return db.GetCollection<CampingSpot>("campingspots").Find(x => x.OwnerId == id);
         }
+        public IEnumerable<CampingSpot> GetCampingSpotsByLocationId(int id)
+        {
+            return db.GetCollection<CampingSpot>("campingspots").Find(x => x.LocationId == id);
+        }
         
 
         /*******/
@@ -145,6 +149,11 @@ namespace exam.Data
         {
             return db.GetCollection<Location>("locations").FindAll();
         }
+        public IEnumerable<Location> GetLocationsByCountryId(int countryId)
+        {
+            return db.GetCollection<Location>("locations").Find(x => x.CountryId == countryId);
+        }
+
 
 
         /******/

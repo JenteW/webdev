@@ -41,7 +41,7 @@
         <ul>
             <li v-for="city in cities" :key=" 'city-' + city.id">
                 <strong>name :</strong> {{city.name}} <br>
-                <strong>country :</strong> {{city.country.name}} <br>
+                <strong>country :</strong> {{GetCountryById(city.countryId)}} <br>
             </li>
         </ul>
 
@@ -65,10 +65,15 @@
         },
         mounted(){
             this.GetCountries();
+            this.GetCities();
         },
         methods:{
             ChangePage(page) {
                 this.$emit("changeActivePage", page);
+            },
+            GetCountryById(id){
+                const country = this.countries.find(country => country.id == id);
+                return country ? country.name : "Unknown Country";
             },
             GetCountries(){
                 fetch("http://localhost:5162/Country", {
@@ -114,6 +119,7 @@
                 .then(data => {
                     console.log(data);
                     this.GetCountries();
+                    alert("Country added");
                 })
                 .catch(error => {
                     console.error("There was an error!", error);
@@ -128,7 +134,8 @@
                     },
                     body: JSON.stringify({
                         name: this.cityName,
-                        countryId: this.countryId
+                        countryId: this.countryId,
+                        postalCode: this.PostalCode
                     })
                 })
                 .then(response => {
@@ -136,6 +143,7 @@
                         throw new Error("Network response was not ok at ADDCITY");
                     }
                     else{
+                        alert("City added");
                         return response;
                     }
                 })
@@ -158,6 +166,9 @@
                     console.log(data);
                     this.cities = data;
                 })
+                .catch(error => {
+                    console.error("There was an error!", error);
+                });
             },
         },
         

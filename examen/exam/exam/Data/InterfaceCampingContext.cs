@@ -41,6 +41,7 @@ namespace exam.Data
         IEnumerable<CampingSpot> GetCampingSpots();
         CampingSpot GetCampingSpotById(int id);
         IEnumerable<CampingSpot> GetCampingSpotsByOwnerId(int ownerId);
+        IEnumerable<CampingSpot> GetCampingSpotsByLocationId(int locationId);
 
         /*******/
         /*City*/
@@ -65,6 +66,7 @@ namespace exam.Data
 
         void AddLocation(Location location);
         IEnumerable<Location> GetLocations();
+        IEnumerable<Location> GetLocationsByCountryId(int country);
         /******/
         /*OWNER*/
         /******/

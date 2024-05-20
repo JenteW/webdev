@@ -42,5 +42,12 @@ namespace exam.Controllers
         {
             return Ok(_data.GetCampingSpotsByOwnerId(id));
         }
+        //get campingspot by location id
+        [HttpGet("Location/{id}")]
+        public ActionResult<IEnumerable<CampingSpot>> GetCampingSpotByLocationId(int id)
+        {
+            return Ok(_data.GetCampingSpotsByLocationId(id));
+        }
+
     }
 }

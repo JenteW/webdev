@@ -27,5 +27,12 @@ namespace exam.Controllers
             _data.AddLocation(location);
             return location;
         }
+        //get location by countryId
+        [HttpGet("Country/{id}")]
+        public ActionResult<IEnumerable<Location>> GetLocationByCountryId(int id)
+        {
+            return Ok(_data.GetLocationsByCountryId(id));
+        }
+
     }
 }
