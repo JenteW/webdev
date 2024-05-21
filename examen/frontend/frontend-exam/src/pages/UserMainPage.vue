@@ -4,11 +4,15 @@
         <button @click="GoToLogin()">
             back to login
         </button>
+        <br>
         <H2>Welcome {{ user.username }}</H2>
         <button @click="GoToUpdate()">
             Update Account
         </button>
         <br>
+        <button @click="GoToBookings()">
+            Go to bookings
+        </button>
         <h2>Available Camping Spots</h2>
         <h3>Filter by:</h3>
         <label for="country">Country:</label>
@@ -68,7 +72,11 @@
         },
         
         methods:{
+            GoToBookings(){
+                this.$router.push({name: "UserBookingPage", params: {userId: this.id}});
 
+                this.$emit("changeActivePage", "userbooking");
+            },
             GoToLogin(){
                 this.$router.push({name: "LoginPage"});
                 this.$emit("changeActivePage", "login");

@@ -77,6 +77,10 @@
                 this.$router.push({name: "UserMainPage", params: {id: this.userId}});
                 this.$emit("changeActivePage", "usermain");
             },
+            ToBookings(){
+                this.$router.push({name: "UserBookingPage", params: {id: this.id, userId: this.userId, spotId: this.spotId}});
+                this.$emit("changeActivePage", "userbooking");
+            },
             CalculatePrice(){
                 let start = new Date(this.startDate);
                 console.log(start);
@@ -112,7 +116,7 @@
                 .then(data => {
                     console.log(data);
                     alert("Booking added");
-                    this.ToUser();
+                    this.ToBookings();
                 })
                 .catch(error => {
                     console.error("There was a problem with your fetch operation:", error);

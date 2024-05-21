@@ -1,0 +1,14 @@
+minimum req
+
+USER:
+easy find campingspot x
+filter needs /
+login to system x
+change user info x
+book camping spot x
+overview of bookings x
+--> only book if able (not min req)
+
+OWNER:
+Seperate page with all camping spots x
+create new camping spot		x

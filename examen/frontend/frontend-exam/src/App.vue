@@ -18,7 +18,7 @@
     <UpdateUserPage v-if="activePage === 'updateuser'" @changeActivePage="changeActivePage"/>
     <AccomodationsPage v-if="activePage === 'accomodations'" @changeActivePage="changeActivePage"/>
     <AddBookingPage v-if="activePage === 'addbooking'" @changeActivePage="changeActivePage"/>
-
+    <UserBookingPage v-if="activePage === 'userbooking'" @changeActivePage="changeActivePage"/>
 
     <OwnerMainPage v-if="activePage === 'ownermain'" @changeActivePage="changeActivePage"/>
     <UpdateOwnerPage v-if="activePage === 'updateowner'" @changeActivePage="changeActivePage"/>
@@ -45,6 +45,7 @@ import UserMainPage from "./pages/UserMainPage.vue"
 import UpdateUserPage from "./pages/UpdateUserPage.vue"
 import AccomodationsPage from "./pages/AccomodationsPage.vue"
 import AddBookingPage from "./pages/AddBookingPage.vue"
+import UserBookingPage from "./pages/UserBookingPage.vue"
 
 //OWNER PAGES
 import OwnerMainPage from "./pages/OwnerMainPage.vue"
@@ -72,6 +73,7 @@ export default {
     UpdateUserPage,
     AccomodationsPage,
     AddBookingPage,
+    UserBookingPage,
 
     OwnerMainPage,
     UpdateOwnerPage,

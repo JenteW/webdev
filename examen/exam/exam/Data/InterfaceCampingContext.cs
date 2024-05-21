@@ -32,7 +32,11 @@ namespace exam.Data
 
         void AddBooking(Booking booking);
         IEnumerable<Booking> GetBookings();
-
+        IEnumerable<Booking> GetBookingsByUserId(int userId);
+        Booking GetBookingById(int id);
+        void UpdateBooking(int id, Booking booking);
+        IEnumerable<Booking> GetBookingsByCampingSpotId(int campingSpotId);
+        void DeleteBooking(int id);
         /*******/
         /*CAMPINGSPOT*/
         /*******/

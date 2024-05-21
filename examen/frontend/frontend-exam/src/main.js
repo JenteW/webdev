@@ -14,6 +14,7 @@ import AddUserPage from './pages/AddUserPage.vue';
 import UpdateUserPage from './pages/UpdateUserPage.vue';
 import AccomodationsPage from './pages/AccomodationsPage.vue';
 import AddBookingPage from './pages/AddBookingPage.vue';
+import UserBookingPage from './pages/UserBookingPage.vue';
 
 //OWNER
 import OwnerMainPage from './pages/OwnerMainPage.vue';
@@ -39,6 +40,7 @@ const router = new VueRouter({
     { path: '/AddAccomodationPage', name: 'AddAccomodationPage', component: AddAccomodationPage, props: true},
     { path: '/AccomodationsPage', name: 'AccomodationsPage', component: AccomodationsPage, props: true},
     { path: '/AddBookingPage', name: 'AddBookingPage', component: AddBookingPage, props: true},
+    { path: '/UserBookingPage', name: 'UserBookingPage', component: UserBookingPage, props: true},
     { path: '*', redirect: '/LoginPage' },
   ]
 });

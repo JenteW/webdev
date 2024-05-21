@@ -31,10 +31,6 @@ namespace exam.Data
             return db.GetCollection<Accomodation>("accomodations").FindById(id);
         }
 
-
-
-
-
         /******/
         /*ADMIN*/
         /******/
@@ -80,7 +76,27 @@ namespace exam.Data
         {
             return db.GetCollection<Booking>("bookings").FindAll();
         }
+        public IEnumerable<Booking> GetBookingsByUserId(int id)
+        {
+            return db.GetCollection<Booking>("bookings").Find(x => x.UserId == id);
+        }
+        public Booking GetBookingById(int id)
+        {
+            return db.GetCollection<Booking>("bookings").FindById(id);
+        }
+        public IEnumerable<Booking> GetBookingsByCampingSpotId(int id)
+        {
+            return db.GetCollection<Booking>("bookings").Find(x => x.CampingSpotId == id);
+        }
+        public void UpdateBooking(int id, Booking booking)
+        {
+            db.GetCollection<Booking>("bookings").Update(id, booking);
 
+        }
+        public void DeleteBooking(int id)
+        {
+            db.GetCollection<Booking>("bookings").Delete(id);
+        }
         /*******/
         /*CAMPINGSPOT*/
         /*******/
