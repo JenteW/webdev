@@ -8,7 +8,7 @@
         </button>
 
        
-        <button @click="ChangePage('login')">
+        <button @click="GoToLogin()">
             user login
         </button>
 
@@ -29,8 +29,9 @@
             ButtonClick(){
                 this.AdminLogin(this.username, this.password);
             },
-            ChangePage(page) {
-                this.$emit("changeActivePage", page);
+            GoToLogin(){
+                this.$router.push({name: "LoginPage"});
+                this.$emit("changeActivePage", "login");
             },
             AdminLogin(username, password){
                 fetch("http://localhost:5162/Admin/login/" + username +"?password=" + password, {

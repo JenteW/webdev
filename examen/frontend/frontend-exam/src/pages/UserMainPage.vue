@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>User Main Page</h1>
-        <button @click="ChangePage('login')">
+        <button @click="GoToLogin()">
             back to login
         </button>
         <H2>Welcome {{ user.username }}</H2>
@@ -69,8 +69,9 @@
         
         methods:{
 
-            ChangePage(page) {
-                this.$emit("changeActivePage", page);
+            GoToLogin(){
+                this.$router.push({name: "LoginPage"});
+                this.$emit("changeActivePage", "login");
             },
             GoToUpdate(){
                 this.$router.push({name: "UpdateUserPage", params: {id: this.id}});

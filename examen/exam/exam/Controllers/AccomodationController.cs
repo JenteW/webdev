@@ -33,6 +33,12 @@ namespace exam.Controllers
         {
             return Ok(_data.GetAccomodationsByCampingSpotId(id));
         }
+        //get spot by id
+        [HttpGet("{id}")]
+        public ActionResult<Accomodation> GetAccomodationById(int id)
+        {
+            return Ok(_data.GetAccomodationById(id));
+        }
         
     }
 }

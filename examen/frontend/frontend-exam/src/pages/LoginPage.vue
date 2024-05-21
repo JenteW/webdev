@@ -9,10 +9,10 @@
             Login
         </button>
 
-        <button @click="ChangePage('adduser')">
+        <button @click="GoToAddUser()">
             Make New Account
         </button>
-        <button @click="ChangePage('adminlogin')">
+        <button @click="GoToAdminLogin()">
             admin
         </button>
 
@@ -45,6 +45,14 @@
             },
             ChangePage(page) {
                 this.$emit("changeActivePage", page);
+            },
+            GoToAddUser(){
+                this.$router.push({name: "AddUserPage"});
+                this.$emit("changeActivePage", "adduser");
+            },
+            GoToAdminLogin(){
+                this.$router.push({name: "AdminPage"});
+                this.$emit("changeActivePage", "adminlogin");
             },
             UserLogin(username, password){
                 fetch("http://localhost:5162/User/login/" + username +"?password=" + password, {

@@ -141,7 +141,7 @@
                         throw new Error("Network response was not ok at AddSpotTag");
                     }
                     else{
-                        return response.json();
+                        return response;
                     }
                 })
                 .then(data => {

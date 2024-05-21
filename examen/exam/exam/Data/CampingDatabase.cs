@@ -26,6 +26,10 @@ namespace exam.Data
         {
             return db.GetCollection<Accomodation>("accomodations").Find(x => x.CampingSpotId == id);
         }
+        public Accomodation GetAccomodationById(int id)
+        {
+            return db.GetCollection<Accomodation>("accomodations").FindById(id);
+        }
 
 
 

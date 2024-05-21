@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Owner Main Page</h1>
-        <button @click="ChangePage('login')">
+        <button @click="GoToLogin()">
             back to login
         </button>
         <H2>Welcome {{ owner.username }}</H2>
@@ -66,8 +66,9 @@
         },
 
         methods:{
-            ChangePage(page) {
-                this.$emit("changeActivePage", page);
+            GoToLogin(){
+                this.$router.push({name: "LoginPage"});
+                this.$emit("changeActivePage", "login");
             },
             GoToUpdate(){
                 this.$router.push({name: "UpdateOwnerPage", params: {id: this.id}});

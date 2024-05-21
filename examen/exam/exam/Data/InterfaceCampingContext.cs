@@ -14,7 +14,7 @@ namespace exam.Data
         void AddAccomodation(Accomodation accomodation);
         IEnumerable<Accomodation> GetAccomodations();
         IEnumerable<Accomodation> GetAccomodationsByCampingSpotId(int id);
-
+        Accomodation GetAccomodationById(int id);
         /******/
         /*ADMIN*/
         /******/

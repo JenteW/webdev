@@ -21,6 +21,7 @@
            
             <p><strong>Name: </strong>{{ accomodation.name }}</p>
             <p><strong>Description:</strong>{{ accomodation.description }}</p>
+            <button @click="GoToBooking(accomodation.id)">Book the accomodation</button>
         </div>
 
     </div>
@@ -45,8 +46,12 @@
             this.GetAccomodationBySpotId(this.id);
         },
         methods:{
+            GoToBooking(id){
+                this.$router.push({name: "AddBookingPage", params: {id: id, userId: this.userId, spotId: this.id}});
+                this.$emit("changeActivePage", "addbooking");
+            },
             GoToCampingSpots(){
-                this.$router.push({name: "usermain", params: {id: this.userId}});
+                this.$router.push({name: "UserMainPage", params: {id: this.userId}});
                 this.$emit("changeActivePage", "usermain");
             },
             GetSpotById(id){
