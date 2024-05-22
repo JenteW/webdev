@@ -42,7 +42,7 @@
                 this.$emit("changeActivePage", page);
             },
             GetUser(id){
-                fetch("http://localhost:5162/User/" + id, {
+                fetch("https://localhost:5162/User/" + id, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -74,7 +74,7 @@
                 });
             },
             UpdateUser(){
-                fetch("http://localhost:5162/User/" + this.id, {
+                fetch("https://localhost:5162/User/" + this.id, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",

@@ -92,7 +92,7 @@
         },
         methods:{
             GetTags(){
-                fetch("http://localhost:5162/Tag", {
+                fetch("https://localhost:5162/Tag", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -139,7 +139,7 @@
                 }
             },
             AddSpotTag(id){
-                fetch("http://localhost:5162/SpotTag", {
+                fetch("https://localhost:5162/SpotTag", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -168,7 +168,7 @@
             AddCampingspot(){
                 console.log(this.name, this.locationId, this.description, this.ownerId, this.price, this.image, this.availability);
                 console.log(this.locationId + " is the location id");
-                fetch("http://localhost:5162/Campingspot", {
+                fetch("https://localhost:5162/Campingspot", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -198,7 +198,7 @@
             },
             AddLocation(){
                 console.log(this.country, this.city, this.street, this.number)
-                fetch("http://localhost:5162/Location", {
+                fetch("https://localhost:5162/Location", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -240,7 +240,7 @@
                 });
             },
             GetCities(id){
-                fetch("http://localhost:5162/City/country/" + id, {
+                fetch("https://localhost:5162/City/country/" + id, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -268,7 +268,7 @@
                 });
             },
             GetCountry(){
-                fetch("http://localhost:5162/Country", {
+                fetch("https://localhost:5162/Country", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

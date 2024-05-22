@@ -76,7 +76,7 @@
                 return country ? country.name : "Unknown Country";
             },
             GetCountries(){
-                fetch("http://localhost:5162/Country", {
+                fetch("https://localhost:5162/Country", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -99,7 +99,7 @@
                 });
             },
             AddCountry(){
-                fetch("http://localhost:5162/Country", {
+                fetch("https://localhost:5162/Country", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -127,7 +127,7 @@
             
             },
             AddCity(){
-                fetch("http://localhost:5162/City", {
+                fetch("https://localhost:5162/City", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -155,7 +155,7 @@
                 });
             },
             GetCities(){
-                fetch("http://localhost:5162/City", {
+                fetch("https://localhost:5162/City", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

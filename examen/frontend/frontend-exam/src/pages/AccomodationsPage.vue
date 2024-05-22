@@ -55,7 +55,7 @@
                 this.$emit("changeActivePage", "usermain");
             },
             GetSpotById(id){
-                fetch("http://localhost:5162/CampingSpot/" + id, {
+                fetch("https://localhost:5162/CampingSpot/" + id, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -76,7 +76,7 @@
                 });
             },
             GetAccomodationBySpotId(id){
-                fetch("http://localhost:5162/Accomodation/CampingSpotId/" + id, {
+                fetch("https://localhost:5162/Accomodation/CampingSpotId/" + id, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

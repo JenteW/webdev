@@ -8,7 +8,7 @@ namespace exam
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // Add services to the container
             // adjust ConfigureServices - method
             builder.Services.AddCors(s => s.AddPolicy("MyPolicy", builder => builder.AllowAnyOrigin()
                                     .AllowAnyMethod()
@@ -27,7 +27,7 @@ namespace exam
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseHttpsRedirection();
             app.UseAuthorization();
 
 

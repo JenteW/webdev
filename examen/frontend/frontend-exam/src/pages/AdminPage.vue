@@ -98,7 +98,7 @@
                 this.$emit("changeActivePage", page);
             },
             GetAdmin(id){
-                fetch("http://localhost:5162/Admin/" + id, {
+                fetch("https://localhost:5162/Admin/" + id, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -119,7 +119,7 @@
                 })
             },
             DeleteUser(id){
-                fetch("http://localhost:5162/User/" + id, {
+                fetch("https://localhost:5162/User/" + id, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
@@ -140,7 +140,7 @@
                 })
             },
             AddUser(){
-                fetch("http://localhost:5162/User", {
+                fetch("https://localhost:5162/User", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -169,7 +169,7 @@
                 })
             },
             getUsers(){
-                fetch("http://localhost:5162/User", {
+                fetch("https://localhost:5162/User", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -190,7 +190,7 @@
                 })
             },
             getOwners(){
-                fetch("http://localhost:5162/Owner", {
+                fetch("https://localhost:5162/Owner", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -203,7 +203,7 @@
                 })
             },
             DeleteOwner(id){
-                fetch("http://localhost:5162/Owner/" + id, {
+                fetch("https://localhost:5162/Owner/" + id, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
@@ -224,7 +224,7 @@
                 })
             },
             AddTag(){
-                fetch("http://localhost:5162/Tag", {
+                fetch("https://localhost:5162/Tag", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -250,7 +250,7 @@
                 })
             },
             getTags(){
-                fetch("http://localhost:5162/Tag", {
+                fetch("https://localhost:5162/Tag", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

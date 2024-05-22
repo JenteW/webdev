@@ -52,7 +52,7 @@ export default {
             this.$emit("changeActivePage", "usermain");
         },
         GetBookings(){
-            fetch("http://localhost:5162/Booking/userId/" + this.userId, {
+            fetch("https://localhost:5162/Booking/userId/" + this.userId, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -93,7 +93,7 @@ export default {
             return campingspot ? campingspot.image : "Unknown CampingSpot";
         },
         GetAllAccomodations(){
-            fetch("http://localhost:5162/Accomodation", {
+            fetch("https://localhost:5162/Accomodation", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -114,7 +114,7 @@ export default {
             });
         },
         GetAllCampingSpots(){
-            fetch("http://localhost:5162/CampingSpot", {
+            fetch("https://localhost:5162/CampingSpot", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

@@ -42,7 +42,7 @@
                 this.$emit("changeActivePage", page);
             },
             GetOwner(id){
-                fetch("http://localhost:5162/Owner/" + id, {
+                fetch("https://localhost:5162/Owner/" + id, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -75,7 +75,7 @@
                 });
             },
             UpdateOwner(){
-                fetch("http://localhost:5162/Owner/" + this.id, {
+                fetch("https://localhost:5162/Owner/" + this.id, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",

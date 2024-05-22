@@ -34,7 +34,7 @@
                 this.$emit("changeActivePage", "login");
             },
             AdminLogin(username, password){
-                fetch("http://localhost:5162/Admin/login/" + username +"?password=" + password, {
+                fetch("https://localhost:5162/Admin/login/" + username +"?password=" + password, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

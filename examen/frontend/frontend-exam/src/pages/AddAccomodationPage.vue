@@ -76,7 +76,7 @@
                 return tag ? tag.name : "Unknown Tag";
             },
             GetTags(){
-                fetch("http://localhost:5162/Tag", {
+                fetch("https://localhost:5162/Tag", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -99,7 +99,7 @@
                 });
             },
             GetSpotTags(id){
-                fetch("http://localhost:5162/SpotTag/Spot/" + id, {
+                fetch("https://localhost:5162/SpotTag/Spot/" + id, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -126,7 +126,7 @@
                 });
             },
             AddSpotTag(id){
-                fetch("http://localhost:5162/SpotTag", {
+                fetch("https://localhost:5162/SpotTag", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -169,7 +169,7 @@
                 this.$emit("changeActivePage", "ownermain");
             },
             GetSpot(id){
-                fetch("http://localhost:5162/CampingSpot/" + id, {
+                fetch("https://localhost:5162/CampingSpot/" + id, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -196,7 +196,7 @@
                 });
             },
             AddAccomodation(){
-                fetch("http://localhost:5162/Accomodation", {
+                fetch("https://localhost:5162/Accomodation", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -225,7 +225,7 @@
             },
             GetAccomodationBySpotId(id){
                 console.log(id + " is the id @ GetAccomodationBySpotId")
-                fetch("http://localhost:5162/Accomodation/CampingSpotId/" + id, {
+                fetch("https://localhost:5162/Accomodation/CampingSpotId/" + id, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

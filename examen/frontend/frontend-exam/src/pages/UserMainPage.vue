@@ -90,7 +90,7 @@
                 this.$emit("changeActivePage", "accomodations");
             },
             GetLocationsByCountry(countryId){
-                fetch("http://localhost:5162/Location/Country/" + countryId, {
+                fetch("https://localhost:5162/Location/Country/" + countryId, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -120,7 +120,7 @@
                 
             },
             GetCampingspotsByLocationId(id){
-                fetch("http://localhost:5162/CampingSpot/Location/" + id, {
+                fetch("https://localhost:5162/CampingSpot/Location/" + id, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -145,7 +145,7 @@
                 
             },
             GetAllLocations(){
-                fetch("http://localhost:5162/Location", {
+                fetch("https://localhost:5162/Location", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -171,7 +171,7 @@
             
             },
             GetAllCountries(){
-                fetch("http://localhost:5162/Country", {
+                fetch("https://localhost:5162/Country", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -196,7 +196,7 @@
             
             },
             GetAllCampingSpots(){
-                fetch("http://localhost:5162/CampingSpot", {
+                fetch("https://localhost:5162/CampingSpot", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -221,7 +221,7 @@
             
             },
             GetUser(id){
-                fetch("http://localhost:5162/User/" + id, {
+                fetch("https://localhost:5162/User/" + id, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

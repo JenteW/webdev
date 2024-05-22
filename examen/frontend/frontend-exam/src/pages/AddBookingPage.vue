@@ -93,7 +93,7 @@
                 this.price = days * this.Spot.price;
             },
             AddBooking(){
-                fetch("http://localhost:5162/Booking", {
+                fetch("https://localhost:5162/Booking", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -123,7 +123,7 @@
                 });
             },
             GetSpotById(id){
-                fetch("http://localhost:5162/CampingSpot/" + id, {
+                fetch("https://localhost:5162/CampingSpot/" + id, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -144,7 +144,7 @@
                 });
             },
             GetAccomdationById(id){
-                fetch("http://localhost:5162/Accomodation/" + id, {
+                fetch("https://localhost:5162/Accomodation/" + id, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

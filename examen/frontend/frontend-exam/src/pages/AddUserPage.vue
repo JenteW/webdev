@@ -32,7 +32,7 @@
                 this.$emit("changeActivePage", page);
             },
             AddUser(){
-                fetch("http://localhost:5162/User", {
+                fetch("https://localhost:5162/User", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
