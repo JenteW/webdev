@@ -26,7 +26,7 @@
     <CountriesPage v-if="activePage === 'countries'" @changeActivePage="changeActivePage"/>
     <MyCampingSpotPage v-if="activePage === 'addcampingspot'" @changeActivePage="changeActivePage"/>
     <AddAccomodationPage v-if="activePage === 'addaccomodation'" @changeActivePage="changeActivePage"/>
- 
+    <OwnerBookedPage v-if="activePage === 'ownerbooked'" @changeActivePage="changeActivePage"/>
  </div>
 </template>
 
@@ -50,6 +50,7 @@ import UserBookingPage from "./pages/UserBookingPage.vue"
 //OWNER PAGES
 import OwnerMainPage from "./pages/OwnerMainPage.vue"
 import UpdateOwnerPage from "./pages/UpdateOwnerPage.vue"
+import OwnerBookedPage from "./pages/OwnerBookedPage.vue"
 
 //COUNTRIES
 import CountriesPage from "./pages/CountriesPage.vue"
@@ -77,6 +78,7 @@ export default {
 
     OwnerMainPage,
     UpdateOwnerPage,
+    OwnerBookedPage,
 
     CountriesPage,
     AddAccomodationPage,

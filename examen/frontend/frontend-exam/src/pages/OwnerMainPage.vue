@@ -10,7 +10,11 @@
         </button>
         <br>
         <button @click="GoToCampingSpots()">
-            Go to your camping spots
+            add a new campingspot
+        </button>
+        <br>
+        <button @click="GoToBookings()">
+            Go to your bookings
         </button>
         <br>
         <h2>Your campingspots</h2>
@@ -70,6 +74,11 @@
                 this.$router.push({name: "LoginPage"});
                 this.$emit("changeActivePage", "login");
             },
+            GoToBookings(){
+                this.$router.push({name: "OwnerBookedPage", params: {userId: this.id}});
+                this.$emit("changeActivePage", "ownerbooked");
+            },
+
             GoToUpdate(){
                 this.$router.push({name: "UpdateOwnerPage", params: {id: this.id}});
                 this.$emit("changeActivePage", "updateowner");

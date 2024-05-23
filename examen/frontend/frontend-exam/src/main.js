@@ -21,7 +21,7 @@ import OwnerMainPage from './pages/OwnerMainPage.vue';
 import UpdateOwnerPage from './pages/UpdateOwnerPage.vue';
 import MyCampingspotPage from './pages/MyCampingspotPage.vue';
 import AddAccomodationPage from './pages/AddAccomodationPage.vue';
-
+import OwnerBookedPage from './pages/OwnerBookedPage.vue';
 
 Vue.use(VueRouter);
 Vue.config.productionTip = false
@@ -41,6 +41,7 @@ const router = new VueRouter({
     { path: '/AccomodationsPage', name: 'AccomodationsPage', component: AccomodationsPage, props: true},
     { path: '/AddBookingPage', name: 'AddBookingPage', component: AddBookingPage, props: true},
     { path: '/UserBookingPage', name: 'UserBookingPage', component: UserBookingPage, props: true},
+    { path: '/OwnerBookedPage', name: 'OwnerBookedPage', component: OwnerBookedPage, props: true},
     { path: '*', redirect: '/LoginPage' },
   ]
 });
