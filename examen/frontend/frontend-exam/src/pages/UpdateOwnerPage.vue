@@ -1,16 +1,16 @@
 <template>
-    <div>
-        <button @click="ChangePage('ownermain')">
+    <div class="flex flex-col items-center">
+        <button class="custom-button" @click="ChangePage('ownermain')">
             back to main page
         </button>
         <H2>Welcome {{ owner.username }}</H2>
 
-        <input type="text" v-model="fn" value="owner.fn">
-        <input type="text" v-model="ln" placeholder = "ln">
-        <input type="text" v-model="email">
-        <input type="text" v-model="username">
-        <input type="password" v-model="password" placeholder="Password">
-        <button @click="UpdateOwner(owner.id)">
+        <input class="custom-input" type="text" v-model="fn" value="owner.fn">
+        <input class="custom-input" type="text" v-model="ln" placeholder = "ln">
+        <input class="custom-input" type="text" v-model="email">
+        <input class="custom-input" type="text" v-model="username">
+        <input class="custom-input" type="password" v-model="password" placeholder="Password">
+        <button class="custom-button" @click="UpdateOwner(owner.id)">
             Update Account
         </button>
 

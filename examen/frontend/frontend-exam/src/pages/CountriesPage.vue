@@ -1,12 +1,12 @@
 <template>
-    <div>
-        <button @click="ChangePage('admin')">
+    <div class="flex flex-col items-center">
+        <button class="custom-button" @click="ChangePage('admin')">
             return to main page
         </button>
         <h1>Countries</h1>
         <h2>Add Country</h2>
-        <input type="text" v-model="countryName" placeholder="Country Name">
-        <button @click="AddCountry()">
+        <input class="custom-input" type="text" v-model="countryName" placeholder="Country Name">
+        <button class="custom-button" @click="AddCountry()">
             ADD COUNTRY
         </button>
         <br>
@@ -16,9 +16,9 @@
                 {{country.name}}
             </option>
         </select>
-        <input type="text" v-model="cityName" placeholder="City Name">
-        <input type="text" v-model="PostalCode" placeholder="Postal Code">
-        <button @click="AddCity()">
+        <input class="custom-input" type="text" v-model="cityName" placeholder="City Name">
+        <input class="custom-input" type="text" v-model="PostalCode" placeholder="Postal Code">
+        <button class="custom-button" @click="AddCity()">
             ADD CITY
         </button>
 
@@ -26,7 +26,7 @@
         <h2>COUNTRY LIST</h2>
 
 
-        <button @click="GetCountries()">
+        <button class="custom-button" @click="GetCountries()">
             Get Country List
         </button>
         <br>
@@ -35,7 +35,7 @@
                 <strong>name :</strong> {{country.name}} <br>
             </li>
         </ul>
-        <button @click="GetCities()">
+        <button class="custom-button" @click="GetCities()">
             Get City List
         </button>
         <ul>

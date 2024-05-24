@@ -3,14 +3,14 @@
         <h1 class="text-4xl">User Main Page</h1>
         <H2 class="text-3xl">Welcome {{ user.username }}</H2>
         <div>
-            <button class="border border-blue-500 bg-blue-300 p-2 w-full m-2" @click="GoToLogin()">
+            <button class="custom-button" @click="GoToLogin()">
                 back to login
             </button>
 
-            <button class="border border-blue-500 bg-blue-300 p-2 w-full m-2" @click="GoToUpdate()">
+            <button class="custom-button" @click="GoToUpdate()">
                 Update Account
             </button>
-            <button class="border border-blue-500 bg-blue-300 p-2 w-full m-2" @click="GoToBookings()">
+            <button class="custom-button" @click="GoToBookings()">
                 Go to bookings
             </button>
         </div>
@@ -22,22 +22,17 @@
                     {{country.name}}
                 </option>
             </select>
-        <div  class="flex flex-col items-center">
-            <div v-for="campingspot in CampingSpots" :key="campingspot.id">
-                <h3 class="text-2xl underline ">{{campingspot.name}}</h3>
-                <p>{{campingspot.description}}</p>
-                <p>€{{campingspot.price}}</p>
-                <img :src="require('@/assets/campingspots/' + campingspot.image)" alt="campingspot image"
-                contain
-                height="200px"
-                width="300px"/>
-                <br>
-                <button class="border border-blue-500 bg-blue-300 p-2 w-full" @click="GoToAccomodations(campingspot.id)">
-                    see more
-                </button>
-                <br>
+        <div class="flex flex-col items-center">
+            <div v-for="campingspot in CampingSpots" :key="campingspot.id" class="the-box">
+                <img :src="require('@/assets/campingspots/' + campingspot.image)" alt="campingspot image" class="mr-4" height="200px" width="300px">
+                <div class="flex flex-col">
+                    <h3 class="text-2xl underline mb-2 w-full">{{campingspot.name}}</h3>
+                    <p class="mb-2">{{campingspot.description}}</p>
+                    <p class="mb-2">€{{campingspot.price}}</p>
+                    <button class="custom-button" @click="GoToAccomodations(campingspot.id)">see more</button>
+                </div>
             </div>
-        </div> 
+        </div>
 
 
         

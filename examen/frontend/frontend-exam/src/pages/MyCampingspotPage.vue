@@ -1,20 +1,20 @@
 <template>
-    <div>
-        <button @click="ChangePage('ownermain')">
+    <div class="flex flex-col items-center">
+        <button class="custom-button" @click="ChangePage('ownermain')">
             return to main page
         </button>
         <h1>Add Campingspot</h1>
             <label for="name">Name:</label>
-            <input type="text" id="name" v-model="name" required>
+            <input class="custom-input" type="text" id="name" v-model="name" required>
             <br>
             <label for="price">Price:</label>
-            <input type="number" id="price" v-model="price" required>
+            <input class="custom-input" type="number" id="price" v-model="price" required>
             <br>
             <label for="description">Description:</label>
-            <textarea type="text" id="description" v-model="description" required></textarea>
+            <textarea class="custom-input" type="text" id="description" v-model="description" required></textarea>
             <br>
             <label for="image">Image:</label>
-            <input type="text" id="image" v-model="image" required>
+            <input class="custom-input" type="text" id="image" v-model="image" required>
             <br>
             <img :src="ImagePath" alt="campingspot image" v-if="image"
             contain
@@ -36,17 +36,17 @@
             </select>
             <br>
             <label for="street">Street:</label>
-            <input type="text" id="street" v-model="street" required>
+            <input class="custom-input" type="text" id="street" v-model="street" required>
             <br>
             <label for="number">Number:</label>
-            <input type="text" id="number" v-model="number" required>
+            <input class="custom-input" type="text" id="number" v-model="number" required>
             <br>
             <select name="tagsId" multiple>
                 <option v-for="tag in tags" :key=" 'tag-' + tag.id" :value="tag.id">
                     {{tag.name}}
                 </option>
             </select>
-            <button type="submit" @click="handleAddCampingspot()">Add Campingspot</button>
+            <button class="custom-button" type="submit" @click="handleAddCampingspot()">Add Campingspot</button>
     </div>
 </template>
 
@@ -191,6 +191,9 @@
                 })
                 .then(data => {
                     console.log(data);
+                    alert("Campingspot added!");
+                    this.push({name: "OwnerMainPage", params: {id: this.ownerId}});
+                    this.ChangePage("ownermain");
                 })
                 .catch(error => {
                     console.error("There has been a problem with your fetch operation: ADDUSER", error);

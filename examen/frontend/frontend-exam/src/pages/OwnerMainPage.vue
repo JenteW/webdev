@@ -1,46 +1,42 @@
 <template>
-    <div>
-        <h1>Owner Main Page</h1>
-        <button @click="GoToLogin()">
-            back to login
-        </button>
-        <H2>Welcome {{ owner.username }}</H2>
-        <button @click="GoToUpdate()">
-            Update Account
-        </button>
-        <br>
-        <button @click="GoToCampingSpots()">
-            add a new campingspot
-        </button>
-        <br>
-        <button @click="GoToBookings()">
-            Go to your bookings
-        </button>
-        <br>
-        <h2>Your campingspots</h2>
-        <div v-for="campingspot in campingSpots" :key="campingspot.id">
-            <h3>{{campingspot.name}}</h3>
-            <p>{{campingspot.description}}</p>
-            <p>€{{campingspot.price}}</p>
-            <p>{{campingspot.availability}}</p>
-            <img :src="require('@/assets/campingspots/' + campingspot.image)" alt="campingspot image"
-            contain
-            height="200px"
-            width="300px"/>
-            <br>
-            <!-- <button @click="GetTagsBySpotId(campingspot.id)">see Tags</button>
-            <br>
-             <p>TAGS:</p>
-            <div v-for="tag in campingspot.tags" :key="tag.id">
-                <p>{{ tag.name }}</p>
-            </div> -->
-            
-            <br>
-            <button @click="GoToAccomodations(campingspot.id)">
-                see more
+    <div class="flex flex-col items-center">
+        <h1 class="h1">Owner Main Page</h1>
+        <div>
+        <button class="custom-button" @click="GoToLogin()">
+                back to login
+            </button>
+            <H2 class="h2">Welcome {{ owner.username }}</H2>
+            <button class="custom-button" @click="GoToUpdate()">
+                Update Account
             </button>
             <br>
+            <button class="custom-button" @click="GoToCampingSpots()">
+                add a new campingspot
+            </button>
+            <br>
+            <button class="custom-button" @click="GoToBookings()">
+                Go to your bookings
+            </button>
         </div>
+        <br>
+        <h2>Your campingspots</h2>
+        <div class="flex flex-col items-center">
+            <div v-for="campingspot in campingSpots" :key="campingspot.id" class="the-box">
+                <img :src="require('@/assets/campingspots/' + campingspot.image)" alt="campingspot image"
+                class="mr-4"
+                contain
+                height="200px"
+                width="300px"/>
+                <div class="flex flex-col">
+                    <h3 class="h3">{{campingspot.name}}</h3>
+                    <p class="mb-2">{{campingspot.description}}</p>
+                    <p class="mb-2">€{{campingspot.price}}</p>
+                    <button class="custom-button" @click="GoToAccomodations(campingspot.id)">
+                        see more
+                    </button>
+                </div> 
+            </div>
+        </div>  
 
 
     </div>

@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="flex flex-col items-center">
         <h1>Add Booking</h1>
 
-        <button @click="ToUser()">
+        <button class="custom-button" @click="ToUser()">
             return to main page
         </button>
         <h2>SpotDetails</h2>
@@ -26,12 +26,12 @@
         </div>
             <br>
             <h2>Booking</h2>
-            <input type="date" v-model="startDate" placeholder="StartDate">
+            <input class="custom-input" type="date" v-model="startDate" placeholder="StartDate">
             <br>
-            <input type="date" v-model="endDate" placeholder="EndDate" >
+            <input class="custom-input" type="date" v-model="endDate" placeholder="EndDate" >
             <br>
             <p>The total sum is €{{ this.price }}</p>
-            <button @click="CheckIfAvailable()">
+            <button class="custom-button" @click="CheckIfAvailable()">
                 Add Booking
             </button>
     </div>

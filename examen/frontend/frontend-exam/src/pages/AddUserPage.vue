@@ -1,17 +1,17 @@
 <template>
-    <div>
+    <div class="flex flex-col items-center">
         <h1>Make a new Account</h1>
-        <input type="text" v-model="fn" placeholder="First Name">
-        <input type="text" v-model="ln" placeholder="Last Name">
-        <input type="text" v-model="email" placeholder="Email">
-        <input type="text" v-model="username" placeholder="Username">
-        <input type="password" v-model="password" placeholder="Password">
-        <input type="checkbox" v-model="checked">
+        <input class="custom-input" type="text" v-model="fn" placeholder="First Name">
+        <input class="custom-input" type="text" v-model="ln" placeholder="Last Name">
+        <input class="custom-input" type="text" v-model="email" placeholder="Email">
+        <input class="custom-input" type="text" v-model="username" placeholder="Username">
+        <input class="custom-input" type="password" v-model="password" placeholder="Password">
+        <input class="custom-input" type="checkbox" v-model="checked">
         <label for="checked">owner</label>
-        <button @click="Add()">
+        <button class="custom-button" @click="Add()">
             ADD USER
         </button>
-        <button @click="ChangePage('login')">
+        <button class="custom-button" @click="ChangePage('login')">
             back to login
         </button>
     </div>
@@ -67,6 +67,7 @@
                 })
                 .then(data => {
                     console.log(data);
+                    alert("Owner added!");
                 })
                 .catch(error => {
                     console.error("There has been a problem with your fetch operation: ADDUSER", error);
@@ -95,6 +96,7 @@
                 })
                 .then(data => {
                     console.log(data);
+                    alert("User added!");
                 })
                 .catch(error => {
                     console.error("There has been a problem with your fetch operation: ADDUSER", error);

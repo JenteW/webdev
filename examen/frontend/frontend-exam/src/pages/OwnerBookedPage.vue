@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="flex flex-col items-center">
         <H1>bookings</H1>
-        <button @click="GoToOwnerMain()">
+        <button class="custom-button" @click="GoToOwnerMain()">
             Go to homepage
         </button>
         <div v-for="booking in bookings" :key="booking.id">

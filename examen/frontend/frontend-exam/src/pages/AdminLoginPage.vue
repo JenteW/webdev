@@ -1,17 +1,18 @@
 <template>
-    <div>
-        <h1>Login</h1>
-        <input type="text" v-model="username" placeholder="Username">
-        <input type="password" v-model="password" placeholder="Password">
-        <button @click="ButtonClick()">
-            Login
-        </button>
+    <div class="flex flex-col items-center">
+        <div class="w-full max-w-md text-center">
+            <h1>Login</h1>
+            <input class="custom-input" type="text" v-model="username" placeholder="Username">
+            <input class="custom-input" type="password" v-model="password" placeholder="Password">
+            <button class="custom-button" @click="ButtonClick()">
+                Login
+            </button>
 
-       
-        <button @click="GoToLogin()">
-            user login
-        </button>
-
+        
+            <button class="custom-button" @click="GoToLogin()">
+                user login
+            </button>
+        </div>
         
     </div>
 </template>

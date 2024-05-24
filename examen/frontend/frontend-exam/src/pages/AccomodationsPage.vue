@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div class="flex flex-col items-center">
         <H1>Accomodation</H1>
         <div>
-            <button @click="GoToCampingSpots()">
+            <button class="custom-button" @click="GoToCampingSpots()">
                 Go Back
             </button>
         </div>
-        <H2>Spot</H2>
+        <H2 class="h2">Spot</H2>
         <div>
             <h3>{{ Spot.name }}</h3>
             <p>{{ Spot.description }}</p>
@@ -21,7 +21,7 @@
            
             <p><strong>Name: </strong>{{ accomodation.name }}</p>
             <p><strong>Description:</strong>{{ accomodation.description }}</p>
-            <button @click="GoToBooking(accomodation.id)">Book the accomodation</button>
+            <button class="custom-button" @click="GoToBooking(accomodation.id)">Book the accomodation</button>
         </div>
 
     </div>

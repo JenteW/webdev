@@ -3,8 +3,7 @@
       <div class="w-full max-w-md text-center">
         <h1 class="text-3xl font-bold underline mb-4">Login</h1>
         <div class="mb-4">
-          <input
-            class="border border-black bg-green-700 text-white p-2 w-full"
+          <input class="custom-input"
             type="text"
             v-model="username"
             placeholder="Username"
@@ -12,19 +11,19 @@
         </div>
         <div class="mb-4">
           <input
-            class="border border-black bg-green-700 text-white p-2 w-full"
+            class="custom-input"
             type="password"
             v-model="password"
             placeholder="Password"
           />
         </div>
         <div class="mb-4 flex items-center justify-center">
-          <input class="m-2" type="checkbox" v-model="checked" />
+          <input class="custom-input" type="checkbox" v-model="checked" />
           <label class="text-black" for="checked">Owner</label>
         </div>
         <div class="mb-4">
           <button
-            class="border border-blue-500 bg-blue-300 p-2 w-full"
+          class="custom-button"
             @click="ButtonClick()"
           >
             Login
@@ -32,7 +31,7 @@
         </div>
         <div class="mb-4">
           <button
-            class="border border-blue-500 bg-blue-300 p-2 w-full"
+          class="custom-button"
             @click="GoToAddUser()"
           >
             Make New Account
@@ -40,7 +39,7 @@
         </div>
         <div class="mb-4">
           <button
-            class="border border-blue-500 bg-blue-300 p-2 w-full"
+          class="custom-button"
             @click="GoToAdminLogin()"
           >
             Admin

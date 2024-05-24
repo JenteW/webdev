@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <button @click="GoToUser()">Go to main page</button>
+    <div class="flex flex-col items-center">
+        <button class="custom-button" @click="GoToUser()">Go to main page</button>
         <h1>Booking</h1>
         <div v-for="booking in bookings" :key="booking.id">
             

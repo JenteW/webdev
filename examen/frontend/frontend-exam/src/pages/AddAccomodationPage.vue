@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="flex flex-col items-center">
         <h1>Add Accomodation</h1>
-        <button @click="ToOwner()">
+        <button class="custom-button" @click="ToOwner()">
             return to main page
         </button>
         <h2>SpotDetails</h2>
@@ -16,13 +16,13 @@
             width="300px"/>
             <br>
             <h2>Accomodations</h2>
-            <button @click="GetAccomodationBySpotId(campingSpotId)"> get accomodation</button>
+            <button class="custom-button" @click="GetAccomodationBySpotId(campingSpotId)"> get accomodation</button>
             <div v-for="accomodation in accomodations" :key="accomodation.id">
                 <h3>{{accomodation.name}}</h3>
                 <p>{{accomodation.description}}</p>
             </div>
             <H2>tags</H2>
-            <button @click="GetSpotTags(campingSpotId)">Get Tags</button>
+            <button class="custom-button" @click="GetSpotTags(campingSpotId)">Get Tags</button>
             <div v-for="tag in SpotTags" :key="tag.id">
                 <p>{{getTagName(tag.tagId)}}</p>
             </div>
@@ -31,7 +31,7 @@
                 <input type="checkbox" v-model="tagsId" :value="tag.id">
                 <label>{{tag.name}}</label>
             </div>
-            <button @click="addAllTags()">
+            <button class="custom-button" @click="addAllTags()">
                 add Tags
             </button>
             <h2>Add Accomodation</h2>
@@ -39,7 +39,7 @@
             <br>
             <input type="text" v-model="description" placeholder="Description">
             <br>
-            <button @click="AddAccomodation()">
+            <button class="custom-button" @click="AddAccomodation()">
                 Add Accomodation
             </button>
     </div>
