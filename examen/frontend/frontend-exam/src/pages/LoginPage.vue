@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <h1>Login</h1>
-        <input type="text" v-model="username" placeholder="Username">
+      <div class="">
+        <h1 class="text-3xl font-bold underline">Login</h1>
+        <input class="" type="text" v-model="username" placeholder="Username">
         <input type="password" v-model="password" placeholder="Password">
         <input type="checkbox" v-model="checked">
         <label for="checked">owner</label>

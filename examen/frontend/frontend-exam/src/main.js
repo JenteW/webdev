@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import VueRouter from 'vue-router';
+import './assets/styles/tailwind.css';
 // STARTPAGE
 import LoginPage from './pages/LoginPage.vue';
 
