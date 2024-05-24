@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col items-center">
-        <H1>Accomodation</H1>
+        <H1 class="h1">Accomodation</H1>
         <div>
             <button class="custom-button" @click="GoToCampingSpots()">
                 Go Back

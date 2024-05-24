@@ -1,45 +1,47 @@
 <template>
     <div class="flex flex-col items-center">
-        <h1>Add Accomodation</h1>
-        <button class="custom-button" @click="ToOwner()">
+        <h1 class="h1">Add Accomodation</h1>
+        <button class="custom-button md:w-1/4" @click="ToOwner()">
             return to main page
         </button>
-        <h2>SpotDetails</h2>
-
-            <h3>{{spot.name}}</h3>
-            <p>{{spot.description}}</p>
-            <p>€{{spot.price}}</p>
-            <p>{{spot.availability}}</p>
+        <div class="flex flex-col items-center w-3/4">
+            <h2 class="h2">SpotDetails</h2>
+            <h3 class="h3">{{spot.name}}</h3>
+            <p class="mr-2">{{spot.description}}</p>
+            <p class="mr-2">€{{spot.price}}</p>
             <img :src="require('@/assets/campingspots/' + spot.image)" alt="campingspot image"
+            class="mr-4"
             contain
             height="200px"
             width="300px"/>
-            <br>
-            <h2>Accomodations</h2>
-            <button class="custom-button" @click="GetAccomodationBySpotId(campingSpotId)"> get accomodation</button>
+        </div>
+            <h2 class="h2">Accomodations</h2>
+            <button class="half-button" @click="GetAccomodationBySpotId(campingSpotId)"> get accomodation</button>
             <div v-for="accomodation in accomodations" :key="accomodation.id">
-                <h3>{{accomodation.name}}</h3>
+                <h3 class="h3">{{accomodation.name}}</h3>
                 <p>{{accomodation.description}}</p>
             </div>
-            <H2>tags</H2>
-            <button class="custom-button" @click="GetSpotTags(campingSpotId)">Get Tags</button>
-            <div v-for="tag in SpotTags" :key="tag.id">
+            <H2 class="h2">tags</H2>
+            <button class="half-button" @click="GetSpotTags(campingSpotId)">Get Tags</button>
+            <div v-for="tag in SpotTags" :key="tag.id" class="bg-green-300 p-4 rounded-md flex items-center mr-4 mb-2">
                 <p>{{getTagName(tag.tagId)}}</p>
             </div>
-            <H2>add Tags</H2>
-            <div v-for="tag in tags" :key="tag.id">
-                <input type="checkbox" v-model="tagsId" :value="tag.id">
-                <label>{{tag.name}}</label>
+            <H2 class="h2">add Tags</H2>
+            <div class="flex flex-wrap">
+                <div v-for="tag in tags" :key="tag.id" class="bg-blue-200 p-4 rounded-md flex items-center mr-4 mb-2">
+                    <input type="checkbox" v-model="tagsId" :value="tag.id">
+                    <label>{{tag.name}}</label>
+                </div>
             </div>
-            <button class="custom-button" @click="addAllTags()">
+            <button class="half-button" @click="addAllTags()">
                 add Tags
             </button>
             <h2>Add Accomodation</h2>
-            <input type="text" v-model="name" placeholder="Name">
+            <input class="custom-input" type="text" v-model="name" placeholder="Name">
             <br>
-            <input type="text" v-model="description" placeholder="Description">
+            <textarea class="custom-input" type="text-area" v-model="description" placeholder="Description"/>
             <br>
-            <button class="custom-button" @click="AddAccomodation()">
+            <button class="half-button" @click="AddAccomodation()">
                 Add Accomodation
             </button>
     </div>
@@ -214,6 +216,7 @@
                     else{
                         this.name = "";
                         this.description = "";
+                        alert("Accomodation added!");
                         return response;
 
                     }
