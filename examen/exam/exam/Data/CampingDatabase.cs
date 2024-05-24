@@ -97,6 +97,17 @@ namespace exam.Data
         {
             db.GetCollection<Booking>("bookings").Delete(id);
         }
+
+        public bool IsBookingAvailable(DateTime startDate, DateTime endDate, int campingSpotId, int accomodationId)
+        {
+            var bookings = db.GetCollection<Booking>("bookings")
+                .Find(b => b.CampingSpotId == campingSpotId &&
+                           b.AccomodationId == accomodationId &&
+                           DateTime.Parse(b.EndDate) >= startDate &&
+                           DateTime.Parse(b.StartDate) <= endDate);
+
+            return !bookings.Any();
+        }
         /*******/
         /*CAMPINGSPOT*/
         /*******/

@@ -59,6 +59,25 @@ namespace exam.Controllers
         {
             _data.DeleteBooking(id);
         }
+        //check if booking is available
+        [HttpPost("checkavailability")]
+        public IActionResult CheckAvailability([FromBody] Booking request)
+        {
+            Console.WriteLine($"Received startDate: {request.StartDate}, endDate: {request.EndDate}");
+            DateTime startDate;
+            DateTime endDate;
+            if (!DateTime.TryParseExact(request.StartDate, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out startDate) || !DateTime.TryParseExact(request.EndDate, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out endDate))
+            {
+               return BadRequest("Invalid date format");
+            }
+            if(endDate <= startDate)
+            {
+                return BadRequest("End date must be after start date");
+            }
+            bool isAvailable = _data.IsBookingAvailable(startDate, endDate, request.CampingSpotId, request.AccomodationId);
+            return Ok( isAvailable);
+        }
+        
         
     }
 }

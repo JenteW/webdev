@@ -8,9 +8,9 @@
         </div>
         <H2>Spot</H2>
         <div>
-            <p>{{ Spot.name }}</p>
+            <h3>{{ Spot.name }}</h3>
             <p>{{ Spot.description }}</p>
-            <p>{{ Spot.price }}</p>
+            <p>€{{ Spot.price }}</p>
             <img :src="require('@/assets/campingspots/' + Spot.image)" alt="campingspot image"
             contain
             height="300px"

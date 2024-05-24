@@ -38,6 +38,8 @@
                     this.OwnerLogin(this.username, this.password);
                 }
                 else{
+                    console.log(this.username + " is the username");
+                    console.log(this.password + " is the password");
                     this.UserLogin(this.username, this.password);
                     console.log("User");
                 }

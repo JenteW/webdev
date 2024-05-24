@@ -37,6 +37,7 @@ namespace exam.Data
         void UpdateBooking(int id, Booking booking);
         IEnumerable<Booking> GetBookingsByCampingSpotId(int campingSpotId);
         void DeleteBooking(int id);
+        bool IsBookingAvailable(DateTime startDate, DateTime endDate, int campingSpotId, int accomodationId);
         /*******/
         /*CAMPINGSPOT*/
         /*******/

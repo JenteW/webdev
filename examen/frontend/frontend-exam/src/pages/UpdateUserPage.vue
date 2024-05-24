@@ -101,9 +101,9 @@
                         return response;
                     }
                 })
-                .then(data => {
+                .then(() =>{
                     this.GetUser(this.id);
-                    console.log(data + "changed user");
+                    alert("User updated!");
                                 })
                 .catch(error => {
                     console.error("There was an error!", error);

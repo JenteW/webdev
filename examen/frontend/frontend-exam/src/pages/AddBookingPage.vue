@@ -30,14 +30,15 @@
             <br>
             <input type="date" v-model="endDate" placeholder="EndDate" >
             <br>
-            <p>The total sum is {{ this.price }}</p>
-            <button @click="AddBooking()">
+            <p>The total sum is €{{ this.price }}</p>
+            <button @click="CheckIfAvailable()">
                 Add Booking
             </button>
     </div>
 </template>
 
 <script>
+
     export default{
         name: 'AddBookingPage',
         data(){
@@ -49,7 +50,8 @@
                 Spot: {},
                 startDate: "",
                 endDate: "",
-                price: 0
+                price: 0,
+                isAvailable: false
             }
         },
         watch:{
@@ -92,6 +94,48 @@
                 console.log(days);
                 this.price = days * this.Spot.price;
             },
+            CheckIfAvailable(){
+            if(this.startDate == this.endDate){
+                alert("Please select a start and end date");
+                return;
+            }
+            fetch("https://localhost:5162/Booking/checkavailability", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    startDate: this.startDate,
+                    endDate: this.endDate,
+                    campingSpotId: this.spotId,
+                    accomodationId: this.accomodation.id
+                })
+            })
+            .then(response => {
+                if(!response.ok){
+                    throw new Error("Network response was not ok at CheckIfAvailable");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                this.isAvailable = data;
+                console.log(this.isAvailable + " is the availability");
+
+                if(this.isAvailable == false){
+                    console.log("This spot is not available for the selected dates");
+                    alert("This spot is not available for the selected dates");
+                    return;
+                }
+                if(this.isAvailable == true){
+                    console.log("This spot is available for the selected dates");
+                    alert("This spot is available for the selected dates");
+                    this.AddBooking();
+                }else{
+                    alert("This spot is not available for the selected dates");
+                }
+            })
+        },
             AddBooking(){
                 fetch("https://localhost:5162/Booking", {
                     method: "POST",
