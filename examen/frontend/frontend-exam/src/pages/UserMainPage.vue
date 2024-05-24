@@ -1,18 +1,19 @@
 <template>
-    <div>
-        <h1>User Main Page</h1>
-        <button @click="GoToLogin()">
-            back to login
-        </button>
-        <br>
-        <H2>Welcome {{ user.username }}</H2>
-        <button @click="GoToUpdate()">
-            Update Account
-        </button>
-        <br>
-        <button @click="GoToBookings()">
-            Go to bookings
-        </button>
+    <div class="flex flex-col items-center">
+        <h1 class="text-4xl">User Main Page</h1>
+        <H2 class="text-3xl">Welcome {{ user.username }}</H2>
+        <div>
+            <button class="border border-blue-500 bg-blue-300 p-2 w-full m-2" @click="GoToLogin()">
+                back to login
+            </button>
+
+            <button class="border border-blue-500 bg-blue-300 p-2 w-full m-2" @click="GoToUpdate()">
+                Update Account
+            </button>
+            <button class="border border-blue-500 bg-blue-300 p-2 w-full m-2" @click="GoToBookings()">
+                Go to bookings
+            </button>
+        </div>
         <h2>Available Camping Spots</h2>
         <h3>Filter by:</h3>
         <label for="country">Country:</label>
@@ -21,21 +22,22 @@
                     {{country.name}}
                 </option>
             </select>
-
-        <div v-for="campingspot in CampingSpots" :key="campingspot.id">
-            <h3>{{campingspot.name}}</h3>
-            <p>{{campingspot.description}}</p>
-            <p>€{{campingspot.price}}</p>
-            <img :src="require('@/assets/campingspots/' + campingspot.image)" alt="campingspot image"
-            contain
-            height="200px"
-            width="300px"/>
-            <br>
-            <button @click="GoToAccomodations(campingspot.id)">
-                see more
-            </button>
-            <br>
-        </div>
+        <div  class="flex flex-col items-center">
+            <div v-for="campingspot in CampingSpots" :key="campingspot.id">
+                <h3 class="text-2xl underline ">{{campingspot.name}}</h3>
+                <p>{{campingspot.description}}</p>
+                <p>€{{campingspot.price}}</p>
+                <img :src="require('@/assets/campingspots/' + campingspot.image)" alt="campingspot image"
+                contain
+                height="200px"
+                width="300px"/>
+                <br>
+                <button class="border border-blue-500 bg-blue-300 p-2 w-full" @click="GoToAccomodations(campingspot.id)">
+                    see more
+                </button>
+                <br>
+            </div>
+        </div> 
 
 
         

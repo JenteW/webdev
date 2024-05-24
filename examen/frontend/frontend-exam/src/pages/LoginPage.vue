@@ -1,24 +1,54 @@
 <template>
-      <div class="">
-        <h1 class="text-3xl font-bold underline">Login</h1>
-        <input class="" type="text" v-model="username" placeholder="Username">
-        <input type="password" v-model="password" placeholder="Password">
-        <input type="checkbox" v-model="checked">
-        <label for="checked">owner</label>
-        <button @click="ButtonClick()">
+    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+      <div class="w-full max-w-md text-center">
+        <h1 class="text-3xl font-bold underline mb-4">Login</h1>
+        <div class="mb-4">
+          <input
+            class="border border-black bg-green-700 text-white p-2 w-full"
+            type="text"
+            v-model="username"
+            placeholder="Username"
+          />
+        </div>
+        <div class="mb-4">
+          <input
+            class="border border-black bg-green-700 text-white p-2 w-full"
+            type="password"
+            v-model="password"
+            placeholder="Password"
+          />
+        </div>
+        <div class="mb-4 flex items-center justify-center">
+          <input class="m-2" type="checkbox" v-model="checked" />
+          <label class="text-black" for="checked">Owner</label>
+        </div>
+        <div class="mb-4">
+          <button
+            class="border border-blue-500 bg-blue-300 p-2 w-full"
+            @click="ButtonClick()"
+          >
             Login
-        </button>
-
-        <button @click="GoToAddUser()">
+          </button>
+        </div>
+        <div class="mb-4">
+          <button
+            class="border border-blue-500 bg-blue-300 p-2 w-full"
+            @click="GoToAddUser()"
+          >
             Make New Account
-        </button>
-        <button @click="GoToAdminLogin()">
-            admin
-        </button>
-
-        
+          </button>
+        </div>
+        <div class="mb-4">
+          <button
+            class="border border-blue-500 bg-blue-300 p-2 w-full"
+            @click="GoToAdminLogin()"
+          >
+            Admin
+          </button>
+        </div>
+      </div>
     </div>
-</template>
+  </template>
 
 <script>
     export default {
