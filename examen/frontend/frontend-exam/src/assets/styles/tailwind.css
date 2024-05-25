@@ -21,8 +21,9 @@
   @apply text-2xl underline mb-2 w-full;
 }
 .the-box {
-  @apply bg-blue-200 p-4 rounded-md mb-4 w-3/4 flex;
+  @apply bg-blue-200 p-4 rounded-md mb-4  md:w-7/12 flex;
 }
+
 .the-box-booking {
   @apply bg-blue-200 p-4 rounded-md mb-4 md:w-11/12 flex;
 }

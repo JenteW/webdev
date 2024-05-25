@@ -18,8 +18,7 @@
                 Go to your bookings
             </button>
         </div>
-        <br>
-        <h2>Your campingspots</h2>
+        <h2 class="h2 m-3">Your campingspots</h2>
         <div class="flex flex-col items-center">
             <div v-for="campingspot in campingSpots" :key="campingspot.id" class="the-box">
                 <img :src="require('@/assets/campingspots/' + campingspot.image)" alt="campingspot image"

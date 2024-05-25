@@ -1,12 +1,11 @@
 <template>
-    <div class="flex flex-col items-center">
-        <h1 class="text-4xl">User Main Page</h1>
-        <H2 class="text-3xl">Welcome {{ user.username }}</H2>
+    <div class="div-flex">
+        <h1 class="h1">User Main Page</h1>
+        <H2 class="h2">Welcome {{ user.username }}</H2>
         <div>
             <button class="custom-button" @click="GoToLogin()">
                 back to login
             </button>
-
             <button class="custom-button" @click="GoToUpdate()">
                 Update Account
             </button>
@@ -14,9 +13,9 @@
                 Go to bookings
             </button>
         </div>
-        <h2>Available Camping Spots</h2>
-        <div>
-            <h3>Filter by:</h3>
+        <h2 class="h2">Available Camping Spots</h2>
+        <div class="div-flex">
+            <h3 class="text-xl">Filter by:</h3>
             <label for="country">Country:</label>
                 <select v-model="country">
                     <option v-for="country in countries" :key=" 'country-' + country.id" :value="country.id">
@@ -27,20 +26,19 @@
                 remove filters
             </button>
         </div>
-        <div class="flex flex-col items-center">
+        <div class="div-flex">
             <div v-for="campingspot in availableCampingSpots" :key="campingspot.id" class="the-box">
-                <img :src="require('@/assets/campingspots/' + campingspot.image)" alt="campingspot image" class="camping-spot-image" height="200px" width="300px">
+                <img :src="require('@/assets/campingspots/' + campingspot.image)" alt="campingspot image"
+                    class="mr-4 h-48 w-64" 
+                    contain>
                 <div class="flex flex-col">
-                    <h3 class="text-2xl underline mb-2 w-full">{{campingspot.name}}</h3>
+                    <h3 class="h3">{{campingspot.name}}</h3>
                     <p class="mb-2">{{campingspot.description}}</p>
                     <p class="mb-2">€{{campingspot.price}}</p>
-                    <button class="custom-button" @click="GoToAccomodations(campingspot.id)">see more</button>
+                    <button class="custom-button" @click="GoToAccomodations(campingspot.id)">see more</button>                
                 </div>
             </div>
         </div>
-
-
-        
     </div>
 </template>
 
