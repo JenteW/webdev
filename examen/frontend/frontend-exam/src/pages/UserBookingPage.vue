@@ -12,27 +12,26 @@
                 see future bookings
             </button>
         </div>
-
-        <div v-for="booking in bookings" :key="booking.id">
-            
-            <H2>Booked CampingSpot</H2>
-            <div>
-                <h3>{{GetCampingSpotsName(booking.campingSpotId)}}</h3>
-                <p>{{GetCampingspotsDescription(booking.campingSpotId)}}</p>
+        <div class="div-flex">
+            <H2 class="h2">Booked CampingSpot</H2>
+            <div v-for="booking in bookings" :key="booking.id" class="the-box-booking">
                 <img :src="require('@/assets/campingspots/' + GetcampingspotsImage(booking.campingSpotId))" alt="campingspot image"
-                contain
-                height="200px"
-                width="300px"/>
+                    contain
+                    class="mr-4"
+
+                    height="200px"
+                    width="300px"/>
+                <div class="flex flex-col">
+                    <h3 class="h3">{{GetCampingSpotsName(booking.campingSpotId)}}</h3>
+                    <p class="mb-2">{{GetCampingspotsDescription(booking.campingSpotId)}}</p>
+                    <h3 class="h3">{{GetAccomdationName(booking.accomodationId)}} was booked.</h3>
+                    <p class="mb-2">{{GetAccomodationDescription(booking.accomodationId)}}</p>
+                    <p class="mb-2">{{booking.startDate}}</p>
+                    <p class="mb-2">{{booking.endDate}}</p>
+                    <p class="mb-2">€{{booking.price}}</p>         
+                </div>      
+ 
             </div>
-            <h2>With accomodation</h2>
-            <div>
-                <h3>{{GetAccomdationName(booking.accomodationId)}}</h3>
-                <p>{{GetAccomodationDescription(booking.accomodationId)}}</p>
-            </div>      
-            <H3>{{booking.spotName}}</h3>
-            <h3>{{booking.startDate}}</h3>
-            <p>{{booking.endDate}}</p>
-            <p>€{{booking.price}}</p>          
         </div>
     </div>
 </template>
