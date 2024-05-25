@@ -28,8 +28,6 @@ namespace exam.Controllers
             return _data.GetCities().Where(c => c.CountryId == id);
         }
 
-
-
         [HttpPost]
         public void AddCity([FromBody] City city)
         {
@@ -40,6 +38,18 @@ namespace exam.Controllers
         public void UpdateCity(int id, [FromBody] City city)
         {
             _data.UpdateCity(id, city);
+        }
+        //delete city by country id
+        [HttpDelete("Country/{id}")]
+        public void DeleteCityByCountryId(int id)
+        {
+            _data.DeleteCityByCountryId(id);
+        }
+        //delete city by id
+        [HttpDelete("{id}")]
+        public void DeleteCity(int id)
+        {
+            _data.DeleteCity(id);
         }
     }
 }

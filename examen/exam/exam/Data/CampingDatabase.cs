@@ -144,6 +144,7 @@ namespace exam.Data
         {
             db.GetCollection<CampingSpot>("campingspots").Update(id, campingspot);
         }
+
         
 
         /*******/
@@ -166,7 +167,14 @@ namespace exam.Data
         {
             return db.GetCollection<City>("cities").Find(x => x.CountryId == countryId);
         }
-
+        public void DeleteCity(int id)
+        {
+            db.GetCollection<City>("cities").Delete(id);
+        }
+        public void DeleteCityByCountryId(int countryId)
+        {
+            db.GetCollection<City>("cities").DeleteMany(x => x.CountryId == countryId);
+        }
         /******/
         /*COUNTRY*/
         /*******/
@@ -178,6 +186,10 @@ namespace exam.Data
         public IEnumerable<Country> GetCountries()
         {
             return db.GetCollection<Country>("countries").FindAll();
+        }
+        public void DeleteCountry(int id)
+        {
+            db.GetCollection<Country>("countries").Delete(id);
         }
 
         /********/
@@ -220,10 +232,6 @@ namespace exam.Data
         {
            return db.GetCollection<Owner>("owners").FindAll();
         }
-      /*  public Owner GetOwnerByUsername(string username)
-        {
-         return db.GetCollection<Owner>("owners").FindOne(x => x.Username == username);
-        }*/
         public IActionResult UpdateOwner(int id, Owner owner)
         {
             try
@@ -248,6 +256,10 @@ namespace exam.Data
         public Owner GetOwnerById(int id)
         {
             return db.GetCollection<Owner>("owners").FindById(id);
+        }
+        public bool CheckOwnername(string username)
+        {
+            return db.GetCollection<Owner>("owners").Exists(x => x.Username == username);
         }
 
 
@@ -304,6 +316,10 @@ namespace exam.Data
         {
             return db.GetCollection<Tag>("tags").FindById(id);
         }
+        public void DeleteTag(int id)
+        {
+            db.GetCollection<Tag>("tags").Delete(id);
+        }
 
         /******/
         /*USER*/
@@ -328,12 +344,10 @@ namespace exam.Data
             return db.GetCollection<User>("users").FindAll();
         }
 
-       /* public User GetUserByUsername(string username)
+        public bool CheckUsername(string username)
         {
-           return db.GetCollection<User>("users").FindOne(x => x.Username == username);
-        }*/
-
-
+            return db.GetCollection<User>("users").Exists(x => x.Username == username);
+        }
         public void UpdateUser(int id, User user)
         {
             db.GetCollection<User>("users").Update(id, user);   

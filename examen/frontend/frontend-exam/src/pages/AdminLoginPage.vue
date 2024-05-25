@@ -3,7 +3,7 @@
         <div class="w-full max-w-md text-center">
             <h1 class="h1">Login</h1>
             <br>
-            <p>This is the admin login. You are not supposed to be here are you?</p>
+            <p>This is the admin login. You're not supposed to be here, are you?</p>
             <br>
             <input class="custom-input" type="text" v-model="username" placeholder="Username">
             <input class="custom-input" type="password" v-model="password" placeholder="Password">

@@ -15,8 +15,8 @@
           />
 
         <div class="mb-4 flex items-center justify-center">
-          <input type="checkbox" v-model="checked" />
-          <label class="text-black" for="checked">Owner</label>
+          <input type="checkbox" v-model="checked" class="mr-2" />
+          <label class="text-black text-center" for="checked">Login as an owner</label>
         </div>
         <div class="mb-4">
           <button
@@ -79,7 +79,7 @@
                 this.$emit("changeActivePage", "adduser");
             },
             GoToAdminLogin(){
-                this.$router.push({name: "AdminPage"});
+                this.$router.push({name: "AdminLoginPage"});
                 this.$emit("changeActivePage", "adminlogin");
             },
             UserLogin(username, password){

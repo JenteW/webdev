@@ -1,17 +1,21 @@
 <template>
+    
     <div class="flex flex-col items-center">
-        <button class="custom-button" @click="GoToLogin()">
+        <div class="top-left-button">
+            <button class=" custom-button" @click="GoToLogin()">
             back to login
         </button>
-        <h1>Admin Page</h1>
-        <p>Welcome {{ admin.username }}</p> 
+        </div>
+        <div class="div-flex w-full">
+        <h1 class="h1 text-center">Admin Page</h1>
+        <p class="font-bold">Welcome {{ admin.username }}</p> 
         <p>
             This is the admin page. Only authenticated users can see this page.
         </p>
-        <button class="custom-button" @click="ChangePage('countries')">
+        <button class="button-static-size" @click="ChangePage('countries')">
             countries page
         </button>
-        <h2>Add User</h2>
+        <!-- <h2>Add User</h2>
         <input class="custom-input" type="text" v-model="ln" placeholder="Last Name">
         <input class="custom-input" type="text" v-model="fn" placeholder="First Name">
         <input class="custom-input" type="text" v-model="email" placeholder="Email">
@@ -19,50 +23,68 @@
         <input class="custom-input" type="password" v-model="password" placeholder="Password">
         <button class="custom-button" @click="AddUser()">
             ADD USER
-        </button>
-
-        <ul>
-            <h2>USER LIST</h2>
-            <button class="custom-button" @click="getUsers()">
-                Get User List
-            </button>
-            <li v-for="user in users" :key=" 'user-' + user.id">
-                <strong>name :</strong> {{user.fn}} {{ user.ln }} <br>
-                mail: {{user.email}} <br>
-                username: {{user.username}}
-                <button class="custom-button" @click="DeleteUser(user.id)">
-                    Delete
+        </button> -->
+        </div>
+            <div class="div-flex w-full">
+                <h2 class="h2">USER LIST</h2>
+                <button class="button-static-size" v-if="users.length == 0" @click="getUsers()">
+                    Get User List
                 </button>
-            </li>
+                <button class="button-static-size" v-else @click="CloseUserList()">
+                    Close User List
+                </button>
+                <ul>
+                    <li v-for="user in users" :key=" 'user-' + user.id">
+                        <strong>name :</strong> {{user.fn}} {{ user.ln }} <br>
+                        <p>mail: {{user.email}}</p>
+                        <p>username: {{user.username}}</p>
+                        <button class="custom-button" @click="DeleteUser(user.id)">
+                            Delete
+                        </button>
+                    </li>
+                </ul>   
+            </div>
             <h2>OWNER LIST</h2>
-            <button class="custom-button" @click="getOwners()">
+            <div class="div-flex w-full">
+                <button class="button-static-size" v-if="owners.length == 0" @click="getOwners()">
                 Get Owner List
             </button>
-            <li v-for="owner in owners" :key=" 'owner-' +owner.id">
-                <strong>name :</strong> {{owner.fn}} {{ owner.ln }} <br>
-                mail: {{owner.email}} <br>
-                username: {{owner.username}}
-                <button class="custom-button" @click="DeleteOwner(owner.id)">
-                    Delete
-                </button>
-            </li>
-        </ul>
-        <h2>Add Tag</h2>
+            <button class="button-static-size" v-else @click="CloseOwnerList() ">
+                Close Owner List
+            </button>
+            </div>
+            <ul>
+                <li v-for="owner in owners" :key=" 'owner-' +owner.id">
+                    <strong>name :</strong> {{owner.fn}} {{ owner.ln }} <br>
+                    mail: {{owner.email}} <br>
+                    username: {{owner.username}}
+                    <button class="custom-button" @click="DeleteOwner(owner.id)">
+                        Delete
+                    </button>
+                </li>
+            </ul>
+        <h2 class="h2">Add Tag</h2>
         <input class="custom-input" type="text" v-model="tagName" placeholder="Tag Name">
         <input class="custom-input" type="text" v-model="tagDescription" placeholder="Tag Description">
-        <button class="custom-button" @click="AddTag()">
+        <button class="button-static-size" @click="AddTag()">
             ADD TAG
         </button>
-        <ul>
-            <h2>TAG LIST</h2>
-            <button class="custom-button" @click="getTags()">
-                Get Tag List
-            </button>
-            <li v-for="tag in tags" :key=" 'tag-' + tag.id">
-                <strong>name :</strong> {{tag.name}} <br>
-                description: {{tag.description}} <br>
-            </li>
-        </ul>
+        <div class="div-flex w-full">
+                <h2 class="h2 text-center">TAG LIST</h2>
+                <button class="button-static-size" v-if="tags == 0" @click="getTags()">
+                    Get Tag List
+                </button>
+                <button class="button-static-size" v-else @click="CloseTagList()">
+                    Close Tag List
+                </button>
+                <li v-for="tag in tags" :key=" 'tag-' + tag.id">
+                    <strong>name :</strong> {{tag.name}} <br>
+                    description: {{tag.description}} <br>
+                    <button class="custom-button" @click="DeleteTag(tag.id)">
+                        Delete
+                    </button>
+                </li>    
+        </div>
 
     </div>
 </template>
@@ -96,6 +118,15 @@
         methods:{
             ChangePage(page) {
                 this.$emit("changeActivePage", page);
+            },
+            CloseOwnerList(){
+                this.owners = [];
+            },
+            CloseUserList(){
+                this.users = [];
+            },
+            CloseTagList(){
+                this.tags = [];
             },
             GoToLogin(){
                 this.$router.push({name: "AdminLoginPage"});
@@ -267,6 +298,27 @@
                     this.tags = data;
                 })
             },
+            DeleteTag(id){
+                fetch("https://localhost:5162/Tag/" + id, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Network response was not ok at DELETETAG");
+                    }
+                    return response;
+                })
+                .then(data => {
+                    console.log("succes in deleting the tag", data, id);
+                    this.getTags();
+                })
+                .catch(error => {
+                    console.error("There has been a problem with your fetch operation: DELETETAG", error);
+                })
+            },  
         },
     }
 

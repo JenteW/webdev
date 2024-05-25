@@ -60,6 +60,8 @@ namespace exam.Data
         IEnumerable<City> GetCities();
         IEnumerable<City> GetCitiesByCountry(int countryId);
         void UpdateCity(int id, City city);
+        void DeleteCity(int id);
+        void DeleteCityByCountryId(int countryId);
 
 
         /*******/
@@ -68,6 +70,7 @@ namespace exam.Data
 
         void AddCountry(Country country);
         IEnumerable<Country> GetCountries();
+        void DeleteCountry(int id);
 
         /*******/
         /*LOCATION*/
@@ -87,6 +90,7 @@ namespace exam.Data
         void DeleteOwner(int id);
         Owner GetOwnerByUsernameAndPassword(string username);
         Owner GetOwnerById(int id);
+        bool CheckOwnername(string username);
 
 
 
@@ -116,6 +120,7 @@ namespace exam.Data
         void AddTag(Tag tag);
         IEnumerable<Tag> GetTags();
         Tag GetTagById(int id);
+        void DeleteTag(int id);
 
 
         /******/
@@ -129,5 +134,6 @@ namespace exam.Data
         void DeleteUser(int id);
         User GetUserByUsernameAndPassword(string username);
         User GetUserById(int id);
+        bool CheckUsername(string username);
     }
 }

@@ -26,5 +26,13 @@ namespace exam.Controllers
         {
             _data.AddCountry(country);
         }
+        // delete country by id
+        [HttpDelete("{id}")]
+        public void DeleteCountry(int id)
+        {
+            _data.DeleteCityByCountryId(id);
+            _data.DeleteCountry(id);
+        }
+
     }
 }

@@ -33,5 +33,12 @@ namespace exam.Controllers
             return Ok(_data.GetTagById(id));
         }
 
+        // delete tag by id
+        [HttpDelete("{id}")]
+        public void DeleteTag(int id)
+        {
+            _data.DeleteTag(id);
+        }
+
     }
 }

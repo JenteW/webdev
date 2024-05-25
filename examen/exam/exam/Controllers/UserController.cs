@@ -29,6 +29,12 @@ namespace exam.Controllers
             user.Password = PasswordHasher.Hash(user.Password);
             return _data.AddUser(user);
         }
+        //check if username is available
+        [HttpGet("username/{username}")]
+        public bool CheckUsername(string username)
+        {
+            return _data.CheckUsername(username);
+        }
 
         // get user by username if password is correct
         [HttpGet("login/{username}")]

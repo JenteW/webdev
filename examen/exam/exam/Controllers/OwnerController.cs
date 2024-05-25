@@ -47,12 +47,12 @@ namespace exam.Controllers
             return NotFound("No user found");
         }
 
-        //get owner by username
-       /* [HttpGet("{username}")]
-        public Owner GetOwnerByUsername(string username)
+        //check if ownername is available
+        [HttpGet("username/{username}")]
+        public bool CheckOwnername(string username)
         {
-           return _data.GetOwnerByUsername(username);
-        }*/
+            return _data.CheckOwnername(username);
+        }
 
         // get owner by id
         [HttpGet("{id}")]

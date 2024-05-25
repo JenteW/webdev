@@ -1,52 +1,57 @@
 <template>
-    <div class="flex flex-col items-center">
-        <button class="custom-button" @click="ChangePage('admin')">
-            return to main page
-        </button>
-        <h1>Countries</h1>
-        <h2>Add Country</h2>
-        <input class="custom-input" type="text" v-model="countryName" placeholder="Country Name">
-        <button class="custom-button" @click="AddCountry()">
-            ADD COUNTRY
-        </button>
-        <br>
-        <h2>Add City</h2>
-        <select v-model="countryId">
-            <option v-for="country in countries" :key=" 'country-' + country.id" :value="country.id">
-                {{country.name}}
-            </option>
-        </select>
-        <input class="custom-input" type="text" v-model="cityName" placeholder="City Name">
-        <input class="custom-input" type="text" v-model="PostalCode" placeholder="Postal Code">
-        <button class="custom-button" @click="AddCity()">
-            ADD CITY
-        </button>
+    <div class="div-login">
+        <div class="flex flex-col items-center">
+            <div class="top-left-button">
+            <button class="custom-button" @click="ChangePage('admin')">
+                return to main page
+            </button>
+            </div>
+            <h1 class="h1">Countries</h1>
+            <h2 class="h2">You can add a new country here</h2>
+            <input class="custom-input" type="text" v-model="countryName" placeholder="Country Name">
+            <button class="custom-button" @click="AddCountry()">
+                ADD COUNTRY
+            </button>
+            <br>
+            <h2 class="h2">Add a city to an existing country</h2>
+            <select class="m-2" v-model="countryId">
+                <option v-for="country in countries" :key=" 'country-' + country.id" :value="country.id">
+                    {{country.name}}
+                </option>
+            </select>
+            <input class="custom-input" type="text" v-model="cityName" placeholder="City Name">
+            <input class="custom-input" type="text" v-model="PostalCode" placeholder="Postal Code">
+            <button class="custom-button" @click="AddCity()">
+                ADD CITY
+            </button>
 
 
-        <h2>COUNTRY LIST</h2>
+            <h2 class="h2 m-2">COUNTRY LIST</h2>
 
-
-        <button class="custom-button" @click="GetCountries()">
-            Get Country List
-        </button>
-        <br>
-        <ul>
-            <li v-for="country in countries" :key=" 'country-' + country.id">
-                <strong>name :</strong> {{country.name}} <br>
-            </li>
-        </ul>
-        <button class="custom-button" @click="GetCities()">
-            Get City List
-        </button>
-        <ul>
-            <li v-for="city in cities" :key=" 'city-' + city.id">
-                <strong>name :</strong> {{city.name}} <br>
-                <strong>country :</strong> {{GetCountryById(city.countryId)}} <br>
-            </li>
-        </ul>
-
-
-
+            <button class="custom-button" @click="GetCountries()">
+                Get Country List
+            </button>
+            <ul class="m-1">
+                <li v-for="country in countries" :key=" 'country-' + country.id">
+                    <p>Name : {{country.name}} </p>
+                    <button class="border rounded-lg bg-blue-300" @click="DeleteCountry(country.id)">
+                        Delete
+                    </button>
+                </li>
+            </ul>
+            <button class="custom-button" @click="GetCities()">
+                Get City List
+            </button>
+            <ul class="m-1">
+                <li v-for="city in cities" :key=" 'city-' + city.id">
+                    <p>Name : {{city.name}}</p>
+                    <p>Country : {{GetCountryById(city.countryId)}} </p>
+                    <button class="border rounded-lg bg-blue-300" @click="DeleteCity(city.id)">
+                        Delete
+                    </button>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -127,6 +132,10 @@
             
             },
             AddCity(){
+                if(this.countryId == "") {
+                    alert("Please select a country");
+                    return;
+                }
                 fetch("https://localhost:5162/City", {
                     method: "POST",
                     headers: {
@@ -170,6 +179,54 @@
                     console.error("There was an error!", error);
                 });
             },
+            DeleteCountry(id){
+                fetch("https://localhost:5162/Country/" + id, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Network response was not ok at DELETECOUNTRY");
+                    }
+                    else{
+                        return response;
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    this.GetCountries();
+                    alert("Country deleted");
+                })
+                .catch(error => {
+                    console.error("There was an error!", error);
+                });
+            },
+            DeleteCity(id){
+                fetch("https://localhost:5162/City/" + id, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Network response was not ok at DELETECITY");
+                    }
+                    else{
+                        return response;
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    this.GetCities();
+                    alert("City deleted");
+                })
+                .catch(error => {
+                    console.error("There was an error!", error);
+                });
+            }
         },
         
     }
