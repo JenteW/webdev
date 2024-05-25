@@ -1,7 +1,8 @@
 <template>
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="div-login">
       <div class="w-full max-w-md text-center">
-        <h1 class="text-3xl font-bold underline mb-4">Login</h1>
+        <h1 class="text-5xl font-bold mb-4">Login</h1>
+        <p class="text-2xl mb-4">Please login to continue your Grand Adventure!</p>
           <input class="custom-input"
             type="text"
             v-model="username"

@@ -1,57 +1,66 @@
 <template>
     <div class="flex flex-col items-center">
         <h1 class="h1">Add Accomodation</h1>
-        <button class="custom-button md:w-1/4" @click="ToOwner()">
+        <div class="top-left-button">
+            <button class="custom-button" @click="ToOwner()">
             return to main page
-        </button>
+            </button>
+        </div>
+        <br>
         <div class="flex flex-col items-center w-3/4">
-            <h2 class="h2">SpotDetails</h2>
-            <h3 class="h3">{{spot.name}}</h3>
-            <p class="mr-2">{{spot.description}}</p>
-            <p class="mr-2">€{{spot.price}}</p>
-            <img :src="require('@/assets/campingspots/' + spot.image)" alt="campingspot image"
-            class="mr-4"
-            contain
-            height="200px"
-            width="300px"/>
-            <div>
+            <h2 class="h2 mr-2">SpotDetails</h2>
+            <h3 class="h3 text-center mr-2 p-4">Name: {{spot.name}}</h3>
+            <p class=" mr-2 p-2">Description: {{spot.description}}</p>
+            <p class="mr-2 p-2">Price per night: €{{spot.price}}</p>
+            <div class="flex justify-center w-full">
+                <img :src="require('@/assets/campingspots/' + spot.image)" alt="campingspot image"
+                class="mr-4 p-2"
+                contain
+                height="200px"
+                width="300px"/>
+            </div>
+            <div class="text-center">
                 <input type="checkbox" v-model="available" name="checkavailability" id="check">
                 <label for="check">The spot is available on the site: {{ this.available }}</label>
-                <button class="custom-button" @click="UpdateSpot()">
-                    update Spot
-                </button>
             </div> 
         </div>
+        <button class="half-button" @click="UpdateSpot()">
+                    update Spot
+        </button>
+
             <h2 class="h2">Accomodations</h2>
             <button class="half-button" @click="GetAccomodationBySpotId(campingSpotId)"> get accomodation</button>
             <div v-for="accomodation in accomodations" :key="accomodation.id">
-                <h3 class="h3">{{accomodation.name}}</h3>
-                <p>{{accomodation.description}}</p>
+                <h3 class="h3 text-center">{{accomodation.name}}</h3>
+                <p class="text-center">{{accomodation.description}}</p>
             </div>
+
             <H2 class="h2">tags</H2>
             <button class="half-button" @click="GetSpotTags(campingSpotId)">Get Tags</button>
-            <div v-for="tag in SpotTags" :key="tag.id" class="bg-green-300 p-4 rounded-md flex items-center mr-4 mb-2">
-                <p>{{getTagName(tag.tagId)}}</p>
-            </div>
-            <H2 class="h2">add Tags</H2>
-            <div class="flex flex-wrap">
-                <div v-for="tag in tags" :key="tag.id" class="bg-blue-200 p-4 rounded-md flex items-center mr-4 mb-2">
-                    <input type="checkbox" v-model="tagsId" :value="tag.id">
-                    <label>{{tag.name}}</label>
+            <div class="flex flex-wrap -mr-4 mb-2">
+                <div v-for="tag in SpotTags" :key="tag.id" class="bg-green-300 p-4 rounded-md flex flex-wrap items-center mr-4 mb-2">
+                    <p>{{getTagName(tag.tagId)}}</p>
                 </div>
             </div>
-            <button class="half-button" @click="addAllTags()">
-                add Tags
-            </button>
-            <h2>Add Accomodation</h2>
-            <input class="custom-input" type="text" v-model="name" placeholder="Name">
-            <textarea class="custom-input" type="text-area" v-model="description" placeholder="Description"/>
-            <button class="half-button" @click="AddAccomodation()">
-                Add Accomodation
-            </button>
-            <button class="half-button-red" @click="DeleteSpot()">
-                Delete Spot
-            </button>
+        <H2 class="h2">add Tags</H2>
+        <div class="flex flex-wrap">
+            <div v-for="tag in tags" :key="tag.id" class="bg-blue-200 p-4 rounded-md flex items-center mr-4 mb-2">
+                <input type="checkbox" v-model="tagsId" :value="tag.id">
+                <label>{{tag.name}}</label>
+            </div>
+        </div>
+        <button class="half-button" @click="addAllTags()">
+            add Tags
+        </button>
+        <h2 class="h2">Add Accomodation</h2>
+        <input class="custom-input" type="text" v-model="name" placeholder="Name">
+        <textarea class="custom-input" type="text-area" v-model="description" placeholder="Description"/>
+        <button class="half-button" @click="AddAccomodation()">
+            Add Accomodation
+        </button>
+        <button class="half-button-red" @click="DeleteSpot()">
+            Delete Spot
+        </button>
     </div>
 </template>
 

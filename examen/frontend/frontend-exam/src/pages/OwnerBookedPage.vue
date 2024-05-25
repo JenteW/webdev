@@ -1,25 +1,34 @@
 <template>
-    <div class="flex flex-col items-center">
-        <H1>bookings</H1>
-        <button class="custom-button" @click="GoToOwnerMain()">
+    <div class="div-flex">
+        <div class="top-left-button"> 
+            <button class="custom-button" @click="GoToOwnerMain()">
             Go to homepage
-        </button>
-        <button @click="GetAllBookings()">
-            see all bookings
-        </button>
-        <button @click="GetFutureBookings()">
-            see future bookings
-        </button>
-        <div v-for="booking in bookings" :key="booking.id">
-            <h3>{{GetSpotName(booking.campingSpotId)}} was booked.</h3>
-            <p>booker: {{GetNameOfBooker(booking.userId)}}</p>
-            <p>Booked for {{ days(booking.id) }} days, coming to a total cost of €{{booking.price}}</p>
-            <p>{{booking.startDate}}</p>
-            <p>{{booking.endDate}}</p>
-            <img :src="require('@/assets/campingspots/' + GetSpotImage(booking.campingSpotId))" alt="campingspot image"
-            contain
-            height="200px"
-            width="300px"/>
+            </button>
+        </div>
+        <H1 class="h1">bookings</H1>
+        <div class="div-flex">
+            <button class="custom-button" v-if="this.allbookings == 0" @click="GetAllBookings()">
+                see all bookings
+            </button>
+            <button class="custom-button" v-else @click="GetFutureBookings()">
+                see future bookings
+            </button>
+        </div>
+        <div class="div-flex">
+            <div v-for="booking in bookings" :key="booking.id" class="the-box-booking">
+                <img :src="require('@/assets/campingspots/' + GetSpotImage(booking.campingSpotId))" alt="campingspot image"
+                contain
+                class="mr-4"
+                height="200px"
+                width="300px"/>
+                <div class="flex flex-col">
+                    <h3 class="h2">{{GetSpotName(booking.campingSpotId)}} was booked.</h3>
+                    <p class="mb-2">Booked by: {{GetNameOfBooker(booking.userId)}}</p>
+                    <p class="mb-2">Booked for {{ days(booking.id) }} day(s), coming to a total cost of €{{booking.price}}</p>
+                    <p class="mb-2">Arrives on: {{booking.startDate}}</p>
+                    <p class="mb-2">Leaving on: {{booking.endDate}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -36,6 +45,7 @@ export default {
             users: [],
             id: "",
             userId: "",
+            allbookings: 0,
         }
     },
     mounted(){
@@ -78,6 +88,7 @@ export default {
             return days;
         },
         GetAllBookings(){
+            this.allbookings = 1;
             fetch("https://localhost:5162/Booking/", {
                 method: "GET",
                 headers: {
@@ -99,6 +110,7 @@ export default {
             });
         },
         GetFutureBookings(){
+            this.allbookings = 0;
             fetch("https://localhost:5162/Booking/", {
                 method: "GET",
                 headers: {
@@ -121,7 +133,6 @@ export default {
                 console.error("There was a problem with your fetch operation:", error);
             });
         },
-
         GetUsers(){
             fetch("https://localhost:5162/User/", {
                 method: "GET",
