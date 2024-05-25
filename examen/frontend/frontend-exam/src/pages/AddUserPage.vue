@@ -1,19 +1,30 @@
 <template>
-    <div class="flex flex-col items-center">
-        <h1>Make a new Account</h1>
+    <div class="div-flex">
+        <h1 class="h1">Make a new Account</h1>
+        <br>
         <input class="custom-input" type="text" v-model="fn" placeholder="First Name">
+        <br>
         <input class="custom-input" type="text" v-model="ln" placeholder="Last Name">
+        <br>
         <input class="custom-input" type="text" v-model="email" placeholder="Email">
+        <br>
         <input class="custom-input" type="text" v-model="username" placeholder="Username">
+        <br>
         <input class="custom-input" type="password" v-model="password" placeholder="Password">
+        <br>
+
         <input class="custom-input" type="checkbox" v-model="checked">
-        <label for="checked">owner</label>
-        <button class="custom-button" @click="Add()">
-            ADD USER
-        </button>
-        <button class="custom-button" @click="ChangePage('login')">
+        <label for="checked">Are you an owner?</label>
+
+        <div class="div-flex">
+            <button class="custom-button" @click="Add()">
+            Add Account
+            </button>
+            <button class="custom-button" @click="ChangePage('login')">
             back to login
         </button>
+        </div>
+        
     </div>
 </template>
 

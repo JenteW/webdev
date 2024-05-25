@@ -45,9 +45,7 @@
             </button>
             <h2>Add Accomodation</h2>
             <input class="custom-input" type="text" v-model="name" placeholder="Name">
-            <br>
             <textarea class="custom-input" type="text-area" v-model="description" placeholder="Description"/>
-            <br>
             <button class="half-button" @click="AddAccomodation()">
                 Add Accomodation
             </button>

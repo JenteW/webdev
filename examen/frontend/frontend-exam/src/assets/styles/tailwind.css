@@ -6,7 +6,7 @@
   @apply border rounded-lg border-blue-500 bg-blue-300 p-2 w-full m-2;
 }
 .custom-input {
-  @apply border border-black bg-gray-50 text-black p-2 w-3/4;
+  @apply border border-black bg-gray-50 text-black p-2 m-4 w-3/4;
 }
 .h1 {
   @apply text-4xl font-bold;
@@ -37,4 +37,7 @@
 }
 .div-flex{
 @apply flex flex-col items-center;
+}
+.div-login{
+@apply flex items-center justify-center min-h-screen bg-gray-100
 }

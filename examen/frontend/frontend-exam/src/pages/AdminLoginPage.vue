@@ -1,7 +1,10 @@
 <template>
-    <div class="flex flex-col items-center">
+    <div class="div-login">
         <div class="w-full max-w-md text-center">
-            <h1>Login</h1>
+            <h1 class="h1">Login</h1>
+            <br>
+            <p>This is the admin login. You are not supposed to be here are you?</p>
+            <br>
             <input class="custom-input" type="text" v-model="username" placeholder="Username">
             <input class="custom-input" type="password" v-model="password" placeholder="Password">
             <button class="custom-button" @click="ButtonClick()">
