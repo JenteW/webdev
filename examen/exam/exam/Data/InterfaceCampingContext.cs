@@ -44,7 +44,7 @@ namespace exam.Data
         /*CAMPINGSPOT*/
         /*******/
 
-        void AddCampingSpot(CampingSpot campingspot);
+        int AddCampingSpot(CampingSpot campingspot);
         IEnumerable<CampingSpot> GetCampingSpots();
         CampingSpot GetCampingSpotById(int id);
         IEnumerable<CampingSpot> GetCampingSpotsByOwnerId(int ownerId);

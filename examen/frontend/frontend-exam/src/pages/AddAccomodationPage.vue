@@ -49,6 +49,9 @@
             <button class="half-button" @click="AddAccomodation()">
                 Add Accomodation
             </button>
+            <button class="half-button-red" @click="DeleteSpot()">
+                Delete Spot
+            </button>
     </div>
 </template>
 
@@ -293,6 +296,31 @@
                 .catch(error => {
                     console.error("There was a problem with your fetch operation:", error);
                 });
+            },
+            DeleteSpot(){
+                fetch("https://localhost:5162/CampingSpot/" + this.spot.id, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Network response was not ok at DeleteSpot");
+                    }
+                    else{
+                        return response;
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    alert("Spot deleted!");
+                    this.ToOwner();
+                })
+                .catch(error => {
+                    console.error("There was a problem with your fetch operation:", error);
+                });
+
             }
         }
     }

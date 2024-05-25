@@ -116,9 +116,10 @@ namespace exam.Data
         /*CAMPINGSPOT*/
         /*******/
 
-        public void AddCampingSpot(CampingSpot campingspot)
+        public int AddCampingSpot(CampingSpot campingspot)
         {
             db.GetCollection<CampingSpot>("campingspots").Insert(campingspot);
+            return campingspot.Id;
         }
         public IEnumerable<CampingSpot> GetCampingSpots()
         {

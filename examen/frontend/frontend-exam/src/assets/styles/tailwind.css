@@ -5,6 +5,9 @@
 .custom-button {
   @apply border rounded-lg border-blue-500 bg-blue-300 p-2 w-full m-2;
 }
+.custom-button-red {
+  @apply border rounded-lg border-red-500 bg-red-300 p-2 w-full m-2;
+}
 .custom-input {
   @apply border border-black bg-gray-50 text-black p-2 m-4 w-3/4;
 }
@@ -22,6 +25,9 @@
 }
 .half-button {
   @apply border rounded-lg border-blue-500 bg-blue-300 p-2 w-full m-2 md:w-1/2;
+}
+.half-button-red {
+  @apply border rounded-lg border-red-500 bg-red-300 p-2 w-full m-2 md:w-1/2;
 }
 .camping-spot-image {
   max-width: 300px;
@@ -43,4 +49,7 @@
 }
 .button-static-size{
   @apply border rounded-lg border-blue-500 bg-blue-300 p-2 m-2 w-1/3 content-center;
+}
+.label-strong{
+  @apply font-bold;
 }

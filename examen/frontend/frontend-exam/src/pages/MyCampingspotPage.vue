@@ -1,52 +1,50 @@
 <template>
-    <div class="flex flex-col items-center">
-        <button class="custom-button" @click="ChangePage('ownermain')">
-            return to main page
-        </button>
-        <h1>Add Campingspot</h1>
-            <label for="name">Name:</label>
-            <input class="custom-input" type="text" id="name" v-model="name" required>
-            <br>
-            <label for="price">Price:</label>
-            <input class="custom-input" type="number" id="price" v-model="price" required>
-            <br>
-            <label for="description">Description:</label>
-            <textarea class="custom-input" type="text" id="description" v-model="description" required></textarea>
-            <br>
-            <label for="image">Image:</label>
-            <input class="custom-input" type="text" id="image" v-model="image" required>
-            <br>
-            <img :src="ImagePath" alt="campingspot image" v-if="image"
-            contain
-            height="100px"
-            width = "150px"/>
-            <br>
-            <label for="country">Country:</label>
-            <select v-model="country">
-                <option v-for="country in countries" :key=" 'country-' + country.id" :value="country.id">
-                    {{country.name}}
-                </option>
-            </select>
-            <br>
-            <label for="city">City:</label>
-            <select v-model="city">
-                <option v-for="city in cities" :key=" 'city-' + city.id" :value="city.id">
-                    {{city.name}}
-                </option>
-            </select>
-            <br>
-            <label for="street">Street:</label>
-            <input class="custom-input" type="text" id="street" v-model="street" required>
-            <br>
-            <label for="number">Number:</label>
-            <input class="custom-input" type="text" id="number" v-model="number" required>
-            <br>
-            <select name="tagsId" multiple>
-                <option v-for="tag in tags" :key=" 'tag-' + tag.id" :value="tag.id">
-                    {{tag.name}}
-                </option>
-            </select>
-            <button class="custom-button" type="submit" @click="handleAddCampingspot()">Add Campingspot</button>
+    <div class="div-login">
+        <div class="flex flex-col items-center">
+            <div class="top-left-button"> 
+                <button class="custom-button" @click="ChangePage('ownermain')">
+                    return to main page
+                </button>
+            </div>
+            <h1 class="h1">Add Campingspot</h1>
+                <label class="label-strong" for="name">Name:</label>
+                <input class="custom-input" type="text" id="name" v-model="name" required>
+                <label class="label-strong" for="price">Price:</label>
+                <input class="custom-input" type="number" id="price" v-model="price" required>
+                <label class="label-strong" for="description">Description:</label>
+                <textarea class="custom-input" type="text" id="description" v-model="description" required></textarea>
+                <label class="label-strong" for="image">Image:</label>
+                <input class="custom-input" type="text" id="image" v-model="image" required>
+                <img :src="ImagePath" alt="campingspot image" v-if="image"
+                contain
+                height="100px"
+                width = "150px"/>
+                <label class="label-strong" for="country">Country:</label>
+                <select v-model="country">
+                    <option v-for="country in countries" :key=" 'country-' + country.id" :value="country.id">
+                        {{country.name}}
+                    </option>
+                </select>
+                <label class="label-strong" for="city">City:</label>
+                <select v-model="city">
+                    <option v-for="city in cities" :key=" 'city-' + city.id" :value="city.id">
+                        {{city.name}}
+                    </option>
+                </select>
+
+                <label class="label-strong" for="street">Street:</label>
+                <input class="custom-input" type="text" id="street" v-model="street" required>
+
+                <label class="label-strong" for="number">Number:</label>
+                <input class="custom-input" type="text" id="number" v-model="number" required>
+                
+                <!-- <select name="tagsId" multiple>
+                    <option v-for="tag in tags" :key=" 'tag-' + tag.id" :value="tag.id">
+                        {{tag.name}}
+                    </option>
+                </select> -->
+                <button class="custom-button" type="submit" @click="handleAddCampingspot()">Add Campingspot</button>
+        </div>
     </div>
 </template>
 
@@ -126,13 +124,15 @@
                 alert("Please fill in all fields!");
                 return;
                 }
-                const locationData =  this.AddLocation();
-                this.locationId = locationData.id;
-                this.AddCampingSpot();
-                //for each id in tagsId, add a tag to the campingspot
-                this.tagsId.forEach(id => {
-                    this.AddSpotTag(id);
-                });
+                this.AddLocation();
+                // this.locationId = locationData.id;
+                // this.AddCampingSpot();
+                // //for each id in tagsId, add a tag to the campingspot
+                // this.tagsId.forEach(id => {
+                //     this.AddSpotTag(id);
+                // });
+                //     this.push({name: "OwnerMainPage", params: {id: this.ownerId}});
+                //     this.ChangePage("ownermain");
                     
                 } catch (error) {
                 console.error("Error:", error);
@@ -187,13 +187,15 @@
                     if(!response.ok){
                         throw new Error("Network response was not ok at ADDUSER");
                     }
-                    return response;
+                    return response.json();
                 })
                 .then(data => {
-                    console.log(data);
+                    console.log(data + " is the data");
+                    
                     alert("Campingspot added!");
-                    this.push({name: "OwnerMainPage", params: {id: this.ownerId}});
-                    this.ChangePage("ownermain");
+                    this.$router.push({name:"AddAccomodationPage", params: {id: data}});
+                    this.$emit("changeActivePage", "addaccomodation");
+
                 })
                 .catch(error => {
                     console.error("There has been a problem with your fetch operation: ADDUSER", error);

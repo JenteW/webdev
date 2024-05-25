@@ -23,9 +23,10 @@ namespace exam.Controllers
         }
 
         [HttpPost]
-        public void AddCampingSpot([FromBody] CampingSpot campingspot)
+        public ActionResult<int> AddCampingSpot([FromBody] CampingSpot campingspot)
         {
-            _data.AddCampingSpot(campingspot);
+            int newId = _data.AddCampingSpot(campingspot);
+            return Ok(newId);
         }
 
         //get camping spot by id
