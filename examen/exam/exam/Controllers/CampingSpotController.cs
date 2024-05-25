@@ -53,6 +53,7 @@ namespace exam.Controllers
         [HttpDelete("{id}")]
         public void DeleteCampingSpotAndAccomodations(int id)
         {
+            _data.DeleteBookingBySpotId(id);
             _data.DeleteAccomodationBySpotId(id);
             _data.DeleteCampingSpot(id);
         }

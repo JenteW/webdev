@@ -9,6 +9,7 @@ namespace exam.Data
     {
         LiteDatabase db = new LiteDatabase(@"data.db");
 
+        
 
         /******/
         /*ACCOMODATION*/
@@ -33,6 +34,10 @@ namespace exam.Data
         public void DeleteAccomodationBySpotId(int id)
         {
             db.GetCollection<Accomodation>("accomodations").DeleteMany(x => x.CampingSpotId == id);
+        }
+        public void DeleteAccomodation(int id)
+        {
+            db.GetCollection<Accomodation>("accomodations").Delete(id);
         }
 
         /******/
@@ -101,7 +106,14 @@ namespace exam.Data
         {
             db.GetCollection<Booking>("bookings").Delete(id);
         }
-
+        public void DeleteBookingBySpotId(int spotId)
+        {
+            db.GetCollection<Booking>("bookings").DeleteMany(x => x.CampingSpotId == spotId);
+        }
+        public IEnumerable<Booking> GetBookingsByOwnerId(int id)
+        {
+            return db.GetCollection<Booking>("bookings").Find(x => x.OwnerId == id);
+        }
         public bool IsBookingAvailable(DateTime startDate, DateTime endDate, int campingSpotId, int accomodationId)
         {
             var bookings = db.GetCollection<Booking>("bookings")

@@ -112,7 +112,8 @@
                     startDate: this.startDate,
                     endDate: this.endDate,
                     campingSpotId: this.spotId,
-                    accomodationId: this.accomodation.id
+                    accomodationId: this.accomodation.id,
+
                 })
             })
             .then(response => {
@@ -139,7 +140,7 @@
                     alert("This spot is not available for the selected dates");
                 }
             })
-        },
+            },
             AddBooking(){
                 fetch("https://localhost:5162/Booking", {
                     method: "POST",
@@ -152,7 +153,8 @@
                         campingspotId: this.spotId,
                         accomodationId: this.id,
                         userId: this.userId,
-                        price: this.price
+                        price: this.price,
+                        OwnerId: this.Spot.ownerId
                     })
                 })
                 .then(response => {

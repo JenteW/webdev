@@ -1,7 +1,18 @@
 <template>
-    <div class="flex flex-col items-center">
-        <button class="custom-button" @click="GoToUser()">Go to main page</button>
-        <h1>Booking</h1>
+    <div class="div-flex">
+        <div class="top-left-button">
+            <button class="custom-button" @click="GoToUser()">Go to main page</button>
+        </div>
+        <h1 class="h1">Booking</h1>
+        <div class="div-flex">
+            <button class="custom-button" v-if="this.allbookings == 0" @click="GetBookings()">
+                see all bookings
+            </button>
+            <button class="custom-button" v-else @click="GetFutureBookings()">
+                see future bookings
+            </button>
+        </div>
+
         <div v-for="booking in bookings" :key="booking.id">
             
             <H2>Booked CampingSpot</H2>
@@ -36,13 +47,15 @@ export default {
             CampingSpots: [],
             id: "",
             userId: "",
-            spotId: ""
+            spotId: "",
+            allbookings: 0
         }
     },
     mounted(){
         this.userId = this.$route.params.userId;
         console.log(this.id + " is the id @ UserBooking");
         this.GetBookings();
+        this.GetFutureBookings();
         this.GetAllAccomodations();
         this.GetAllCampingSpots();
     },
@@ -52,6 +65,7 @@ export default {
             this.$emit("changeActivePage", "usermain");
         },
         GetBookings(){
+            this.allbookings = 1;
             fetch("https://localhost:5162/Booking/userId/" + this.userId, {
                 method: "GET",
                 headers: {
@@ -133,8 +147,31 @@ export default {
             .catch(error => {
                 console.error("There was a problem with your fetch operation:", error);
             });
-        }
-        
+        },
+        GetFutureBookings(){
+            this.allbookings = 0;
+            fetch("https://localhost:5162/Booking/userId/" + this.userId, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+            .then(response => {
+                if(!response.ok){
+                    throw new Error("Network response was not ok at GetFutureBookings");
+                }
+                return response.json();
+            })
+            .then(data => {
+               console.log(data);
+                const currentDate = new Date();
+                this.bookings = data.filter(booking => new Date(booking.endDate) > currentDate);
+            })
+            .catch(error => {
+                console.error("There was a problem with your fetch operation:", error);
+            });
+
+        }        
         
     }
 }

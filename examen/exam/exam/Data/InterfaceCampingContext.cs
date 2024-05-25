@@ -16,6 +16,7 @@ namespace exam.Data
         IEnumerable<Accomodation> GetAccomodationsByCampingSpotId(int id);
         Accomodation GetAccomodationById(int id);
         void DeleteAccomodationBySpotId(int id);
+        void DeleteAccomodation(int id);
 
         /******/
         /*ADMIN*/
@@ -39,7 +40,10 @@ namespace exam.Data
         void UpdateBooking(int id, Booking booking);
         IEnumerable<Booking> GetBookingsByCampingSpotId(int campingSpotId);
         void DeleteBooking(int id);
+        void DeleteBookingBySpotId(int spotId);
         bool IsBookingAvailable(DateTime startDate, DateTime endDate, int campingSpotId, int accomodationId);
+        IEnumerable<Booking> GetBookingsByOwnerId(int ownerId);
+        
         /*******/
         /*CAMPINGSPOT*/
         /*******/

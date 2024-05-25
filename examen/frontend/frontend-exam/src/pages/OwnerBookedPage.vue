@@ -7,7 +7,7 @@
         </div>
         <H1 class="h1">bookings</H1>
         <div class="div-flex">
-            <button class="custom-button" v-if="this.allbookings == 0" @click="GetAllBookings()">
+            <button class="custom-button" v-if="allbookings == 0" @click="GetAllBookings()">
                 see all bookings
             </button>
             <button class="custom-button" v-else @click="GetFutureBookings()">
@@ -49,10 +49,10 @@ export default {
         }
     },
     mounted(){
+        this.id = this.$route.params.userId;
         this.userId = this.$route.params.userId;
         console.log(this.id + " is the id @ OwnerBookedPage");
         this.GetCampingSpotsByOwnerId();
-        this.GetBookingsOfSpots();
         this.GetFutureBookings();
         this.GetUsers();
     },
@@ -61,10 +61,6 @@ export default {
             this.$router.push({name: "OwnerMainPage", params: {id: this.userId}});
             this.$emit("changeActivePage", "ownermain");
 
-        },
-        GetBookingsOfSpots(){
-            const spotIds = this.CampingSpots.map(spot => spot.id);
-            this.bookings = this.bookings.filter(booking => spotIds.includes(booking.campingSpotId));
         },
         GetNameOfBooker(userId){
             const user = this.users.find(user => user.id === userId);
@@ -75,9 +71,14 @@ export default {
             return spot.name;
         },
         GetSpotImage(spotId){
-            const spot = this.CampingSpots.find(spot => spot.id === spotId);
-            console.log(spot.image + " is the image")
+            const spot = this.CampingSpots.find(spot => spot.id == spotId);
+        if (spot && spot.image) {
+            console.log(spot.image + " is the image");
             return spot.image;
+        } else {
+            console.warn(`No image found for camping spot ID: ${spotId}`);
+            return; // Return a default image or handle this case appropriately
+        }
         },
         days(bookingId){
             const booking = this.bookings.find(booking => booking.id === bookingId);
@@ -89,7 +90,7 @@ export default {
         },
         GetAllBookings(){
             this.allbookings = 1;
-            fetch("https://localhost:5162/Booking/", {
+            fetch("https://localhost:5162/Booking/OwnerId/" + this.id, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -111,7 +112,7 @@ export default {
         },
         GetFutureBookings(){
             this.allbookings = 0;
-            fetch("https://localhost:5162/Booking/", {
+            fetch("https://localhost:5162/Booking/OwnerId/" + this.id, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -127,7 +128,6 @@ export default {
                 console.log(data);
                 const currentDate = new Date();
                 this.bookings = data.filter(booking => new Date(booking.endDate) > currentDate);
-                this.GetBookingsOfSpots();
             })
             .catch(error => {
                 console.error("There was a problem with your fetch operation:", error);

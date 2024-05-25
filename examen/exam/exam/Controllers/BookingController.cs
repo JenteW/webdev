@@ -41,7 +41,12 @@ namespace exam.Controllers
         {
             return Ok(_data.GetBookingsByCampingSpotId(id));
         }
-
+        //get booking by owner id
+        [HttpGet("ownerId/{id}")]
+        public ActionResult<IEnumerable<Booking>> GetBookingByOwnerId(int id)
+        {
+            return Ok(_data.GetBookingsByOwnerId(id));
+        }
         [HttpPost]
         public void AddBooking([FromBody] Booking booking)
         {
@@ -58,6 +63,12 @@ namespace exam.Controllers
         public void DeleteBooking(int id)
         {
             _data.DeleteBooking(id);
+        }
+        //delete booking by campingSpotId
+        [HttpDelete("campingSpotId/{id}")]
+        public void DeleteBookingByCampingSpotId(int id)
+        {
+            _data.DeleteBookingBySpotId(id);
         }
         //check if booking is available
         [HttpPost("checkavailability")]

@@ -40,10 +40,16 @@ namespace exam.Controllers
             return Ok(_data.GetAccomodationById(id));
         }
         //delete accomodation by spot id
-        [HttpDelete("{id}")]
+        [HttpDelete("SpotId/{id}")]
         public void DeleteAccomodationBySpotId(int id)
         {
             _data.DeleteAccomodationBySpotId(id);
+        }
+        //delete accomodation by id
+        [HttpDelete("{id}")]
+        public void DeleteAccomodation(int id)
+        {
+            _data.DeleteAccomodation(id);
         }
         
     }

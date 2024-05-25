@@ -12,5 +12,7 @@
 
         public double Price { get; set; }  
 
+        public int OwnerId { get; set; }
+
     }
 }
