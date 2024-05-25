@@ -15,6 +15,8 @@ namespace exam.Data
         IEnumerable<Accomodation> GetAccomodations();
         IEnumerable<Accomodation> GetAccomodationsByCampingSpotId(int id);
         Accomodation GetAccomodationById(int id);
+        void DeleteAccomodationBySpotId(int id);
+
         /******/
         /*ADMIN*/
         /******/
@@ -47,6 +49,8 @@ namespace exam.Data
         CampingSpot GetCampingSpotById(int id);
         IEnumerable<CampingSpot> GetCampingSpotsByOwnerId(int ownerId);
         IEnumerable<CampingSpot> GetCampingSpotsByLocationId(int locationId);
+        void DeleteCampingSpot(int id);
+        void UpdateCampingSpot(int id, CampingSpot campingspot);
 
         /*******/
         /*City*/

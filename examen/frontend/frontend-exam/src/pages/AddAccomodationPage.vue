@@ -14,6 +14,13 @@
             contain
             height="200px"
             width="300px"/>
+            <div>
+                <input type="checkbox" v-model="available" name="checkavailability" id="check">
+                <label for="check">The spot is available on the site: {{ this.available }}</label>
+                <button class="custom-button" @click="UpdateSpot()">
+                    update Spot
+                </button>
+            </div> 
         </div>
             <h2 class="h2">Accomodations</h2>
             <button class="half-button" @click="GetAccomodationBySpotId(campingSpotId)"> get accomodation</button>
@@ -60,7 +67,8 @@
                 campingSpotId: "",
                 tagsId: [],
                 SpotTags: [],
-                SpotTagsIds: []
+                SpotTagsIds: [],
+                available: true
 
             }
         },
@@ -192,6 +200,8 @@
                 .then(data => {
                     console.log(data);
                     this.spot = data;
+                    this.available = this.spot.availability;
+
                 })
                 .catch(error => {
                     console.error("There was a problem with your fetch operation:", error);
@@ -254,6 +264,38 @@
                     console.error("There was a problem with your fetch operation:", error);
                 });
             },
+            UpdateSpot(){
+                fetch("https://localhost:5162/CampingSpot/" + this.spot.id, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        id: this.spot.id,
+                        name: this.spot.name,
+                        description: this.spot.description,
+                        price: this.spot.price,
+                        image: this.spot.image,
+                        ownerId: this.spot.ownerId,
+                        availability: this.available
+                    })
+                })
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Network response was not ok at UpdateSpot");
+                    }
+                    else{
+                        return response;
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    alert("Spot updated!");
+                })
+                .catch(error => {
+                    console.error("There was a problem with your fetch operation:", error);
+                });
+            }
         }
     }
 

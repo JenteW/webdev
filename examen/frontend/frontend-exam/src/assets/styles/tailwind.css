@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .custom-button {
-  @apply border border-blue-500 bg-blue-300 p-2 w-full m-2;
+  @apply border rounded-lg border-blue-500 bg-blue-300 p-2 w-full m-2;
 }
 .custom-input {
   @apply border border-black bg-gray-50 text-black p-2 w-3/4;
@@ -21,5 +21,20 @@
   @apply bg-blue-200 p-4 rounded-md mb-4 w-3/4 flex;
 }
 .half-button {
-  @apply border border-blue-500 bg-blue-300 p-2 w-full m-2 md:w-1/2;
+  @apply border rounded-lg border-blue-500 bg-blue-300 p-2 w-full m-2 md:w-1/2;
+}
+.camping-spot-image {
+  max-width: 300px;
+  max-height: 200px;
+  object-fit: cover;
+  
+}
+.top-left-button{
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+}
+.div-flex{
+@apply flex flex-col items-center;
 }

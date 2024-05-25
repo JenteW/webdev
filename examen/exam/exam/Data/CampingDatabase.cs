@@ -30,6 +30,10 @@ namespace exam.Data
         {
             return db.GetCollection<Accomodation>("accomodations").FindById(id);
         }
+        public void DeleteAccomodationBySpotId(int id)
+        {
+            db.GetCollection<Accomodation>("accomodations").DeleteMany(x => x.CampingSpotId == id);
+        }
 
         /******/
         /*ADMIN*/
@@ -131,6 +135,14 @@ namespace exam.Data
         public IEnumerable<CampingSpot> GetCampingSpotsByLocationId(int id)
         {
             return db.GetCollection<CampingSpot>("campingspots").Find(x => x.LocationId == id);
+        }
+        public void DeleteCampingSpot(int id)
+        {
+            db.GetCollection<CampingSpot>("campingspots").Delete(id);
+        }
+        public void UpdateCampingSpot(int id, CampingSpot campingspot)
+        {
+            db.GetCollection<CampingSpot>("campingspots").Update(id, campingspot);
         }
         
 

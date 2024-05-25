@@ -48,6 +48,19 @@ namespace exam.Controllers
         {
             return Ok(_data.GetCampingSpotsByLocationId(id));
         }
+        //delete camping spot and all accomodations
+        [HttpDelete("{id}")]
+        public void DeleteCampingSpotAndAccomodations(int id)
+        {
+            _data.DeleteAccomodationBySpotId(id);
+            _data.DeleteCampingSpot(id);
+        }
+        // update camping spot
+        [HttpPut("{id}")]
+        public void UpdateCampingSpot(int id, [FromBody] CampingSpot campingspot)
+        {
+            _data.UpdateCampingSpot(id, campingspot);
+        }
 
     }
 }

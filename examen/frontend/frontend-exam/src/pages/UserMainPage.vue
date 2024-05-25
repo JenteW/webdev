@@ -15,16 +15,21 @@
             </button>
         </div>
         <h2>Available Camping Spots</h2>
-        <h3>Filter by:</h3>
-        <label for="country">Country:</label>
-            <select v-model="country">
-                <option v-for="country in countries" :key=" 'country-' + country.id" :value="country.id">
-                    {{country.name}}
-                </option>
-            </select>
+        <div>
+            <h3>Filter by:</h3>
+            <label for="country">Country:</label>
+                <select v-model="country">
+                    <option v-for="country in countries" :key=" 'country-' + country.id" :value="country.id">
+                        {{country.name}}
+                    </option>
+                </select>
+            <button class= "custom-button" @click="RemoveFilters()">
+                remove filters
+            </button>
+        </div>
         <div class="flex flex-col items-center">
-            <div v-for="campingspot in CampingSpots" :key="campingspot.id" class="the-box">
-                <img :src="require('@/assets/campingspots/' + campingspot.image)" alt="campingspot image" class="mr-4" height="200px" width="300px">
+            <div v-for="campingspot in availableCampingSpots" :key="campingspot.id" class="the-box">
+                <img :src="require('@/assets/campingspots/' + campingspot.image)" alt="campingspot image" class="camping-spot-image" height="200px" width="300px">
                 <div class="flex flex-col">
                     <h3 class="text-2xl underline mb-2 w-full">{{campingspot.name}}</h3>
                     <p class="mb-2">{{campingspot.description}}</p>
@@ -67,6 +72,12 @@
                 this.GetLocationsByCountry(this.country);
             }
         },
+        computed:{
+            //available campings spots
+            availableCampingSpots(){
+                return this.CampingSpots.filter(campingspot => campingspot.availability === true);
+            }
+        },
         
         methods:{
             GoToBookings(){
@@ -85,6 +96,9 @@
             GoToAccomodations(id){
                 this.$router.push({name: "AccomodationsPage", params: {id: id, userId: this.user.id}});
                 this.$emit("changeActivePage", "accomodations");
+            },
+            RemoveFilters(){
+                this.GetAllCampingSpots();
             },
             GetLocationsByCountry(countryId){
                 fetch("https://localhost:5162/Location/Country/" + countryId, {

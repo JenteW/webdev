@@ -1,16 +1,18 @@
 <template>
-    <div class="flex flex-col items-center">
-        <h1>Add Booking</h1>
-
-        <button class="custom-button" @click="ToUser()">
-            return to main page
-        </button>
-        <h2>SpotDetails</h2>
-        <div :key="Spot.id">
-            <h3>{{Spot.name}}</h3>
+    <div class="div-flex">
+        <h1 class="h1">Book the accomodation</h1>
+        <br>
+        <div class="top-left-button">
+            <button class="custom-button" @click="ToUser()">
+                return to main page
+            </button>
+        </div>
+        <br>
+        <h2 class="h2">SpotDetails</h2>
+        <div :key="Spot.id" class="div-flex">
+            <h3 class="h3 text-center">{{Spot.name}}</h3>
             <p>{{Spot.description}}</p>
-            <p>€{{Spot.price}}</p>
-            <p>{{Spot.availability}}</p>
+            <p>The price per day is: €{{Spot.price}}</p>
             <img :src="require('@/assets/campingspots/' + Spot.image)" alt="campingspot image"
             contain
             height="200px"
@@ -19,13 +21,14 @@
         </div>
 
 
-        <h2>Accomodation</h2>
-        <div :key="accomodation.id">
-            <h3>{{accomodation.name}}</h3>
+        <h2 class="h2">Accomodation</h2>
+        <div :key="accomodation.id" class="div-flex">
+            <h3 class="h3 text-center">{{accomodation.name}}</h3>
             <p>{{accomodation.description}}</p>
         </div>
+        <div class="div-flex">
             <br>
-            <h2>Booking</h2>
+            <h2 class="h2">Booking</h2>
             <input class="custom-input" type="date" v-model="startDate" placeholder="StartDate">
             <br>
             <input class="custom-input" type="date" v-model="endDate" placeholder="EndDate" >
@@ -34,6 +37,7 @@
             <button class="custom-button" @click="CheckIfAvailable()">
                 Add Booking
             </button>
+        </div>
     </div>
 </template>
 

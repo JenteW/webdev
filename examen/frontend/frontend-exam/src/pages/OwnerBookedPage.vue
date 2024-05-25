@@ -4,6 +4,12 @@
         <button class="custom-button" @click="GoToOwnerMain()">
             Go to homepage
         </button>
+        <button @click="GetAllBookings()">
+            see all bookings
+        </button>
+        <button @click="GetFutureBookings()">
+            see future bookings
+        </button>
         <div v-for="booking in bookings" :key="booking.id">
             <h3>{{GetSpotName(booking.campingSpotId)}} was booked.</h3>
             <p>booker: {{GetNameOfBooker(booking.userId)}}</p>
@@ -35,9 +41,9 @@ export default {
     mounted(){
         this.userId = this.$route.params.userId;
         console.log(this.id + " is the id @ OwnerBookedPage");
-        this.GetBookings();
         this.GetCampingSpotsByOwnerId();
         this.GetBookingsOfSpots();
+        this.GetFutureBookings();
         this.GetUsers();
     },
     methods:{
@@ -71,7 +77,7 @@ export default {
             const days = timeDifference / (1000 * 3600 * 24);
             return days;
         },
-        GetBookings(){
+        GetAllBookings(){
             fetch("https://localhost:5162/Booking/", {
                 method: "GET",
                 headers: {
@@ -92,6 +98,30 @@ export default {
                 console.error("There was a problem with your fetch operation:", error);
             });
         },
+        GetFutureBookings(){
+            fetch("https://localhost:5162/Booking/", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok at GetBookings");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                const currentDate = new Date();
+                this.bookings = data.filter(booking => new Date(booking.endDate) > currentDate);
+                this.GetBookingsOfSpots();
+            })
+            .catch(error => {
+                console.error("There was a problem with your fetch operation:", error);
+            });
+        },
+
         GetUsers(){
             fetch("https://localhost:5162/User/", {
                 method: "GET",
