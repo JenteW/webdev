@@ -192,6 +192,37 @@ namespace exam.Data
         {
             db.GetCollection<City>("cities").DeleteMany(x => x.CountryId == countryId);
         }
+
+
+        /*******/
+        /*COMMENT*/
+        /*******/
+        public IEnumerable<Comment> GetComments()
+        {
+            return db.GetCollection<Comment>("comments").FindAll();
+        }
+        public void AddComment(Comment comment)
+        {
+            db.GetCollection<Comment>("comments").Insert(comment);
+        }
+        public void DeleteComment(int id)
+        {
+            db.GetCollection<Comment>("comments").Delete(id);
+        }
+        public void UpdateComment(int id, Comment comment)
+        {
+            db.GetCollection<Comment>("comments").Update(id, comment);
+        }
+        public Comment GetCommentById(int id)
+        {
+            return db.GetCollection<Comment>("comments").FindById(id);
+        }
+        public IEnumerable<Comment> GetCommentsByCampingSpotId(int id)
+        {
+            return db.GetCollection<Comment>("comments").Find(x => x.SpotId == id);
+        }
+
+
         /******/
         /*COUNTRY*/
         /*******/

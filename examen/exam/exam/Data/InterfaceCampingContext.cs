@@ -68,7 +68,15 @@ namespace exam.Data
         void DeleteCity(int id);
         void DeleteCityByCountryId(int countryId);
 
-
+        /*******/
+        /*COMMENT*/
+        /********/
+        IEnumerable<Comment> GetComments();
+        void AddComment(Comment comment);
+        void DeleteComment(int id);
+        void UpdateComment(int id, Comment comment);
+        Comment GetCommentById(int id);
+        IEnumerable<Comment> GetCommentsByCampingSpotId(int id);
         /*******/
         /*COUNTRY*/
         /*******/

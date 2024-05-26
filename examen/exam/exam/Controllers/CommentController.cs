@@ -17,16 +17,43 @@ namespace exam.Controllers
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<City>> GetCity()
+        public IEnumerable<Comment> GetComments()
         {
-            return Ok(_data.GetCities());
+            return _data.GetComments();
         }
 
 
         [HttpPost]
-        public void AddCity([FromBody] City city)
+        public IActionResult AddComment(Comment comment)
         {
-            _data.AddCity(city);
+            _data.AddComment(comment);
+            return Ok();
+        }
+        // get comments by id
+        [HttpGet("{id}")]
+        public Comment GetCommentById(int id)
+        {
+            return _data.GetCommentById(id);
+        }
+        // get comments by camping spot id
+        [HttpGet("campingSpot/{id}")]
+        public IEnumerable<Comment> GetCommentsByCampingSpotId(int id)
+        {
+            return _data.GetCommentsByCampingSpotId(id);
+        }
+        // delete comment by id
+        [HttpDelete("{id}")]
+        public IActionResult DeleteComment(int id)
+        {
+            _data.DeleteComment(id);
+            return Ok();
+        }
+        // update comment by id
+        [HttpPut("{id}")]
+        public IActionResult UpdateComment(int id, Comment comment)
+        {
+            _data.UpdateComment(id, comment);
+            return Ok();
         }
     }
 }

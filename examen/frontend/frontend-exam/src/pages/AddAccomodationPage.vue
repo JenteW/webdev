@@ -22,19 +22,31 @@
             <div class="text-center">
                 <input type="checkbox" v-model="available" name="checkavailability" id="check">
                 <label for="check">The spot is available on the site: {{ this.available }}</label>
-            </div> 
+            </div>
+            <button class="edit-button" @click="UpdateSpot()">
+                    update availability spot
+            </button>
             <button @click="toggleEdit" class="edit-button">Edit</button>
+            <div class="div-flex w-2/3" v-if="editing">
+                <input v-model="spot.name" type="text" class="custom-input" placeholder="Name">
+                <textarea v-model="spot.description" class="custom-input" placeholder="Description"></textarea>
+                <input v-model="spot.price" type="number" class="custom-input" placeholder="Price per night">
+                <div class="flex justify-center w-full">
+                    <button @click="UpdateSpot()" class="custom-button-green">Save</button>
 
-            <div v-if="editing" class="mt-4 w-full">
-                <input v-model="spot.name" type="text" class="mb-2 p-2 border border-gray-300 rounded" placeholder="Name">
-                <textarea v-model="spot.description" class="mb-2 p-2 border border-gray-300 rounded" placeholder="Description"></textarea>
-                <input v-model="spot.price" type="number" class="mb-2 p-2 border border-gray-300 rounded" placeholder="Price per night">
-                <button @click="UpdateSpot()" class="mt-4 px-4 py-2 bg-green-500 text-white rounded">Save</button>
+                </div>
             </div>
         </div>
-        <button class="half-button" @click="UpdateSpot()">
-                    update Spot
-        </button>
+        <h2 class="h2">Comments</h2>
+        <button v-if="comment == false" class="half-button" @click="GetCommentsBySpotId(campingSpotId)">Get Comments</button>
+        <button v-else class="half-button" @click="CloseComments()">Close Comments</button>
+        <div class="div-flex">
+            <div class="the-box" v-for="comment in comments" :key="comment.id">
+                <p class="text-xl"><strong>Rating: </strong>{{comment.rating}}/5</p>
+                <p class="p-2 m-2">{{comment.description}}</p>
+            </div>
+        </div>
+
         <h2 class="h2">Accomodations</h2>
         <button class="half-button" @click="GetAccomodationBySpotId(campingSpotId)"> get accomodation</button>    
         <div class="div-flex">
@@ -105,6 +117,8 @@
                 editing: false,
                 editingAccomodation: false,
                 editingAccomodationId: null,
+                comments: [],
+                comment: true
 
             }
         },
@@ -115,6 +129,7 @@
             this.GetTags();
             this.GetSpotTags(this.campingSpotId);
             this.GetAccomodationBySpotId(this.campingSpotId);
+            this.GetCommentsBySpotId(this.campingSpotId);
 
 
         },
@@ -424,6 +439,38 @@
                 .catch(error => {
                     console.error("There was a problem with your fetch operation:", error);
                 });
+            },
+            GetCommentsBySpotId(id){
+                fetch("https://localhost:5162/Comment/campingSpot/" + id, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => {
+                    if(response.status === 404){
+                        alert("No comments found!");
+                        throw new Error("No comments found");
+                    }
+                    else if(!response.ok){
+                        throw new Error("Network response was not ok at GetCommentsBySpotId");
+                    }
+                    else{
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    this.comments = data;
+                    this.comment = true;
+                })
+                .catch(error => {
+                    console.error("There was a problem with your fetch operation:", error);
+                });
+            },
+            CloseComments(){
+                this.comments = [];
+                this.comment = false;
             }
         }
     }
