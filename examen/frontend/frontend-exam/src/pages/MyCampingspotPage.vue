@@ -14,11 +14,9 @@
                 <label class="label-strong" for="description">Description:</label>
                 <textarea class="custom-input" type="text" id="description" v-model="description" required></textarea>
                 <label class="label-strong" for="image">Image:</label>
-                <input class="custom-input" type="text" id="image" v-model="image" required>
-                <img :src="ImagePath" alt="campingspot image" v-if="image"
-                contain
-                height="100px"
-                width = "150px"/>
+                <input class="custom-input" type="file" id="image" @change="handleImageUpload" required>
+                <img :src="imagePreview" alt="Selected image" v-if="imagePreview" />
+
                 <label class="label-strong" for="country">Country:</label>
                 <select v-model="country">
                     <option v-for="country in countries" :key=" 'country-' + country.id" :value="country.id">
@@ -86,9 +84,51 @@
                 number: "",
                 availability: true,
                 spotId: "",
+                imagePreview: null
             }
         },
         methods:{
+            previewImage(event) {
+                const selectedFile = event.target.files[0];
+                if (selectedFile) {
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        this.imagePreview = reader.result;
+                    };
+                    reader.readAsDataURL(selectedFile);
+                }
+            },
+            handleImageUpload(event){
+                const file = event.target.files[0];
+                //log the file name
+                console.log(file.name + " is the file name");
+                console.log(file + " is the file");
+                console.log(this.image + " is the image");
+                this.UploadImage(file);
+                this.image = file.name;
+                this.previewImage(event);
+            },
+            UploadImage(file){
+                const formData = new FormData();
+                formData.append("file", file);
+                fetch("https://localhost:5162/api/UploadImage", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Network response was not ok at UPLOADIMAGE");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    
+                })
+                .catch(error => {
+                    console.error("There has been a problem with your fetch operation: UPLOADIMAGE", error);
+                })
+            },
             GetTags(){
                 fetch("https://localhost:5162/Tag", {
                     method: "GET",
