@@ -21,7 +21,7 @@
                 Add Account
                 </button>
                 <button class="custom-button" @click="GoToLogin()">
-                back to login
+                Back to login
             </button>
             </div>
         </div>
@@ -51,6 +51,10 @@
                 this.$emit("changeActivePage", "login");
             },
             async Add(){
+                if(this.email.includes('@') == false || this.email.includes('.') == false){
+                    alert("Email is not valid");
+                    return;
+                }
                 if(this.checked == true){
                     await this.OwnernameAvailable(this.username);
                     this.GoToLogin();

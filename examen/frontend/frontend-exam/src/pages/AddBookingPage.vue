@@ -1,14 +1,14 @@
 <template>
     <div class="div-flex">
-        <h1 class="h1">Book the accomodation</h1>
+        <h1 class="h1">Book the accommodation</h1>
         <br>
         <div class="top-left-button">
             <button class="custom-button" @click="ToUser()">
-                return to main page
+                Return to main page
             </button>
         </div>
         <br>
-        <h2 class="h2">SpotDetails</h2>
+        <h2 class="h2">Details of the spot</h2>
         <div :key="Spot.id" class="div-flex">
             <h3 class="h3 text-center">{{Spot.name}}</h3>
             <p>{{Spot.description}}</p>
@@ -21,7 +21,7 @@
         </div>
 
 
-        <h2 class="h2">Accomodation</h2>
+        <h2 class="h2">Accommodation</h2>
         <div :key="accomodation.id" class="div-flex">
             <h3 class="h3 text-center">{{accomodation.name}}</h3>
             <p>{{accomodation.description}}</p>
@@ -88,6 +88,9 @@
                 this.$emit("changeActivePage", "userbooking");
             },
             CalculatePrice(){
+                if(this.startDate == "" || this.endDate == ""){
+                    return;
+                }
                 let start = new Date(this.startDate);
                 console.log(start);
                 let end = new Date(this.endDate);

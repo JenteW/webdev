@@ -6,10 +6,10 @@
         <h1 class="h1">Booking</h1>
         <div class="div-flex">
             <button class="custom-button" v-if="this.allbookings == 0" @click="GetBookings()">
-                see all bookings
+                See all bookings
             </button>
             <button class="custom-button" v-else @click="GetFutureBookings()">
-                see future bookings
+                See future bookings
             </button>
         </div>
         <div class="div-flex">
@@ -28,7 +28,8 @@
                     <p class="mb-2">{{GetAccomodationDescription(booking.accomodationId)}}</p>
                     <p class="mb-2">{{booking.startDate}}</p>
                     <p class="mb-2">{{booking.endDate}}</p>
-                    <p class="mb-2">€{{booking.price}}</p>         
+                    <p class="mb-2">€{{booking.price}}</p>
+                    <button class="custom-button-red" @click="DeleteBookingById(booking.id)">Delete booking</button>         
                 </div>      
  
             </div>
@@ -170,6 +171,27 @@ export default {
                 console.error("There was a problem with your fetch operation:", error);
             });
 
+        },
+        DeleteBookingById(id){
+            fetch("https://localhost:5162/Booking/" + id, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+            .then(response => {
+                if(!response.ok){
+                    throw new Error("Network response was not ok at DeleteBookingById");
+                }
+                return response;
+            })
+            .then(data => {
+                console.log(data);
+                this.GetBookings();
+            })
+            .catch(error => {
+                console.error("There was a problem with your fetch operation:", error);
+            });
         }        
         
     }

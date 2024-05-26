@@ -1,16 +1,20 @@
 <template>
     <div class="div-flex">
+        <div class="top-left-button">
+            <button class="custom-button" @click="GoToLogin()">
+                Back to login
+            </button>
+        </div>
+
         <h1 class="h1">User Main Page</h1>
         <H2 class="h2">Welcome {{ user.username }}</H2>
         <div>
-            <button class="custom-button" @click="GoToLogin()">
-                back to login
-            </button>
+
             <button class="custom-button" @click="GoToUpdate()">
                 Update Account
             </button>
             <button class="custom-button" @click="GoToBookings()">
-                Go to bookings
+                Manage bookings
             </button>
         </div>
         <h2 class="h2">Available Camping Spots</h2>
@@ -18,12 +22,13 @@
             <h3 class="text-xl">Filter by:</h3>
             <label for="country">Country:</label>
                 <select v-model="country">
+                    <option value="" disabled>All</option>
                     <option v-for="country in countries" :key=" 'country-' + country.id" :value="country.id">
                         {{country.name}}
                     </option>
                 </select>
             <button class= "custom-button" @click="RemoveFilters()">
-                remove filters
+                Remove filters
             </button>
         </div>
         <div class="div-flex">
@@ -35,7 +40,8 @@
                     <h3 class="h3">{{campingspot.name}}</h3>
                     <p class="mb-2">{{campingspot.description}}</p>
                     <p class="mb-2">€{{campingspot.price}}</p>
-                    <button class="custom-button" @click="GoToAccomodations(campingspot.id)">see more</button>                
+                    <button class="custom-button" @click="GoToAccomodations(campingspot.id)">See more</button>                
+                    
                 </div>
             </div>
         </div>
@@ -97,6 +103,8 @@
             },
             RemoveFilters(){
                 this.GetAllCampingSpots();
+                this.country = "";
+
             },
             GetLocationsByCountry(countryId){
                 fetch("https://localhost:5162/Location/Country/" + countryId, {

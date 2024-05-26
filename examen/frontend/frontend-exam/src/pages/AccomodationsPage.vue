@@ -1,9 +1,9 @@
 <template>
     <div class="flex flex-col items-center">
-        <H1 class="h1">Accomodation</H1>
-        <div>
+        <H1 class="h1">Detailed View</H1>
+        <div class="top-left-button">
             <button class="custom-button" @click="GoToCampingSpots()">
-                Go Back
+                Return to main page
             </button>
         </div>
         <H2 class="h2">Spot</H2>
@@ -22,7 +22,7 @@
             <div v-for="accomodation in accomodations" :key="accomodation.id">
                 <h3 class="h3 text-center">{{ accomodation.name }}</h3>
                 <p class="text-center m-4"><strong>Description: </strong>{{ accomodation.description }}</p>
-                <button class="custom-button" @click="GoToBooking(accomodation.id)">Book the accomodation</button>
+                <button class="custom-button" @click="GoToBooking(accomodation.id)">Book the accommodation</button>
             </div>
         </div>
         <div class="div-flex" v-if="allow == true">

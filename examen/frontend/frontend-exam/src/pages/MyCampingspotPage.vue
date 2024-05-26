@@ -3,19 +3,19 @@
         <div class="flex flex-col items-center">
             <div class="top-left-button"> 
                 <button class="custom-button" @click="ChangePage('ownermain')">
-                    return to main page
+                    Return to main page
                 </button>
             </div>
             <h1 class="h1">Add Campingspot</h1>
                 <label class="label-strong" for="name">Name:</label>
                 <input class="custom-input" type="text" id="name" v-model="name" required>
-                <label class="label-strong" for="price">Price:</label>
+                <label class="label-strong" for="price">Price in euro's:</label>
                 <input class="custom-input" type="number" id="price" v-model="price" required>
                 <label class="label-strong" for="description">Description:</label>
                 <textarea class="custom-input" type="text" id="description" v-model="description" required></textarea>
                 <label class="label-strong" for="image">Image:</label>
                 <input class="custom-input" type="file" id="image" @change="handleImageUpload" required>
-                <img :src="imagePreview" alt="Selected image" v-if="imagePreview" />
+                <img :src="imagePreview" alt="Selected image" v-if="imagePreview" class="mr-4 h-48 w-64" />
 
                 <label class="label-strong" for="country">Country:</label>
                 <select v-model="country">
@@ -35,12 +35,6 @@
 
                 <label class="label-strong" for="number">Number:</label>
                 <input class="custom-input" type="text" id="number" v-model="number" required>
-                
-                <!-- <select name="tagsId" multiple>
-                    <option v-for="tag in tags" :key=" 'tag-' + tag.id" :value="tag.id">
-                        {{tag.name}}
-                    </option>
-                </select> -->
                 <button class="custom-button" type="submit" @click="handleAddCampingspot()">Add Campingspot</button>
         </div>
     </div>
@@ -58,7 +52,7 @@
         watch: {
             country: function(){
                 this.GetCities(this.country);
-            }
+            },
             
         },
         computed: {

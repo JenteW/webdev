@@ -5,13 +5,13 @@
             Go to homepage
             </button>
         </div>
-        <H1 class="h1">bookings</H1>
+        <H1 class="h1">Bookings</H1>
         <div class="div-flex">
             <button class="custom-button" v-if="allbookings == 0" @click="GetAllBookings()">
-                see all bookings
+                See all bookings
             </button>
             <button class="custom-button" v-else @click="GetFutureBookings()">
-                see future bookings
+                See future bookings
             </button>
         </div>
         <div class="div-flex">

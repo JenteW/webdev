@@ -20,26 +20,17 @@
           <label class="text-black text-center" for="checked">Login as an owner</label>
         </div>
         <div class="mb-4">
-          <button
-          class="custom-button"
-            @click="ButtonClick()"
-          >
+          <button class="custom-button" @click="ButtonClick()">
             Login
           </button>
         </div>
         <div class="mb-4">
-          <button
-          class="custom-button"
-            @click="GoToAddUser()"
-          >
+          <button class="custom-button" @click="GoToAddUser()">
             Make New Account
           </button>
         </div>
         <div class="mb-4">
-          <button
-          class="custom-button"
-            @click="GoToAdminLogin()"
-          >
+          <button class="custom-button" @click="GoToAdminLogin()">
             Admin
           </button>
         </div>

@@ -3,14 +3,14 @@
         <div class="flex flex-col items-center">
             <div class="top-left-button">
             <button class="custom-button" @click="ChangePage('admin')">
-                return to main page
+                Return to main page
             </button>
             </div>
             <h1 class="h1">Countries</h1>
             <h2 class="h2">You can add a new country here</h2>
             <input class="custom-input" type="text" v-model="countryName" placeholder="Country Name">
             <button class="custom-button" @click="AddCountry()">
-                ADD COUNTRY
+                Add Country
             </button>
             <br>
             <h2 class="h2">Add a city to an existing country</h2>
@@ -22,11 +22,11 @@
             <input class="custom-input" type="text" v-model="cityName" placeholder="City Name">
             <input class="custom-input" type="text" v-model="PostalCode" placeholder="Postal Code">
             <button class="custom-button" @click="AddCity()">
-                ADD CITY
+                Add City
             </button>
 
 
-            <h2 class="h2 m-2">COUNTRY LIST</h2>
+            <h2 class="h2 m-2">Country list</h2>
 
             <button class="custom-button" @click="GetCountries()">
                 Get Country List

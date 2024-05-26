@@ -1,21 +1,24 @@
 <template>
     <div class="flex flex-col items-center">
+        <div class="top-left-button">
+            <button class="custom-button" @click="GoToLogin()">
+                Back to login
+            </button>
+        </div>
         <h1 class="h1">Owner Main Page</h1>
         <div>
-        <button class="custom-button" @click="GoToLogin()">
-                back to login
-            </button>
+
             <H2 class="h2">Welcome {{ owner.username }}</H2>
             <button class="custom-button" @click="GoToUpdate()">
                 Update Account
             </button>
             <br>
             <button class="custom-button" @click="GoToCampingSpots()">
-                add a new campingspot
+                Add a new campingspot
             </button>
             <br>
             <button class="custom-button" @click="GoToBookings()">
-                Go to your bookings
+                Manage bookings
             </button>
         </div>
         <h2 class="h2 m-3">Your campingspots</h2>
@@ -29,7 +32,7 @@
                     <p class="mb-2">{{campingspot.description}}</p>
                     <p class="mb-2">€{{campingspot.price}}</p>
                     <button class="custom-button" @click="GoToAccomodations(campingspot.id)">
-                        see more
+                        See more
                     </button>
                 </div> 
             </div>

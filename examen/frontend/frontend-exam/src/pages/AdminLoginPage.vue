@@ -13,7 +13,7 @@
 
         
             <button class="custom-button" @click="GoToLogin()">
-                user login
+                User login
             </button>
         </div>
         

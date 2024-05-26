@@ -1,19 +1,18 @@
 <template>
-    
     <div class="flex flex-col items-center">
         <div class="top-left-button">
             <button class=" custom-button" @click="GoToLogin()">
-            back to login
+            Back to login
         </button>
         </div>
         <div class="div-flex w-full">
-        <h1 class="h1 text-center">Admin Page</h1>
-        <p class="font-bold">Welcome {{ admin.username }}</p> 
+        <h1 class="h1 text-center p-2 m-2">Admin Page</h1>
+        <p class=" text-xl font-bold p-2 m-2">Welcome {{ admin.username }}</p> 
         <p>
             This is the admin page. Only authenticated users can see this page.
         </p>
         <button class="button-static-size" @click="ChangePage('countries')">
-            countries page
+            Countries page
         </button>
         <!-- <h2>Add User</h2>
         <input class="custom-input" type="text" v-model="ln" placeholder="Last Name">
@@ -26,7 +25,7 @@
         </button> -->
         </div>
             <div class="div-flex w-full">
-                <h2 class="h2">USER LIST</h2>
+                <h2 class="h2">User list</h2>
                 <button class="button-static-size" v-if="users.length == 0" @click="getUsers()">
                     Get User List
                 </button>
@@ -35,16 +34,16 @@
                 </button>
                 <ul>
                     <li v-for="user in users" :key=" 'user-' + user.id">
-                        <strong>name :</strong> {{user.fn}} {{ user.ln }} <br>
-                        <p>mail: {{user.email}}</p>
-                        <p>username: {{user.username}}</p>
+                        <strong>Name :</strong> {{user.fn}} {{ user.ln }} <br>
+                        <p>Mail: {{user.email}}</p>
+                        <p>Username: {{user.username}}</p>
                         <button class="custom-button" @click="DeleteUser(user.id)">
                             Delete
                         </button>
                     </li>
                 </ul>   
             </div>
-            <h2>OWNER LIST</h2>
+            <h2 class="h2">Owner list</h2>
             <div class="div-flex w-full">
                 <button class="button-static-size" v-if="owners.length == 0" @click="getOwners()">
                 Get Owner List
@@ -55,22 +54,22 @@
             </div>
             <ul>
                 <li v-for="owner in owners" :key=" 'owner-' +owner.id">
-                    <strong>name :</strong> {{owner.fn}} {{ owner.ln }} <br>
-                    mail: {{owner.email}} <br>
-                    username: {{owner.username}}
+                    <strong>Name :</strong> {{owner.fn}} {{ owner.ln }} <br>
+                    Mail: {{owner.email}} <br>
+                    Username: {{owner.username}}
                     <button class="custom-button" @click="DeleteOwner(owner.id)">
                         Delete
                     </button>
                 </li>
             </ul>
-        <h2 class="h2">Add Tag</h2>
+        <h2 class="h2">Add tag</h2>
         <input class="custom-input" type="text" v-model="tagName" placeholder="Tag Name">
         <input class="custom-input" type="text" v-model="tagDescription" placeholder="Tag Description">
         <button class="button-static-size" @click="AddTag()">
-            ADD TAG
+            Add Tag
         </button>
         <div class="div-flex w-full">
-                <h2 class="h2 text-center">TAG LIST</h2>
+                <h2 class="h2 text-center">Tag list</h2>
                 <button class="button-static-size" v-if="tags == 0" @click="getTags()">
                     Get Tag List
                 </button>

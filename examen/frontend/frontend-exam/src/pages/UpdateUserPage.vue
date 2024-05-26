@@ -3,10 +3,10 @@
         <div class="div-flex w-3/4">
             <div class="top-left-button">
                 <button class="custom-button" @click="ChangePage('usermain')">
-                    back to main page
+                    Back to main page
                 </button>
             </div>
-            <H2>Welcome {{ user.username }}</H2>
+            <H2 class="h2">Welcome {{ user.username }}, below you can change your user information</H2>
 
             <input class="custom-input" type="text" v-model="fn" value="Firstname">
             <input class="custom-input" type="text" v-model="ln" placeholder = "Lastname">

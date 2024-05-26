@@ -1,9 +1,9 @@
 <template>
     <div class="flex flex-col items-center">
-        <h1 class="h1">Add Accomodation</h1>
+        <h1 class="h1">Detailed View</h1>
         <div class="top-left-button">
             <button class="custom-button" @click="ToOwner()">
-            return to main page
+            Return to main page
             </button>
         </div>
         <br>
@@ -24,7 +24,7 @@
                 <label for="check">The spot is available on the site: {{ this.available }}</label>
             </div>
             <button class="edit-button" @click="UpdateSpot()">
-                    update availability spot
+                    Update Availability Spot
             </button>
             <button @click="toggleEdit" class="edit-button">Edit</button>
             <div class="div-flex w-2/3" v-if="editing">
@@ -48,7 +48,7 @@
         </div>
 
         <h2 class="h2">Accomodations</h2>
-        <button class="half-button" @click="GetAccomodationBySpotId(campingSpotId)"> get accomodation</button>    
+        <button class="half-button" @click="GetAccomodationBySpotId(campingSpotId)">Get accommodation</button>    
         <div class="div-flex">
            <div v-for="accomodation in accomodations" :key="accomodation.id">
                 <h3 class="h3 text-center">{{accomodation.name}}</h3>
@@ -61,21 +61,21 @@
                     <input v-model="AccName" type="text" class="custom-input" placeholder="Name">
                     <textarea v-model="AccDescription" class="custom-input" placeholder="Description"></textarea>
                         <button class="custom-button" @click="UpdateAccomodation(accomodation.id)">
-                        Update Accomodation
+                        Update Accommodation
                         </button>
                     
                 </div>
             </div>
         </div>
 
-            <H2 class="h2">tags</H2>
+            <H2 class="h2">Tags</H2>
             <button class="half-button" @click="GetSpotTags(campingSpotId)">Get Tags</button>
             <div class="flex flex-wrap -mr-4 mb-2">
                 <div v-for="tag in SpotTags" :key="tag.id" class="bg-green-300 p-4 rounded-md flex flex-wrap items-center mr-4 mb-2">
                     <p>{{getTagName(tag.tagId)}}</p>
                 </div>
             </div>
-        <H2 class="h2">add Tags</H2>
+        <H2 class="h2">Add tags</H2>
         <div class="flex flex-wrap">
             <div v-for="tag in tags" :key="tag.id" class="bg-blue-200 p-4 rounded-md flex items-center mr-4 mb-2">
                 <input type="checkbox" v-model="tagsId" :value="tag.id">

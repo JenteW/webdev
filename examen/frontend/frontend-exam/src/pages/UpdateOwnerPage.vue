@@ -3,7 +3,7 @@
         <div class="div-flex w-3/4">
             <div class="top-left-button">
                 <button class="custom-button" @click="ChangePage('ownermain')">
-                    back to main page
+                    Back to main page
                 </button>
             </div>
             <H2 class="h2">Welcome {{ owner.username }}</H2>
