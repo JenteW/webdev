@@ -30,7 +30,7 @@
             <div v-for="campingspot in availableCampingSpots" :key="campingspot.id" class="the-box">
                 <img :src="require('@/assets/campingspots/' + campingspot.image)" alt="campingspot image"
                     class="mr-4 h-48 w-64" 
-                    contain>
+                    contain/>
                 <div class="flex flex-col">
                     <h3 class="h3">{{campingspot.name}}</h3>
                     <p class="mb-2">{{campingspot.description}}</p>

@@ -40,5 +40,11 @@ namespace exam.Controllers
         {
             return Ok(_data.GetSpotsByTagId(tagId));
         }
+        //delete spot tag by spot id
+        [HttpDelete("SpotId/{spotId}")]
+        public void DeleteSpotTagBySpotId(int spotId)
+        {
+            _data.DeleteSpotTagBySpotId(spotId);
+        }
     }
 }

@@ -51,6 +51,13 @@ namespace exam.Controllers
         {
             _data.DeleteAccomodation(id);
         }
+
+        //update accomodation
+        [HttpPut("{id}")]
+        public void UpdateAccomodation(int id, [FromBody] Accomodation accomodation)
+        {
+            _data.UpdateAccomodation(id, accomodation);
+        }
         
     }
 }

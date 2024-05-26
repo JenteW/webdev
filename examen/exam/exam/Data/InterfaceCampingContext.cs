@@ -17,6 +17,7 @@ namespace exam.Data
         Accomodation GetAccomodationById(int id);
         void DeleteAccomodationBySpotId(int id);
         void DeleteAccomodation(int id);
+        void UpdateAccomodation(int id, Accomodation accomodation);
 
         /******/
         /*ADMIN*/
@@ -114,6 +115,7 @@ namespace exam.Data
         IEnumerable<SpotTag> GetSpotTags();
         IEnumerable<SpotTag> GetTagsBySpotId(int spotId);
         IEnumerable<SpotTag> GetSpotsByTagId(int tagId);
+        void DeleteSpotTagBySpotId(int spotId);
 
 
 

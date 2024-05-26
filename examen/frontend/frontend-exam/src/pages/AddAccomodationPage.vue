@@ -23,17 +23,38 @@
                 <input type="checkbox" v-model="available" name="checkavailability" id="check">
                 <label for="check">The spot is available on the site: {{ this.available }}</label>
             </div> 
+            <button @click="toggleEdit" class="edit-button">Edit</button>
+
+            <div v-if="editing" class="mt-4 w-full">
+                <input v-model="spot.name" type="text" class="mb-2 p-2 border border-gray-300 rounded" placeholder="Name">
+                <textarea v-model="spot.description" class="mb-2 p-2 border border-gray-300 rounded" placeholder="Description"></textarea>
+                <input v-model="spot.price" type="number" class="mb-2 p-2 border border-gray-300 rounded" placeholder="Price per night">
+                <button @click="UpdateSpot()" class="mt-4 px-4 py-2 bg-green-500 text-white rounded">Save</button>
+            </div>
         </div>
         <button class="half-button" @click="UpdateSpot()">
                     update Spot
         </button>
-
-            <h2 class="h2">Accomodations</h2>
-            <button class="half-button" @click="GetAccomodationBySpotId(campingSpotId)"> get accomodation</button>
-            <div v-for="accomodation in accomodations" :key="accomodation.id">
+        <h2 class="h2">Accomodations</h2>
+        <button class="half-button" @click="GetAccomodationBySpotId(campingSpotId)"> get accomodation</button>    
+        <div class="div-flex">
+           <div v-for="accomodation in accomodations" :key="accomodation.id">
                 <h3 class="h3 text-center">{{accomodation.name}}</h3>
                 <p class="text-center">{{accomodation.description}}</p>
+                <div class="flex justify-center w-full">
+                    <button class="half-button" @click="toggleEditAccomodation(accomodation.id)">Edit</button>
+                    <button class="half-button-red" @click="DeleteAccomodation(accomodation.id)">Delete</button>
+                </div>
+                <div v-if="editingAccomodationId == accomodation.id" class="div-flex">
+                    <input v-model="AccName" type="text" class="custom-input" placeholder="Name">
+                    <textarea v-model="AccDescription" class="custom-input" placeholder="Description"></textarea>
+                        <button class="custom-button" @click="UpdateAccomodation(accomodation.id)">
+                        Update Accomodation
+                        </button>
+                    
+                </div>
             </div>
+        </div>
 
             <H2 class="h2">tags</H2>
             <button class="half-button" @click="GetSpotTags(campingSpotId)">Get Tags</button>
@@ -72,13 +93,18 @@
                 spot: {},
                 accomodations: [],
                 tags: [],
+                AccName: "",
+                AccDescription: "",
                 name: "",
                 description: "",
                 campingSpotId: "",
                 tagsId: [],
                 SpotTags: [],
                 SpotTagsIds: [],
-                available: true
+                available: true,
+                editing: false,
+                editingAccomodation: false,
+                editingAccomodationId: null,
 
             }
         },
@@ -89,8 +115,17 @@
             this.GetTags();
             this.GetSpotTags(this.campingSpotId);
             this.GetAccomodationBySpotId(this.campingSpotId);
+
+
         },
         methods:{
+            toggleEdit() {
+            this.editing = !this.editing;
+            },
+            toggleEditAccomodation(accomodationId) {
+            this.editingAccomodation = !this.editingAccomodation;
+            this.editingAccomodationId = accomodationId;
+            },
             getTagName(tagId) {
                 const tag = this.tags.find(tag => tag.id == tagId);
                 return tag ? tag.name : "Unknown Tag";
@@ -330,6 +365,65 @@
                     console.error("There was a problem with your fetch operation:", error);
                 });
 
+            },
+            UpdateAccomodation(id){
+                console.log(id + " is the id @ UpdateAccomodation");
+                console.log(this.AccName+ " is the name @ UpdateAccomodation");
+                console.log(this.AccDescription + " is the description @ UpdateAccomodation");
+                console.log(this.spot.id + " is the campingSpotId @ UpdateAccomodation");
+                fetch("https://localhost:5162/Accomodation/" + id, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        id: id,
+                        name: this.AccName,
+                        description: this.AccDescription,
+                        campingSpotId: this.spot.id
+                    })
+                })
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Network response was not ok at UpdateAccomodation");
+                    }
+                    else{
+                        return response;
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    this.toggleEditAccomodation(null);
+                    alert("Accomodation updated!");
+                    this.GetAccomodationBySpotId(this.campingSpotId);
+                })
+                .catch(error => {
+                    console.error("There was a problem with your fetch operation:", error);
+                });
+            },
+            DeleteAccomodation(id){
+                fetch("https://localhost:5162/Accomodation/" + id, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Network response was not ok at DeleteAccomodation");
+                    }
+                    else{
+                        return response;
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    alert("Accomodation deleted!");
+                    this.GetAccomodationBySpotId(this.campingSpotId);
+                })
+                .catch(error => {
+                    console.error("There was a problem with your fetch operation:", error);
+                });
             }
         }
     }

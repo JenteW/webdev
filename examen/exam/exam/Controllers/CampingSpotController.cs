@@ -55,6 +55,7 @@ namespace exam.Controllers
         {
             _data.DeleteBookingBySpotId(id);
             _data.DeleteAccomodationBySpotId(id);
+            _data.DeleteSpotTagBySpotId(id);
             _data.DeleteCampingSpot(id);
         }
         // update camping spot

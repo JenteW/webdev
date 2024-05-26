@@ -22,10 +22,8 @@
         <div class="flex flex-col items-center">
             <div v-for="campingspot in campingSpots" :key="campingspot.id" class="the-box">
                 <img :src="require('@/assets/campingspots/' + campingspot.image)" alt="campingspot image"
-                class="mr-4"
-                contain
-                height="200px"
-                width="300px"/>
+                class="mr-4 h-48 w-64"
+                contain/>
                 <div class="flex flex-col">
                     <h3 class="h3">{{campingspot.name}}</h3>
                     <p class="mb-2">{{campingspot.description}}</p>

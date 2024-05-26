@@ -39,6 +39,10 @@ namespace exam.Data
         {
             db.GetCollection<Accomodation>("accomodations").Delete(id);
         }
+        public void UpdateAccomodation(int id, Accomodation accomodation)
+        {
+            db.GetCollection<Accomodation>("accomodations").Update(id, accomodation);
+        }
 
         /******/
         /*ADMIN*/
@@ -311,6 +315,10 @@ namespace exam.Data
         public IEnumerable<SpotTag> GetSpotsByTagId(int tagId)
         {
             return db.GetCollection<SpotTag>("spottags").Find(x => x.TagId == tagId);
+        }
+        public void DeleteSpotTagBySpotId(int spotId)
+        {
+            db.GetCollection<SpotTag>("spottags").DeleteMany(x => x.SpotId == spotId);
         }
 
         /******/
