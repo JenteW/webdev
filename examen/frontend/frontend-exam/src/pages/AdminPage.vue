@@ -245,7 +245,8 @@
                     return response;
                 })
                 .then(
-                    this.getTags()
+                    this.getTags(),
+                    alert("Tag added")
                 )
                 .catch(error => {
                     console.error("There has been a problem with your fetch operation: AddTag", error);
