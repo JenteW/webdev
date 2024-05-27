@@ -75,7 +75,7 @@
                 })
                 .then(response => {
                     if(!response.ok){
-                        throw new Error("Network response was not ok at GETADMIN");
+                        throw new Error("Network response was not ok at OwnernameAvailable");
                     }
                     return response.json();
                 })
@@ -88,7 +88,7 @@
                     }
                 })
                 .catch(error => {
-                    console.error("There has been a problem with your fetch operation: GETADMIN", error);
+                    console.error("There has been a problem with your fetch operation: OwnernameAvailable", error);
                 })
             },
 
@@ -101,12 +101,11 @@
                 })
                 .then(response => {
                     if(!response.ok){
-                        throw new Error("Network response was not ok at GETADMIN");
+                        throw new Error("Network response was not ok at UsernameAvailable");
                     }
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data);
                     this.taken = data;
                     if(data == false){
                         this.AddUser();
@@ -116,7 +115,7 @@
                     }
                 })
                 .catch(error => {
-                    console.error("There has been a problem with your fetch operation: GETADMIN", error);
+                    console.error("There has been a problem with your fetch operation: UsernameAvailable", error);
                 })
             },
             AddOwner(){
@@ -136,16 +135,15 @@
                 })
                 .then(response => {
                     if(!response.ok){
-                        throw new Error("Network response was not ok at ADDUSER");
+                        throw new Error("Network response was not ok at AddOwner");
                     }
                     return response;
                 })
-                .then(data => {
-                    console.log(data);
-                    alert("Owner added!");
-                })
+                .then(
+                    alert("Owner added!")
+                )
                 .catch(error => {
-                    console.error("There has been a problem with your fetch operation: ADDUSER", error);
+                    console.error("There has been a problem with your fetch operation: AddOwner", error);
                 })
             },      
             AddUser(){
@@ -165,16 +163,15 @@
                 })  
                 .then(response => {
                     if(!response.ok){
-                        throw new Error("Network response was not ok at ADDUSER");
+                        throw new Error("Network response was not ok at AddUser");
                     }
                     return response;
                 })
-                .then(data => {
-                    console.log(data);
-                    alert("User added!");
-                })
+                .then(
+                    alert("User added!")
+                )
                 .catch(error => {
-                    console.error("There has been a problem with your fetch operation: ADDUSER", error);
+                    console.error("There has been a problem with your fetch operation: AddUser", error);
                 })
             }
         }

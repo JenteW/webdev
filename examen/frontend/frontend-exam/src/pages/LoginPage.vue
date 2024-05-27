@@ -52,16 +52,12 @@
             // depending on the checkbox, it will either log in as an owner or a user
             ButtonClick(){
                 if(this.checked == true){
-                    console.log("Owner");
                     this.OwnerLogin(this.username, this.password);
                 }
                 else{
-                    console.log(this.username + " is the username");
-                    console.log(this.password + " is the password");
+                    
                     this.UserLogin(this.username, this.password);
-                    console.log("User");
                 }
-                console.log("Button Clicked");
             },
             ChangePage(page) {
                 this.$emit("changeActivePage", page);
@@ -98,10 +94,8 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
                     if(data.id > 0){
                         this.$router.push({name: 'UserMainPage', params: {id: data.id}});
-                        console.log(data.id + " is id");
                         this.ChangePage("usermain");
                     }
                     else{
@@ -124,24 +118,22 @@
                 .then(response => {
                     if(response.status === 404){
                         alert("Username or password is not correct!");
-                        throw new Error("user not found at LOGIN");
+                        throw new Error("user not found at OwnerLogin");
                     }
                     else if(response.status === 400){
                         alert("Please fill in both username and password!");
                         throw new Error("username or password empty");
                     }
                     else if(!response.ok){
-                         throw new Error("Network response was not ok at LOGIN");
+                         throw new Error("Network response was not ok at OwnerLogin");
                     }
                     else{
                         return response.json();
                     }
                 })
                 .then(data => {
-                    console.log(data);
                     if(data.id > 0){
                         this.$router.push({name: 'OwnerMainPage', params: {id: data.id}});
-                        console.log(data.id + " is id");
                         this.ChangePage("ownermain");
                     }
                     else{
@@ -149,7 +141,7 @@
                     }
                 })
                 .catch(error => {
-                    console.error("There has been a problem with your fetch operation: LOGIN", error);
+                    console.error("There has been a problem with your fetch operation: OwnerLogin", error);
                 })
                 
 

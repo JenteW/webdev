@@ -25,7 +25,6 @@
         name: 'UpdateUserPage',
         mounted(){
             this.id = this.$route.params.id;
-            console.log(this.id + " is the id @ UpdateUserPage");
             this.GetUser(this.id);
         },
         data(){
@@ -64,8 +63,6 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log("is fecking data");
                     this.user = data;
                     this.fn = this.user.fn;
                     this.ln = this.user.ln;
@@ -94,13 +91,12 @@
                 .then(response => {
                     if(response.status === 404){
                         alert("Username not found!");
-                        throw new Error("user not found at GETUSER");
+                        throw new Error("Update user failed at UpdateUser");
                     }
                     else if(!response.ok){
-                         throw new Error("Network response was not ok at GETUSER");
+                         throw new Error("Network response was not ok at UpdateUser");
                     }
                     else{
-                        console.log("changed user @ response.json");
                         return response;
                     }
                 })

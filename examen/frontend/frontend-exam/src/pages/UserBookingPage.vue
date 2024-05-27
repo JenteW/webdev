@@ -53,7 +53,6 @@ export default {
     },
     mounted(){
         this.userId = this.$route.params.userId;
-        console.log(this.id + " is the id @ UserBooking");
         this.GetBookings();
         this.GetFutureBookings();
         this.GetAllAccomodations();
@@ -79,7 +78,6 @@ export default {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
                 this.bookings = data;
             })
             .catch(error => {
@@ -120,7 +118,6 @@ export default {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
                 this.Accomodations = data;
             })
             .catch(error => {
@@ -141,7 +138,6 @@ export default {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
                 this.CampingSpots = data;
             })
             .catch(error => {
@@ -163,7 +159,6 @@ export default {
                 return response.json();
             })
             .then(data => {
-               console.log(data);
                 const currentDate = new Date();
                 this.bookings = data.filter(booking => new Date(booking.endDate) > currentDate);
             })
@@ -185,10 +180,9 @@ export default {
                 }
                 return response;
             })
-            .then(data => {
-                console.log(data);
-                this.GetBookings();
-            })
+            .then(
+                this.GetBookings()
+            )
             .catch(error => {
                 console.error("There was a problem with your fetch operation:", error);
             });

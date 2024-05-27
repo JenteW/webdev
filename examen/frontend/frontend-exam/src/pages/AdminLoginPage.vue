@@ -57,26 +57,24 @@
                         throw new Error("username or password empty");
                     }
                     else if(!response.ok){
-                         throw new Error("Network response was not ok at LOGIN");
+                         throw new Error("Network response was not ok at AdminLogin");
                     }
                     else{
                         return response.json();
                     }
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log(data.id);
                     // route to admin page, while giving the id of the admin
                     this.$router.push({name: 'AdminPage', params: {id: data.id}});
                     if(data.id > 0)
                         this.ChangePage("admin");
                     
                     else{
-                        alert("Go and suck dick");
+                        alert("Username or password is not correct! Please leave and go to the user login page.");
                     }
                 })
                 .catch(error => {
-                    console.error("There has been a problem with your fetch operation: LOGIN", error);
+                    console.error("There has been a problem with your fetch operation: AdminLogin", error);
                 })
                 
 

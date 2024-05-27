@@ -46,8 +46,6 @@
         name: 'OwnerMainPage',
         mounted(){
             this.id = this.$route.params.id;
-            console.log(this.$route.params.id + " is the id @ OwnerMainPage");
-            console.log(this.id + " is the id @ OwnerMainPage");
             this.GetOwner(this.id);
             this.GetCampingSpots(this.id);
         },
@@ -106,13 +104,9 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log("is fecking data");
+
                     this.campingSpots = data;
-                    // this.campingSpots.forEach(campingspot => {
-                    //     console.log(campingspot);
-                    //     this.GetTagsBySpotId(campingspot);
-                    // });
+
                 })
                 .catch(error => {
                     console.error("There was an error!", error);
@@ -138,8 +132,7 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log("is fecking data");
+
                     this.owner = data;
                 })
                 .catch(error => {

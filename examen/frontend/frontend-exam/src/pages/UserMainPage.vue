@@ -53,7 +53,6 @@
         name: 'UserMainPage',
         mounted(){
             this.id = this.$route.params.id;
-            console.log(this.id + " is the id @ UserMainPage");
             this.GetUser(this.id);
             this.GetAllCampingSpots();
             this.GetAllCountries();
@@ -72,7 +71,6 @@
         },
         watch:{
             country: function(){
-                console.log(this.country);
                 this.GetLocationsByCountry(this.country);
             }
         },
@@ -122,12 +120,9 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log("is fecking data");
                     this.locations = data;
                     this.CampingSpots = [];
                     for(let i = 0; i < this.locations.length; i++){
-                        console.log(this.locations[i].id);
                         this.GetCampingspotsByLocationId(this.locations[i].id);
                     }
                 })
@@ -152,8 +147,7 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log("is fecking data");
+
                     this.CampingSpots.push(...data);
                 })
                 .catch(error => {
@@ -177,8 +171,7 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log("is fecking data");
+
                     this.locations = data;
                 })
                 .catch(error => {
@@ -203,8 +196,7 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log("is fecking data");
+
                     this.countries = data;
                 })
                 .catch(error => {
@@ -228,8 +220,7 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log("is fecking data");
+
                     this.CampingSpots = data;
                 })
                 .catch(error => {
@@ -257,8 +248,7 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log("is fecking data");
+
                     this.user = data;
                 })
                 .catch(error => {

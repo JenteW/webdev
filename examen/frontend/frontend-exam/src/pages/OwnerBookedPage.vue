@@ -51,7 +51,6 @@ export default {
     mounted(){
         this.id = this.$route.params.userId;
         this.userId = this.$route.params.userId;
-        console.log(this.id + " is the id @ OwnerBookedPage");
         this.GetCampingSpotsByOwnerId();
         this.GetFutureBookings();
         this.GetUsers();
@@ -73,7 +72,6 @@ export default {
         GetSpotImage(spotId){
             const spot = this.CampingSpots.find(spot => spot.id == spotId);
         if (spot && spot.image) {
-            console.log(spot.image + " is the image");
             return spot.image;
         } else {
             console.warn(`No image found for camping spot ID: ${spotId}`);
@@ -103,7 +101,6 @@ export default {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
                 this.bookings = data;
             })
             .catch(error => {
@@ -125,7 +122,6 @@ export default {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
                 const currentDate = new Date();
                 this.bookings = data.filter(booking => new Date(booking.endDate) > currentDate);
             })
@@ -147,7 +143,6 @@ export default {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
                 this.users = data;
             })
             .catch(error => {
@@ -168,7 +163,6 @@ export default {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
                 this.Accomodations = data;
             })
             .catch(error => {
@@ -195,8 +189,6 @@ export default {
                 }
             })
             .then(data => {
-                console.log(data);
-                console.log("is fecking data");
                 this.CampingSpots = data;
             })
             .catch(error => {

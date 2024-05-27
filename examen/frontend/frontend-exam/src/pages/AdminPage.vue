@@ -141,16 +141,15 @@
                 })
                 .then(response => {
                     if(!response.ok){
-                        throw new Error("Network response was not ok at GETADMIN");
+                        throw new Error("Network response was not ok at GetAdmin");
                     }
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data);
                     this.admin = data;
                 })
                 .catch(error => {
-                    console.error("There has been a problem with your fetch operation: GETADMIN", error);
+                    console.error("There has been a problem with your fetch operation: GetAdmin", error);
                 })
             },
             DeleteUser(id){
@@ -162,45 +161,16 @@
                 })
                 .then(response => {
                     if(!response.ok){
-                        throw new Error("Network response was not ok at DELETEUSER");
+                        throw new Error("Network response was not ok at DeleteUser");
                     }
                     return response;
                 })
-                .then(data => {
-                    console.log("succes in deleting the user", data, id);
-                    this.getUsers();
-                })
+                .then(
+                    alert("User deleted"),
+                    this.getUsers()
+                )
                 .catch(error => {
-                    console.error("There has been a problem with your fetch operation: DELETEUSER", error);
-                })
-            },
-            AddUser(){
-                fetch("https://localhost:5162/User", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        fn: this.fn,
-                        ln: this.ln,
-                        email: this.email,
-                        username: this.username,
-                        password: this.password
-                    })
-
-                })  
-                .then(response => {
-                    if(!response.ok){
-                        throw new Error("Network response was not ok at ADDUSER");
-                    }
-                    return response;
-                })
-                .then(data => {
-                    console.log(data);
-                    this.getUsers();
-                })
-                .catch(error => {
-                    console.error("There has been a problem with your fetch operation: ADDUSER", error);
+                    console.error("There has been a problem with your fetch operation: DeleteUser", error);
                 })
             },
             getUsers(){
@@ -212,16 +182,15 @@
                 })
                 .then(response => {
                     if(!response.ok){
-                        throw new Error("Network response was not ok at GETUSER");
+                        throw new Error("Network response was not ok at getUsers");
                     }
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data);
                     this.users = data;
                 })
                 .catch(error => {
-                    console.error("There has been a problem with your fetch operation: GETUSER", error);
+                    console.error("There has been a problem with your fetch operation: getUsers", error);
                 })
             },
             getOwners(){
@@ -233,7 +202,6 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
                     this.owners = data;
                 })
             },
@@ -246,16 +214,16 @@
                 })
                 .then(response => {
                     if(!response.ok){
-                        throw new Error("Network response was not ok at DELETEUSER");
+                        throw new Error("Network response was not ok at DeleteOwner");
                     }
                     return response;
                 })
-                .then(data => {
-                    console.log("succes in deleting the user", data, id);
-                    this.getOwners();
-                })
+                .then(
+                    alert("Owner deleted"),
+                    this.getOwners()
+                )
                 .catch(error => {
-                    console.error("There has been a problem with your fetch operation: DELETEUSER", error);
+                    console.error("There has been a problem with your fetch operation: DeleteOwner", error);
                 })
             },
             AddTag(){
@@ -272,16 +240,15 @@
                 })  
                 .then(response => {
                     if(!response.ok){
-                        throw new Error("Network response was not ok at ADDTAG");
+                        throw new Error("Network response was not ok at AddTag");
                     }
                     return response;
                 })
-                .then(data => {
-                    console.log(data);
-                    this.getTags();
-                })
+                .then(
+                    this.getTags()
+                )
                 .catch(error => {
-                    console.error("There has been a problem with your fetch operation: ADDTAG", error);
+                    console.error("There has been a problem with your fetch operation: AddTag", error);
                 })
             },
             getTags(){
@@ -293,7 +260,6 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
                     this.tags = data;
                 })
             },
@@ -306,16 +272,16 @@
                 })
                 .then(response => {
                     if(!response.ok){
-                        throw new Error("Network response was not ok at DELETETAG");
+                        throw new Error("Network response was not ok at DeleteTag");
                     }
                     return response;
                 })
-                .then(data => {
-                    console.log("succes in deleting the tag", data, id);
-                    this.getTags();
-                })
+                .then(
+                    alert("Tag deleted"),
+                    this.getTags(),
+                )
                 .catch(error => {
-                    console.error("There has been a problem with your fetch operation: DELETETAG", error);
+                    console.error("There has been a problem with your fetch operation: DeleteTag", error);
                 })
             },  
         },

@@ -67,11 +67,9 @@
         mounted(){
             this.id = this.$route.params.id;
             this.userId = this.$route.params.userId;
-            console.log(this.id + " is the id @ AccomodationsPage");
             this.GetSpotById(this.id);
             this.GetAccomodationBySpotId(this.id);
             this.GetCommentsBySpotId(this.id);
-            console.log(this.comments + " is the comments");
             this.GetBookingsBySpotId(this.id);
 
             
@@ -98,12 +96,8 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
                     this.bookings = data;
-                    console.log(this.bookings + " is the bookings");
                     this.bookings.find(booking => {
-                        console.log(booking.userId + " is the booking userId");
-                        console.log(this.userId + " is the userId");
                         if(booking.userId == this.userId){
                             this.allow = true;
                         }
@@ -132,7 +126,6 @@
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data);
                     this.Spot = data;
                 })
                 .catch(error => {
@@ -155,7 +148,6 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
                     this.accomodations = data;
                 })
                 .catch(error => {
@@ -163,10 +155,7 @@
                 });
             },
             PostComment() {
-                console.log(this.comment + " is the comment");
-                console.log(this.rating + " is the rating");
-                console.log(this.id + " is the spotId");
-                console.log(this.userId + " is the userId");
+
                 
                 fetch("https://localhost:5162/Comment", {
                     method: "POST",
@@ -186,12 +175,11 @@
                     }
                     return response;
                 })
-                .then(data => {
-                    console.log(data);
-                    alert("Comment added");
-                    this.CheckIfUserHasCommented();
-                    this.GetCommentsBySpotId(this.id);
-                })
+                .then(
+                    alert("Comment added"),
+                    this.CheckIfUserHasCommented(),
+                    this.GetCommentsBySpotId(this.id)
+                )
                 .catch(error => {
                     console.error("There was a problem with your fetch operation:", error);
                 });
@@ -212,7 +200,6 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
                     this.comments = data;
                 })
                 .catch(error => {

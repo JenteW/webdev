@@ -96,7 +96,6 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
                     this.countries = data;
                 })
                 .catch(error => {
@@ -121,11 +120,10 @@
                         return response;
                     }
                 })
-                .then(data => {
-                    console.log(data);
-                    this.GetCountries();
-                    alert("Country added");
-                })
+                .then(
+                    this.GetCountries(),
+                    alert("Country added")
+                )
                 .catch(error => {
                     console.error("There was an error!", error);
                 });
@@ -156,9 +154,6 @@
                         return response;
                     }
                 })
-                .then(data => {
-                    console.log(data);
-                })
                 .catch(error => {
                     console.error("There was an error!", error);
                 });
@@ -172,7 +167,6 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
                     this.cities = data;
                 })
                 .catch(error => {
@@ -194,11 +188,10 @@
                         return response;
                     }
                 })
-                .then(data => {
-                    console.log(data);
-                    this.GetCountries();
-                    alert("Country deleted");
-                })
+                .then(
+                    this.GetCountries(),
+                    alert("Country deleted")
+                )
                 .catch(error => {
                     console.error("There was an error!", error);
                 });
@@ -218,11 +211,10 @@
                         return response;
                     }
                 })
-                .then(data => {
-                    console.log(data);
-                    this.GetCities();
-                    alert("City deleted");
-                })
+                .then(
+                    this.GetCities(),
+                    alert("City deleted")
+                )
                 .catch(error => {
                     console.error("There was an error!", error);
                 });

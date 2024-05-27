@@ -70,7 +70,6 @@
             this.id = this.$route.params.id;
             this.userId = this.$route.params.userId;
             this.spotId = this.$route.params.spotId;
-            console.log(this.id + " is the id @ AddBookingPage");
             this.GetAccomdationById(this.id);
             this.GetSpotById(this.spotId);
         },
@@ -92,13 +91,9 @@
                     return;
                 }
                 let start = new Date(this.startDate);
-                console.log(start);
                 let end = new Date(this.endDate);
-                console.log(end);
                 let diff = Math.abs(end - start);
-                console.log(diff);
                 let days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-                console.log(days);
                 this.price = days * this.Spot.price;
             },
             CheckIfAvailable(){
@@ -126,17 +121,13 @@
                 return response.json();
             })
             .then(data => {
-                console.log(data);
                 this.isAvailable = data;
-                console.log(this.isAvailable + " is the availability");
 
                 if(this.isAvailable == false){
-                    console.log("This spot is not available for the selected dates");
                     alert("This spot is not available for the selected dates");
                     return;
                 }
                 if(this.isAvailable == true){
-                    console.log("This spot is available for the selected dates");
                     alert("This spot is available for the selected dates");
                     this.AddBooking();
                 }else{
@@ -166,11 +157,10 @@
                     }
                     return response;
                 })
-                .then(data => {
-                    console.log(data);
-                    alert("Booking added");
-                    this.ToBookings();
-                })
+                .then(
+                    alert("Booking added"),
+                    this.ToBookings()
+                )
                 .catch(error => {
                     console.error("There was a problem with your fetch operation:", error);
                 });
@@ -189,7 +179,6 @@
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data);
                     this.Spot = data;
                 })
                 .catch(error => {
@@ -210,7 +199,6 @@
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data);
                     this.accomodation = data;
                 })
                 .catch(error => {

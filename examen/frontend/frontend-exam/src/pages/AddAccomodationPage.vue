@@ -124,7 +124,6 @@
         },
         mounted(){
             this.campingSpotId = this.$route.params.id;
-            console.log(this.campingSpotId + " is the id @ AddAccomodationPage");
         -   this.GetSpot(this.campingSpotId);
             this.GetTags();
             this.GetSpotTags(this.campingSpotId);
@@ -161,7 +160,6 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
                     this.tags = data;
                 })
                 .catch(error => {
@@ -188,7 +186,6 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
                     this.SpotTags = data;
                 })
                 .catch(error => {
@@ -214,10 +211,9 @@
                         return response;
                     }
                 })
-                .then(data => {
-                    console.log(data);
-                    this.GetSpotTags(this.campingSpotId);
-                })
+                .then(
+                    this.GetSpotTags(this.campingSpotId)
+                )
                 .catch(error => {
                     console.error("There was a problem with your fetch operation:", error);
                 });
@@ -258,7 +254,6 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
                     this.spot = data;
                     this.available = this.spot.availability;
 
@@ -297,7 +292,6 @@
                 });
             },
             GetAccomodationBySpotId(id){
-                console.log(id + " is the id @ GetAccomodationBySpotId")
                 fetch("https://localhost:5162/Accomodation/CampingSpotId/" + id, {
                     method: "GET",
                     headers: {
@@ -317,7 +311,6 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
                     this.accomodations = data;
                 })
                 .catch(error => {
@@ -348,10 +341,9 @@
                         return response;
                     }
                 })
-                .then(data => {
-                    console.log(data);
-                    alert("Spot updated!");
-                })
+                .then(
+                    alert("Spot updated!")
+                )
                 .catch(error => {
                     console.error("There was a problem with your fetch operation:", error);
                 });
@@ -371,21 +363,17 @@
                         return response;
                     }
                 })
-                .then(data => {
-                    console.log(data);
-                    alert("Spot deleted!");
-                    this.ToOwner();
-                })
+                .then(
+                    alert("Spot deleted!"),
+                    this.ToOwner()
+                )
                 .catch(error => {
                     console.error("There was a problem with your fetch operation:", error);
                 });
 
             },
             UpdateAccomodation(id){
-                console.log(id + " is the id @ UpdateAccomodation");
-                console.log(this.AccName+ " is the name @ UpdateAccomodation");
-                console.log(this.AccDescription + " is the description @ UpdateAccomodation");
-                console.log(this.spot.id + " is the campingSpotId @ UpdateAccomodation");
+
                 fetch("https://localhost:5162/Accomodation/" + id, {
                     method: "PUT",
                     headers: {
@@ -406,12 +394,11 @@
                         return response;
                     }
                 })
-                .then(data => {
-                    console.log(data);
-                    this.toggleEditAccomodation(null);
-                    alert("Accomodation updated!");
-                    this.GetAccomodationBySpotId(this.campingSpotId);
-                })
+                .then(
+                    this.toggleEditAccomodation(null),
+                    alert("Accomodation updated!"),
+                    this.GetAccomodationBySpotId(this.campingSpotId)
+                )
                 .catch(error => {
                     console.error("There was a problem with your fetch operation:", error);
                 });
@@ -431,11 +418,10 @@
                         return response;
                     }
                 })
-                .then(data => {
-                    console.log(data);
-                    alert("Accomodation deleted!");
-                    this.GetAccomodationBySpotId(this.campingSpotId);
-                })
+                .then(
+                    alert("Accomodation deleted!"),
+                    this.GetAccomodationBySpotId(this.campingSpotId)
+                )
                 .catch(error => {
                     console.error("There was a problem with your fetch operation:", error);
                 });
@@ -460,7 +446,6 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
                     this.comments = data;
                     this.comment = true;
                 })

@@ -45,7 +45,6 @@
         name: 'MyCampingspotPage',
         mounted(){
             this.ownerId = this.$route.params.id;
-            console.log(this.ownerId + " is the id @ MyCampingspotPage")
             this.GetCountry();
             this.GetTags();
         },
@@ -94,10 +93,6 @@
             },
             handleImageUpload(event){
                 const file = event.target.files[0];
-                //log the file name
-                console.log(file.name + " is the file name");
-                console.log(file + " is the file");
-                console.log(this.image + " is the image");
                 this.UploadImage(file);
                 this.image = file.name;
                 this.previewImage(event);
@@ -114,10 +109,6 @@
                         throw new Error("Network response was not ok at UPLOADIMAGE");
                     }
                     return response.json();
-                })
-                .then(data => {
-                    console.log(data);
-                    
                 })
                 .catch(error => {
                     console.error("There has been a problem with your fetch operation: UPLOADIMAGE", error);
@@ -143,8 +134,6 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log("is fecking data");
                     this.tags = data;
                 })
                 .catch(error => {
@@ -189,9 +178,6 @@
                     }
                     return response;
                 })
-                .then(data => {
-                    console.log(data);
-                })
                 .catch(error => {
                     console.error("There has been a problem with your fetch operation: ADDSPOTTAG", error);
                 })
@@ -200,8 +186,6 @@
                 this.$emit("changeActivePage", page);
             },
             AddCampingspot(){
-                console.log(this.name, this.locationId, this.description, this.ownerId, this.price, this.image, this.availability);
-                console.log(this.locationId + " is the location id");
                 fetch("https://localhost:5162/Campingspot", {
                     method: "POST",
                     headers: {
@@ -219,24 +203,21 @@
                 })
                 .then(response => {
                     if(!response.ok){
-                        throw new Error("Network response was not ok at ADDUSER");
+                        throw new Error("Network response was not ok at AddCampingSpot");
                     }
                     return response.json();
                 })
-                .then(data => {
-                    console.log(data + " is the data");
-                    
+                .then(data => {                    
                     alert("Campingspot added!");
                     this.$router.push({name:"AddAccomodationPage", params: {id: data}});
                     this.$emit("changeActivePage", "addaccomodation");
 
                 })
                 .catch(error => {
-                    console.error("There has been a problem with your fetch operation: ADDUSER", error);
+                    console.error("There has been a problem with your fetch operation: AddCampingSpot", error);
                 })
             },
             AddLocation(){
-                console.log(this.country, this.city, this.street, this.number)
                 fetch("https://localhost:5162/Location", {
                     method: "POST",
                     headers: {
@@ -253,9 +234,6 @@
                 })
                 .then(response => {
                     if(response.status === 400){
-                        console.log(response.status + " is the status");
-                        console.log(response + " is the response");
-                        console.log(response.json() + " is the response.json");
                         alert("Please fill in all fields!");
                         throw new Error("fields empty at ADDLOCATION");
                     }
@@ -263,15 +241,11 @@
                          throw new Error("Network response was not ok at ADDLOCATION");
                     }
                     else{
-                        console.log("first hurdle cleared");
                         return response.json();
                     }
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log("is fecking data");
                     this.locationId = data.id;
-                    console.log(this.locationId + " is the location id" + data.id);
                     this.AddCampingspot();
                 })
                 .catch(error => {
@@ -298,8 +272,6 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log("is fecking data");
                     this.cities = data;
                 })
                 .catch(error => {
@@ -326,8 +298,6 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log("is fecking data");
                     this.countries = data;
                 })
                 .catch(error => {

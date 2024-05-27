@@ -26,7 +26,6 @@
         name: 'UpdateOwnerPage',
         mounted(){
             this.id = this.$route.params.id;
-            console.log(this.id + " is the id @ UpdateOwnerPage");
             this.GetOwner(this.id);
         },
         data(){
@@ -65,8 +64,7 @@
                     }
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log("is fecking data");
+
                     this.owner = data;
                     this.fn = this.owner.fn;
                     this.ln = this.owner.ln;
@@ -103,14 +101,13 @@
                          throw new Error("Network response was not ok at GETUSER");
                     }
                     else{
-                        console.log("changed user @ response.json");
                         return response;
                     }
                 })
-                .then(data => {
-                    this.GetOwner(this.id);
-                    console.log(data + "changed user");
-                                })
+                .then(
+                    this.GetOwner(this.id),
+                    alert("Owner updated!")
+                )
                 .catch(error => {
                     console.error("There was an error!", error);
                 });
