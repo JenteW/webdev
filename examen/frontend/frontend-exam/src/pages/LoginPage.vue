@@ -1,7 +1,7 @@
 <template>
     <div class="div-login">
       <div class="w-full max-w-md text-center">
-        <h1 class="text-5xl font-bold mb-4">Login</h1>
+        <h1 class="text-5xl font-bold mb-4">Ducks & Dragons</h1>
         <p class="text-2xl mb-4">Please login to continue your Grand Adventure!</p>
           <input class="custom-input"
             type="text"
